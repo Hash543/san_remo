@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <referenceContainer name="order_additional_info">
+                <block class="Alfa9\Checkout\Block\Adminhtml\Order\View\ExtraInfo" name="extra_info_custom" template="Alfa9_Checkout::order/view/extra-info.phtml"  />
+            </referenceContainer>
+        </referenceContainer>
+    </body>
+</page>

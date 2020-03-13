@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="treatment_email" label="Treatment email" file="treatment.html" type="html" module="Alfa9_Treatment" area="frontend"/>
+    <template id="treatment_email_tips" label="Treatment email tips" file="treatmentTips.html" type="html" module="Alfa9_Treatment" area="frontend"/>
+    <template id="treatment_email_poll" label="Treatment email poll" file="treatmentPoll.html" type="html" module="Alfa9_Treatment" area="frontend"/>
+</config>

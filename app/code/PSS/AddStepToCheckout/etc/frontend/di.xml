@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="items-custom-cart" xsi:type="object">PSS\AddStepToCheckout\Model\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <!--<type name="PSS\AddStepToCheckout\Model\ConfigProvider">
+        <arguments>
+            <argument name="3" xsi:type="string">items-custom-cart</argument>
+        </arguments>
+    </type>-->
+
+    <!-- Change checkout url to cart -->
+    <type name="Magento\Checkout\Block\Cart\Sidebar">
+        <plugin name="checkout_to_cart" type="PSS\AddStepToCheckout\Plugin\Block\Cart\Sidebar"/>
+    </type>
+
+    <!-- Change Login url to shipping -->
+    <type name="Magento\Customer\Controller\Account\LoginPost">
+        <plugin name="pss_addsteptocheckout_loginpostplugin"
+                type="PSS\AddStepToCheckout\Plugin\Customer\Account\LoginPostPlugin"/>
+    </type>
+
+    <!-- Change Create url to shipping -->
+    <type name="Magento\Customer\Controller\Account\CreatePost">
+        <plugin name="pss_addsteptocheckout_createpostplugin"
+                type="PSS\AddStepToCheckout\Plugin\Customer\Account\CreatePostPlugin"/>
+    </type>
+</config>

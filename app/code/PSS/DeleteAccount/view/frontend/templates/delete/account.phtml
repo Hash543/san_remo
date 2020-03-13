@@ -1,0 +1,25 @@
+<?php
+/** @var $block PSS\DeleteAccount\Block\Customer\Account\Delete */
+?>
+
+<div class="fieldset info" style="margin: 30px 0">
+    <legend class="legend"><span><?= $block->escapeHtml(__('Account Delete')) ?></span></legend><br>
+    <span><?= $block->escapeHtml(__('Your account will be permanently deleted. Once you delete your account, there is no going back. Please be certain.')) ?></span>
+</div>
+<div class="actions-toolbar">
+    <input name="form_key" type="hidden" value="<?= $block->getFormKey() ?>">
+    <div class="primary">
+        <button type="button" class="action save primary" role="delete-account"  data-delete="<?= $block->escapeHtmlAttr($block->getCustomerId())?>" title="<?= $block->escapeHtmlAttr(__('Delete your account')) ?>"><span><?= $block->escapeHtml(__('Delete your account')) ?></span></button>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        ".page-main": {
+            "delete": {
+                "deleteUrlPrefix": "<?= $block->escapeJs($block->escapeUrl($block->getDeleteUrl())) ?>id/",
+                "deleteAccount": "button[role='delete-account']"
+            }
+        }
+    }
+</script>

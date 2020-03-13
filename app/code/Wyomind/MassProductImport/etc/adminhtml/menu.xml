@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add 
+            id="Wyomind_MassProductImport::profiles"
+            title="Mass Product Import &amp; Update" 
+            module="Wyomind_MassProductImport" 
+            sortOrder="100000" 
+            parent="Magento_Backend::system_convert"
+            action="massproductimport/profiles/index" 
+            resource="Wyomind_MassProductImport::profiles"/>
+        <remove id="Wyomind_MassStockUpdate::profiles"/>
+    </menu>
+</config>

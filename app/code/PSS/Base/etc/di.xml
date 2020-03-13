@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Ignacio Martínez
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="PSS\Base\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="PSS\Base\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">loggerPSS</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">PSS\Base\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

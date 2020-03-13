@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * di.xml
+ *
+ * @copyright Copyright © 2017 PSS. All rights reserved.
+ * @author    xsanz@pss.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Model\Session">
+        <plugin name="crm_session_plugin" type="PSS\CRM\Plugin\Customer\Session" sortOrder="10" disabled="false" />
+    </type>
+    <preference for="PSS\CRM\Api\UserRepositoryInterface" type="PSS\CRM\Model\UserRepository" />
+    <preference for="PSS\CRM\Api\TicketRepositoryInterface" type="PSS\CRM\Model\TicketRepository" />
+    <preference for="PSS\CRM\Api\PromotionRepositoryInterface" type="PSS\CRM\Model\PromotionRepository" />
+    <type name="PSS\CRM\Model\Api\UserService">
+        <arguments>
+            <argument name="logger" xsi:type="object">\PSS\CRM\Logger\Logger</argument>
+            <argument name="transportBuilder" xsi:type="object">\Magento\Framework\Mail\Template\TransportBuilder</argument>
+            <argument name="soapClient" xsi:type="object">\Zend\Soap\Client</argument>
+            <argument name="componentRegistrar" xsi:type="object">\Magento\Framework\Component\ComponentRegistrarInterface</argument>
+            <argument name="customer" xsi:type="object">\PSS\Customer\Model\Customer</argument>
+            <argument name="helper" xsi:type="object">\PSS\CRM\Helper\UserService</argument>
+            <argument name="wsdl" xsi:type="string">/etc/service/wsdl/SanRemoCRMService.wsdl</argument>
+        </arguments>
+    </type>
+    <type name="PSS\CRM\Model\Api\TicketService">
+        <arguments>
+            <argument name="logger" xsi:type="object">\PSS\CRM\Logger\Logger</argument>
+            <argument name="transportBuilder" xsi:type="object">\Magento\Framework\Mail\Template\TransportBuilder</argument>
+            <argument name="soapClient" xsi:type="object">\Zend\Soap\Client</argument>
+            <argument name="componentRegistrar" xsi:type="object">\Magento\Framework\Component\ComponentRegistrarInterface</argument>
+            <argument name="customer" xsi:type="object">\PSS\Customer\Model\Customer</argument>
+            <argument name="helper" xsi:type="object">\PSS\CRM\Helper\TicketService</argument>
+            <argument name="wsdl" xsi:type="string">/etc/service/wsdl/SanRemoCRMService.wsdl</argument>
+        </arguments>
+    </type>
+    <type name="PSS\CRM\Model\Api\PromotionService">
+        <arguments>
+            <argument name="logger" xsi:type="object">\PSS\CRM\Logger\Logger</argument>
+            <argument name="transportBuilder" xsi:type="object">\Magento\Framework\Mail\Template\TransportBuilder</argument>
+            <argument name="soapClient" xsi:type="object">\Zend\Soap\Client</argument>
+            <argument name="componentRegistrar" xsi:type="object">\Magento\Framework\Component\ComponentRegistrarInterface</argument>
+            <argument name="customer" xsi:type="object">\PSS\Customer\Model\Customer</argument>
+            <argument name="helper" xsi:type="object">\PSS\CRM\Helper\PromotionService</argument>
+            <argument name="wsdl" xsi:type="string">/etc/service/wsdl/SanRemoCRMService.wsdl</argument>
+        </arguments>
+    </type>
+    <type name="PSS\CRM\Model\Api\AbstractModel">
+        <arguments>
+            <argument name="logger" xsi:type="object">\PSS\CRM\Logger\Logger</argument>
+            <argument name="soapClient" xsi:type="object">\Zend\Soap\Client</argument>
+            <argument name="componentRegistrar" xsi:type="object">\Magento\Framework\Component\ComponentRegistrarInterface</argument>
+            <argument name="transportBuilder" xsi:type="object">\Magento\Framework\Mail\Template\TransportBuilder</argument>
+        </arguments>
+    </type>
+    <type name="PSS\CRM\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">\Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="PSS\CRM\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">CRM Logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">\PSS\CRM\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="PSS\CRM\Api\QueueRepositoryInterface" type="PSS\CRM\Model\QueueRepository" />
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="queue" xsi:type="object">PSS\CRM\Console\Process</item>
+            </argument>
+        </arguments>
+        <!--
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="test" xsi:type="object">PSS\CRM\Console\Test</item>
+            </argument>
+        </arguments>-->
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pss_crm_queue_id_data_source" xsi:type="string">PSS\CRM\Model\ResourceModel\Queue\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="PSS\CRM\Model\ResourceModel\Queue\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pss_crm_queue</argument>
+            <argument name="resourceModel" xsi:type="string">PSS\CRM\Model\ResourceModel\Queue</argument>
+        </arguments>
+    </type>
+</config>

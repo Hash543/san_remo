@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="page.main.title" destination="product.top.container" before="-" />
+        <move element="product.info.type" destination="product.stock.wrapper" after="-" />
+        <move element="productalert.stock" destination="product.stock.wrapper" after="-" />
+        <move element="productalert.stock.email" destination="product.stock.wrapper" after="-" />
+        <move element="stock_xpress" destination="product.labels" after="-" />
+        <move element="storeinfostock_modal_btn" destination="product.labels" after="-" />
+        <move element="product.info.ean" destination="product.info.stock.sku" after="-" />
+        <move element="product.info.overview" destination="product.details.top"  after="product.info.gama" />
+        <move element="product.info.stock.sku" destination="product.details.top" after="product.info.overview" />
+        <move element="product.info.social" destination="product.info.media" after="-" />
+        <move element="product.price.final" destination="product.details.top" after="product.info.stock.sku" />
+        <referenceBlock name="product.attributes" remove="true" />
+        <referenceBlock name="product.info.review" remove="true" />
+        <referenceBlock name="product_page_banner" remove="true" />
+
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="product.js" as="product.js" template="Magento_Catalog::product/js.phtml"/>
+
+
+            <container name="product.top.container" htmlTag="div" htmlClass="product-top-container" before="-">
+            <!--            HIDDEN -->
+<!--                <block name="header-products" class="WeltPixel\OwlCarouselSlider\Block\Slider\Custom">-->
+<!--                    <arguments>-->
+<!--                        <argument name="slider_id" xsi:type="string">14</argument>-->
+<!--                    </arguments>-->
+<!--                </block>-->
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.main">
+            <container name="product.details.information.top" htmlTag="div" htmlClass="product-details-information" htmlId="product-details-information-top">
+                <container name="product.details.top" htmlTag="div" htmlClass="product-details-top">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.brand" template="Magento_Catalog::product/view/manufacturer.phtml" />
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.gama" template="Magento_Catalog::product/view/gama.phtml" />
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.ean" template="Magento_Catalog::product/view/ean.phtml" />
+                </container>
+            </container>
+            <container name="product.stock.wrapper" htmlTag="div" htmlClass="product-stock-wrapper" />
+            <container name="product.labels" htmlTag="div" htmlClass="product-labels-wrapper" />
+            <container name="product.info.bottom" htmlTag="div" htmlClass="product-info-bottom">
+                <container name="product.bottom.left" htmlTag="div" htmlClass="product-bottom-left">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.envio" template="Magento_Catalog::product/view/envio.phtml" />
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.comparte" template="Magento_Catalog::product/view/comparte.phtml" />
+                </container>
+                <container name="product.bottom.mobile" htmlTag="div" htmlClass="hidden-sm hidden-md hidden-lg">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.comparte.mobile" template="Magento_Catalog::product/view/comparte.phtml" />
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="product.info.media">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.pvpdiscount" template="Magento_Catalog::product/view/pvpdiscount.phtml" />
+        </referenceContainer>
+        <referenceContainer name="page.bottom.container">
+            <block name="category-content-destacados" template="Magento_Theme::content-destacados.phtml">
+                <block name="slider-destacados" class="WeltPixel\OwlCarouselSlider\Block\Slider\Custom">
+                    <arguments>
+                        <argument name="slider_id" xsi:type="string">13</argument>
+                    </arguments>
+                </block>
+            </block>
+            <block name="home-content-info" template="Magento_Theme::home-content-info.phtml"/>
+        </referenceContainer>
+
+    </body>
+</page>

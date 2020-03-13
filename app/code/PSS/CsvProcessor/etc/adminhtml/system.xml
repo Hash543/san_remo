@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="csv_processor" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Csv Processor</label>
+            <tab>pss</tab>
+            <resource>Pss_CsvProcessor::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="delimiter" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Delimiter</label>
+                </field>
+                <field id="enclosure" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enclosure</label>
+                </field>
+                <field id="input_csv" translate="label" type="file" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload Csv</label>
+                    <backend_model>Pss\CsvProcessor\Model\Config\Backend\Csv</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">csv_processor</upload_dir>
+                    <base_url type="media" scope_info="1">csv_processor</base_url>
+                </field>
+                <field id="output_dir" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Output File Name</label>
+                    <comment>ex var/upload/perf.csv</comment>
+                </field>
+                <field id="conf_prefix" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Configurable Prefix</label>
+                    <comment>Used to not duplicate configurable's name. Leave empty if not used.</comment>
+                </field>
+                <field id="conf_sufix" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Configurable Sufix</label>
+                    <comment>Used to not duplicate configurable's name. Leave empty if not used.</comment>
+                </field>
+                <field id="convert" type="button" sortOrder="100" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Pss\CsvProcessor\Block\System\Config\ConvertBtn</frontend_model>
+                    <comment>Convert Manually</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

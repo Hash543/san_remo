@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * system.xml
+ *
+ * @copyright Copyright © 2017 Alfa9. All rights reserved.
+ * @author    xsanz@alfa9.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="stockexpress" translate="label" type="text" sortOrder="325" showInDefault="1" showInWebsite="0" showInStore="0">
+            <class>separator-top</class>
+            <label>Stock WS</label>
+            <tab>alfa9</tab>
+            <resource>Alfa9_Base::config</resource>
+            <group id="stock_service" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>User Service</label>
+                <field id="wsdl" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WSDL Url</label>
+                    <comment></comment>
+                </field>
+                <field id="database" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Database Name</label>
+                    <comment></comment>
+                </field>
+                <field id="verify_ssl" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Verify SSL Enabled</label>
+                    <comment></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="authenticate" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WSDL Authentication Enabled</label>
+                    <comment></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="user" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WSDL User</label>
+                    <comment></comment>
+                    <depends>
+                        <field id="authenticate">1</field>
+                    </depends>
+                </field>
+                <field id="password" translate="label" type="password" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WSDL Password</label>
+                    <comment></comment>
+                    <depends>
+                        <field id="authenticate">1</field>
+                    </depends>
+                </field>
+                <field id="debugXML" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Log XML Requests</label>
+                    <comment></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="debug" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Debug Errors</label>
+                    <comment></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Email errors to</label>
+                    <comment></comment>
+                    <depends>
+                        <field id="debug">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

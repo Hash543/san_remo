@@ -1,0 +1,12 @@
+<?php
+use Alfa9\StorePickup\Model\Carrier\StorePickup;
+
+$shippingMethod = $this->getData('order')->getShippingMethod();
+?>
+
+<?php if (strpos($shippingMethod, StorePickup::SHIPPING_CODE) !== false) : ?>
+    <td class="address-details">
+        <h3><?= /* @escapeNotVerified */  __('Billing Info') ?></h3>
+        <p><?= $this->getData('formattedBillingAddress'); ?></p>
+    </td>
+<?php endif; ?>

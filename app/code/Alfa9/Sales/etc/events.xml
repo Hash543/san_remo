@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="accepted_payment_redsys">
+        <observer name="pss_accepted_payment_redsys" instance="Alfa9\Sales\Observer\Order\AfterPlacerOrderLegacy" />
+    </event>
+    <event name="sales_order_place_after">
+        <observer name="sales_order_place_after_create_csv" instance="Alfa9\Sales\Observer\Order\AfterPlacerOrderLegacy" />
+    </event>
+    <event name="pss_sales_order_export_command">
+        <observer name="pss_sales_order_export_command_create_csv" instance="Alfa9\Sales\Observer\Order\AfterPlacerOrderLegacy" />
+    </event>
+</config>

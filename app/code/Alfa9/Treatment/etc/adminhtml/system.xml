@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="pss_treatments" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Treatments</label>
+            <tab>pss</tab>
+            <resource>Alfa9_Treatment::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1">
+                <label>General Configuration</label>
+                <field id="enable_reminder" translate="label" type="select" sortOrder="10" showInDefault="1" canRestore="1">
+                    <label><![CDATA[Enable Treatment Reminder]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_tips" translate="label" type="select" sortOrder="20" showInDefault="1" canRestore="1">
+                    <label><![CDATA[Enable Treatment Tips]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="days_to_tips" translate="label" sortOrder="25" showInDefault="1" canRestore="1">
+                    <label><![CDATA[Days to tips]]></label>
+                    <comment><![CDATA[Days to wait in order to send the Tips Email]]></comment>
+                    <depends>
+                        <field id="enable_tips">1</field>
+                    </depends>
+                </field>
+                <field id="enable_poll" translate="label" type="select" sortOrder="30" showInDefault="1" canRestore="1">
+                    <label><![CDATA[Enable Treatment Poll]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="days_to_poll" translate="label" sortOrder="35" showInDefault="1" canRestore="1">
+                    <label><![CDATA[Days to poll]]></label>
+                    <comment><![CDATA[Days to wait in order to send the Poll Email]]></comment>
+                    <depends>
+                        <field id="enable_poll">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

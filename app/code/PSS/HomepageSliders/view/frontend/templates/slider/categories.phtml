@@ -1,0 +1,40 @@
+<?php $categoriesTabs = $block->getSliderConfiguration(); ?>
+
+<div id="homepage-sliders" class="section-container section-gray section-recomendaciones">
+    <div class="container">
+        <div class="content-heading">
+            <h2 class="title"><?php echo $block->getData('title'); ?></h2>
+        </div>
+        <div class="tabs clearfix ui-tabs ui-widget ui-widget-content ui-corner-all">
+            <ul class="tab-nav clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                <?php foreach($categoriesTabs as $key => $categoryTab): ?>
+                    <li class="tab-header ui-state-default ui-corner-top" role="tab" tabindex="-1" data-tabcontainer="#tabs-categ-<?= $categoryTab['categId']; ?>" aria-controls="tabs-categ-<?= $categoryTab['categId']; ?>" aria-labelledby="ui-id-<?= $categoryTab['categId']; ?>" aria-selected="false">
+                        <a href="#tabs-categ-<?= $categoryTab['categId']; ?>" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-<?= $categoryTab['categId']; ?>"><?= $categoryTab['categName']; ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+            <div class="tab-container">
+                <?php foreach($categoriesTabs as $key => $categoryTab): ?>
+                    <div class="tab-content clearfix ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-categ-<?= $categoryTab['categId']; ?>" aria-labelledby="ui-id-<?= $categoryTab['categId']; ?>" role="tabpanel" aria-expanded="false" aria-hidden="true">
+                        <p><?= $categoryTab['categContent']; ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        "jquery"
+    ], function ($) {
+        $('.tab-content').first().addClass('tab-active');
+
+        $('.tab-header').click(function () {
+            let tabContainerId = $(this).data("tabcontainer");
+            let tabContainer = $( tabContainerId );
+
+            $('.tab-content').removeClass('tab-active');
+            tabContainer.addClass('tab-active');
+        });
+    });
+</script>

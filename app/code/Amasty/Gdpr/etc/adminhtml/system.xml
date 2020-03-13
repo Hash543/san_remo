@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amasty_gdpr" translate="label" type="text" sortOrder="70416" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>GDPR</label>
+            <tab>amasty</tab>
+            <resource>Amasty_Gdpr::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment>On the Frontend.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="avoid_anonymisation" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label><![CDATA[Forbid customer's personal data anonymization and deletion for orders in certain statuses]]></label>
+                    <comment>If enabled, customer’s personal data of orders in certain statuses won’t be allowed for anonymization or deletion by a customer or admin.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="order_statuses" translate="label comment" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Order Statuses</label>
+                    <comment>Customer’s personal data of orders with the chosen statuses won’t be allowed for anonymization.</comment>
+                    <source_model>Amasty\Gdpr\Model\Config\Source\Order\Status</source_model>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="avoid_anonymisation">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="customer_access_control" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable or Disable 'Privacy Settings' Sections</label>
+                <field id="download" translate="label tooltip" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Download Personal Data</label>
+                    <tooltip>A customer will not be able to download personal data if disabled.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="anonymize" translate="label tooltip" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Anonymize Personal Data</label>
+                    <tooltip>A customer will not be able to anonymize personal data if disabled.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="delete" translate="label tooltip" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delete Account</label>
+                    <tooltip>A customer will not be able to delete account if disabled.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="anonymisation_notification" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Anonymization Notifications</label>
+                <field id="sender" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="reply_to" translate="label comment tooltip" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Reply To</label>
+                    <comment>You can set only one email address in this field.</comment>
+                    <tooltip>Specify a separate email address for replies or leave blank to use the sender address instead.</tooltip>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="template" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="deletion_notification" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Delete 'Account Requests' Notifications</label>
+                <field id="subtitle_admin" translate="label" type="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[<b>Admin Notfication</b>]]></label>
+                </field>
+                <field id="enable_admin_notification" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notify Administrator Each Time User Requests To Delete Account</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="admin_sender" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends>
+                        <field id="enable_admin_notification">1</field>
+                    </depends>
+                </field>
+                <field id="admin_reciever" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Email To</label>
+                    <comment>This will be used in the "To" field. Several emails should be written on a separate line.</comment>
+                    <depends>
+                        <field id="enable_admin_notification">1</field>
+                    </depends>
+                </field>
+                <field id="admin_template" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="enable_admin_notification">1</field>
+                    </depends>
+                </field>
+                <field id="subtitle_approve" translate="label" type="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[<b>Approve Notification</b>]]></label>
+                </field>
+                <field id="sender" translate="label" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="reply_to" translate="label comment tooltip" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Reply To</label>
+                    <comment>You can set only one email address in this field.</comment>
+                    <tooltip>Specify a separate email address for replies or leave blank to use the sender address instead.</tooltip>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="template" translate="label" type="select" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="subtitle_deny" translate="label" type="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[<b>Deny Notification</b>]]></label>
+                </field>
+                <field id="deny_sender" translate="label" type="select" sortOrder="65" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="deny_reply_to" translate="label comment tooltip" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Reply To</label>
+                    <comment>You can set only one email address in this field.</comment>
+                    <tooltip>Specify a separate email address for replies or leave blank to use the sender address instead.</tooltip>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="deny_template" translate="label" type="select" sortOrder="75" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="consent_notification" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Consent Request Notifications</label>
+                <field id="sender" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="reply_to" translate="label comment tooltip" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Reply To</label>
+                    <comment>You can set only one email address in this field.</comment>
+                    <tooltip>Specify a separate email address for replies or leave blank to use the sender address instead.</tooltip>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="template" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="privacy_checkbox" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Privacy Checkbox</label>
+                <field id="eea_only" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Display Only for <a target="_blank" href="https://en.wikipedia.org/wiki/European_Economic_Area" target="_blank">EEA</a> Countries]]></label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="eea_countries" translate="label comment" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>EEA Countries</label>
+                    <source_model>Amasty\Gdpr\Model\Config\Source\Countries</source_model>
+                    <comment>All selected countries will be considered to be EU countries</comment>
+                    <depends>
+                        <field id="eea_only">1</field>
+                    </depends>
+                </field>
+                <field id="consent_text" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Consent Text</label>
+                    <comment>You can use any HTML-tags in this field. Please, mind the security.</comment>
+                </field>
+                <field id="display_at_registration" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display at Registration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_at_checkout" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display at Checkout</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_at_contact" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display at Contact Us</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="display_at_newsletter" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display at Newsletter Subscription</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,49 @@
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * This package designed for Magento COMMUNITY edition
+ * PSS Digital does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * PSS Digital does not provide extension support in case of * incorrect edition usage.
+ *
+ * @author PSS Digital Team
+ * @category PSS
+ * @package PSS_AddStepToCheckout
+ * @copyright Copyright (c) 2018 PSS (https://www.pss-ti.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+-->
+
+<!--The 'step_code' value from the .js file should be used-->
+<li id="order_review" data-bind="fadeVisible: isVisible">
+    <div class="step-title" data-bind="i18n: 'Checkout Review'" data-role="title"></div>
+    <div id="checkout-step-title"
+         class="step-content"
+         data-role="content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() -->
+        <div data-role="checkout-messages" class="messages" data-bind="visible: isVisible(), click: removeAll">
+            <!-- ko foreach: messageContainer.getErrorMessages() --><!--/ko-->
+            <!-- ko foreach: messageContainer.getSuccessMessages() --><!--/ko-->
+        </div>
+        <!-- /ko -->
+        <!--/ko-->
+        <!-- ko foreach: { data: elems, as: 'element' } -->
+        <!-- ko if: hasTemplate() -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <!-- /ko -->
+        <!-- ko if: (isVisible()) -->
+        <div class="actions-toolbar-trigger" id="place-order-trigger-wrapper">
+            <button type="button" class="button action primary" id="place-order-trigger"
+                    data-bind="attr: {title: $t('Place Order')}" title="Place Order">
+                <span data-bind="i18n: 'Place Order'"></span>
+            </button>
+        </div>
+        <!-- /ko -->
+    </div>
+</li>

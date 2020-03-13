@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <system>
+        <section id="rewardpoints">
+            <group id="display">
+                <!--
+                <field id="show_change_points" translate="label" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Display Change Points Block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>-->
+                <field id="show_slider" translate="label" type="select" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Display Slider</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If you choose No, the module will show an input by default. ]]></comment>
+                </field>
+
+                <field id="show_cart" translate="label" type="select" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Display Earning Points in the Cart</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="message_cart" translate="label" type="textarea" sortOrder="510" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Message Earning Points in the Cart</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

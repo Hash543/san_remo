@@ -1,0 +1,96 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_GdprCookie
+ */
+?>
+<?php /** @var \Amasty\GdprCookie\Block\Widget\Settings $block */
+
+if (!$block->isNeedToShow()) {
+    return;
+}
+
+$groups = $block->getAllGroups();
+?>
+
+<div class="amgdprcookie-main-wrapper">
+    <form id="amgdprcookie-form">
+        <div class="amgdprcookie-top">
+            <span class="amgdprcookie-head">
+                <?= $block->escapeHtml(__('Cookie Settings')) ?>
+            </span>
+            <div class="amgdprcookie-btn-wrapper">
+                <button class="amgdprcookie-btn" id="amgdprcookie-btn-all">
+                    <?= $block->escapeHtml(__('Allow all')) ?>
+                </button>
+                <button class="amgdprcookie-btn" id="amgdprcookie-btn-save">
+                    <?= $block->escapeHtml(__('Save')) ?>
+                </button>
+            </div>
+        </div>
+        <?php foreach ($groups as $groupId => $groupData): ?>
+        <div class="amgdprcookie-container">
+            <div class="amgdprcookie-header">
+                <h3 class="amgdprcookie-caption">
+                    <?= $block->escapeHtml(__($groupData['name'] . ' Cookies')) ?>
+                </h3>
+                <div class="amgdprcookie-toggle-cookie">
+                    <input class="amgdprcookie-input <?= $groupData['isEssential'] ? 'disabled' : ''?>"
+                           type="checkbox"
+                           id="switchBox<?=$groupId; ?>"
+                           name="groups[]"
+                           value="<?= $groupId; ?>"
+                           data-category-id="1"
+                           data-is-system="1"
+                        <?= $groupData['checked'] ? 'checked' : '' ?>
+                        <?= $groupData['isEssential'] ? 'onclick="return false;"' : '' ?>
+                    >
+                    <label class="amgdprcookie-label" for="switchBox<?=$groupId; ?>"></label>
+                </div>
+            </div>
+            <p class="amgdprcookie-text">
+                <?= $block->escapeHtml($groupData['description']); ?>
+            </p>
+
+            <div class="amgdprcookie-options-wrapper"
+                 data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
+                <div class="amgdprcookie-check" data-role="collapsible">
+                    <div class="amgdprcookie-options" data-role="trigger">
+                        <?= $block->escapeHtml(__('List of cookies the ' . $groupData['name'] . ' group collects')) ?>
+                    </div>
+                </div>
+                <div class="amgdprcookie-content-wrapper" data-role="content">
+                    <table class="amgdprcookie-table">
+                        <thead>
+                            <tr>
+                                <th class="amgdprcookie-title">
+                                    <?= $block->escapeHtml(__('Cookie Name')) ?>
+                                </th>
+                                <th class="amgdprcookie-title">
+                                    <?= $block->escapeHtml(__('Cookie Description')) ?>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($groupData['cookies'] as $cookie): ?>
+                            <tr class="amgdprcookie-row">
+                                <td class="amgdprcookie-cell"><?= $block->escapeHtml($cookie['name']); ?></td>
+                                <td class="amgdprcookie-cell desc"><?= $block->escapeHtml($cookie['description']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </form>
+</div>
+
+<script type="text/x-magento-init">
+    {"*": {
+            "Amasty_GdprCookie/js/cookiesettings": {}
+          }
+    }
+</script>

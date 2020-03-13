@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_GdprCookie
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\GdprCookie\Api\Data\CookieInterface" type="Amasty\GdprCookie\Model\Cookie" />
+    <preference for="Amasty\GdprCookie\Api\CookieRepositoryInterface" type="Amasty\GdprCookie\Model\Repository\CookieRepository" />
+
+    <preference for="Amasty\GdprCookie\Api\Data\CookieGroupsInterface" type="Amasty\GdprCookie\Model\CookieGroup" />
+    <preference for="Amasty\GdprCookie\Api\CookieGroupsRepositoryInterface" type="Amasty\GdprCookie\Model\Repository\CookieGroupsRepository" />
+
+    <preference for="Amasty\GdprCookie\Api\Data\CookieConsentInterface" type="Amasty\GdprCookie\Model\CookieConsent" />
+    <preference for="Amasty\GdprCookie\Api\CookieConsentRepositoryInterface" type="Amasty\GdprCookie\Model\Repository\CookieConsentRepository" />
+</config>

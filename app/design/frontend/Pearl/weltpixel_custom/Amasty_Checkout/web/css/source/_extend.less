@@ -1,0 +1,81 @@
+//
+//  One Step Checkout
+//  ____________________________________________
+
+//
+//  Variables
+//  _____________________________________________
+
+
+//
+//  Common
+//  ----------------------------------------------
+& when (@media-common = true) {
+    //Checkout Page
+    .checkout-index-index {
+
+    }
+
+    // Success Page
+    .checkout-success {
+
+    }
+}
+
+
+//
+//  Desktop
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .checkout-index-index {
+
+    }
+}
+
+
+//
+//  Mobile
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-index-index {
+        #checkout {
+            .checkout-header {
+
+            }
+
+            .opc-estimated-wrapper {
+
+            }
+
+            .opc-wrapper {
+                .checkout-column {
+                    .form-login,
+                    .form-shipping-address,
+                    .methods-shipping {
+                        margin: 28px -12px;
+                    }
+
+                    .step-title {
+                        font-size: 19px;
+                    }
+
+                    .checkout-shipping-address {
+
+                    }
+
+                    .checkout-shipping-method {
+                        .step-content {
+                            .table-checkout-shipping-method {
+                                thead {
+                                    th {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

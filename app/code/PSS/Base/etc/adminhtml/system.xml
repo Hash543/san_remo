@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Ignacio Martínez
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="pss" translate="label" sortOrder="10" class="pss-tab">
+            <label><![CDATA[PSS EXTENSIONS]]></label>
+        </tab>
+    </system>
+</config>

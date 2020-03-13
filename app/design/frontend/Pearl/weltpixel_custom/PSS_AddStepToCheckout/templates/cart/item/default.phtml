@@ -1,0 +1,367 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
+
+$_item = $block->getItem();
+$product = $_item->getProduct();
+$childProduct = null;
+$description = $product->getData('short_description');
+$productName = $product->getName();
+if($product->getTypeId() == 'configurable' && $_item->getOptionByCode('simple_product')) {
+    /** @var \Magento\Quote\Model\Quote\Item\Option $option */
+    $option = $_item->getOptionByCode('simple_product');
+    $childProduct = $option->getProduct();
+    $description = $childProduct->getData('short_description');
+    $productName = $childProduct->getName();
+}
+$isVisibleProduct = $product->isVisibleInSiteVisibility();
+/** @var \Magento\Msrp\Helper\Data $helper */
+$helper = $this->helper('Magento\Msrp\Helper\Data');
+$canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+/** @var \Alfa9\GiftProduct\Helper\Data $helperGiftProduct */
+$helperGiftProduct = $this->helper('Alfa9\GiftProduct\Helper\Data');
+/** @var  \Magento\Framework\Pricing\Helper\Data $helperPrice */
+$helperPrice = $this->helper('Magento\Framework\Pricing\Helper\Data');
+
+/** @var \Magento\Catalog\Helper\Image $helperImage */
+$helperImage = $this->helper('Magento\Catalog\Helper\Image');
+
+/** @var \Magento\Tax\Helper\Data $helperTax */
+$helperTax = $this->helper('Magento\Tax\Helper\Data');
+
+$baseRowTotal = $_item->getRowTotalInclTax();
+/** @var  \Magento\Framework\App\Request\Http $requestInterface */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$requestInterface = $objectManager->get('Magento\Framework\App\Request\Http');
+$isShowed =  true;
+$isCheckout = false;
+
+$isSampleProduct = \PSS\SampleProducts\Helper\Data::isSampleProduct($product);
+if ($requestInterface->getFullActionName() == 'checkout_index_index') {
+    $baseRowTotal = $_item->getRowTotalInclTax();
+    $isCheckout = true;
+} else {
+    if($helperTax->priceIncludesTax()) {
+        $baseRowTotal = $_item->getRowTotalInclTax() - $_item->getDiscountAmount();
+    } else {
+        $baseRowTotal = $_item->getRowTotal() - $_item->getDiscountAmount() + $_item->getTaxAmount();
+    }
+}
+/** @var \Magento\CatalogInventory\Model\Configuration $catalogInventoryConfig */
+$catalogInventoryConfig = $objectManager->get('Magento\CatalogInventory\Model\Configuration');
+?>
+<?php if($isShowed): ?>
+<tbody class="cart item">
+<tr class="item-info">
+    <td data-th="<?= $block->escapeHtml(__('Item')) ?>" class="col item">
+        <?php if ($block->hasProductUrl()): ?>
+        <a href="<?= /* @escapeNotVerified */
+        $block->getProductUrl() ?>"
+           title="<?= $block->escapeHtml($block->getProductName()) ?>"
+           tabindex="-1"
+           class="product-item-photo">
+            <?php else: ?>
+            <span class="product-item-photo">
+            <?php endif; ?>
+                <span class="product-image-container"
+                      style="width:165px;">
+                        <span class="product-image-wrapper"
+                              style="padding-bottom: <?= /* @escapeNotVerified */ (1* 100) ?>%;">
+                            <img src="<?php echo $helperImage->init($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->getUrl(); ?>" />
+                        </span>
+                </span>
+            <?php if ($block->hasProductUrl()): ?>
+
+        </a>
+    <?php else: ?>
+        </span>
+    <?php endif; ?>
+        <div class="product-item-details">
+            <?php $brand_name = $product->getResource()->getAttribute('manufacturer')->getFrontend()->getValue($product); ?>
+            <h2 class="product-item-manufacturer"><?php echo $brand_name ?></h2>
+
+            <strong class="product-item-name">
+                <?php if ($block->hasProductUrl()): ?>
+                    <a href="<?= /* @escapeNotVerified */
+                    $block->getProductUrl() ?>"><?= $block->escapeHtml($productName) ?></a>
+                <?php else: ?>
+                    <?= $block->escapeHtml($productName) ?>
+                <?php endif; ?>
+            </strong>
+            <?php if (false && $_options = $block->getOptionList()): ?>
+                <dl class="item-options">
+                    <?php foreach ($_options as $_option) : ?>
+                        <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                        <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+                        <dd>
+                            <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                                <?= /* @escapeNotVerified */
+                                $_formatedOptionValue['full_view'] ?>
+                            <?php else: ?>
+                                <?= /* @escapeNotVerified */
+                                $_formatedOptionValue['value'] ?>
+                            <?php endif; ?>
+                        </dd>
+                    <?php endforeach; ?>
+                </dl>
+            <?php endif; ?>
+            <?php if ($messages = $block->getMessages()): ?>
+                <?php foreach ($messages as $message): ?>
+                    <div class="cart item message <?= /* @escapeNotVerified */
+                    $message['type'] ?>">
+                        <div><?= $block->escapeHtml($message['text']) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+            <?php if ($addInfoBlock): ?>
+                <?= $addInfoBlock->setItem($_item)->toHtml() ?>
+            <?php endif; ?>
+        </div>
+        <div class="field qty">
+            <label class="label" for="cart-<?= /* @escapeNotVerified */
+            $_item->getId() ?>-qty">
+                    <span><?= /* @escapeNotVerified */
+                        __('Qty') ?></span>
+            </label>
+            <div class="control qty">
+                <?php if(!$isCheckout && !$isSampleProduct && ( $catalogInventoryConfig->getMaxSaleQty() > 1)): ?>
+                    <input id="cart-<?= $_item->getId() ?>-qty"
+                           name="cart[<?= /* @escapeNotVerified */
+                           $_item->getId() ?>][qty]"
+                           data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
+                           value="<?= /* @escapeNotVerified */
+                           $block->getQty() ?>"
+                           type="number"
+                           size="4"
+                           title="<?= $block->escapeHtml(__('Qty')) ?>"
+                           class="input-text qty"
+                           data-validate="{required:true,'validate-greater-than-zero':true}"
+                           data-role="cart-item-qty"/>
+                    <div class="qty_control">
+                        <button type="button" id="<?= /* @escapeNotVerified */
+                        $_item->getId() ?>-dec" class="decreaseQty"><span><?= $block->escapeHtml(__('-')) ?></button>
+                        <button type="button" id="<?= /* @escapeNotVerified */
+                        $_item->getId() ?>-upt" class="increaseQty"><span><?= $block->escapeHtml(__('+')) ?></button>
+                    </div>
+                <?php else: ?>
+                    <input id="cart-<?= $_item->getId() ?>-qty-hidden"
+                           name="cart[<?= /* @escapeNotVerified */
+                           $_item->getId() ?>][qty]"
+                           data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
+                           value="<?= /* @escapeNotVerified */
+                           $block->getQty() ?>"
+                           type="hidden"
+                           size="4"
+                           title="<?= $block->escapeHtml(__('Qty')) ?>"
+                           class="input-text qty"
+                           data-validate="{required:true,'validate-greater-than-zero':true}"
+                           data-role="cart-item-qty"/>
+                    <span class="qty-no-editable"><?= $block->getQty(); ?></span>
+                <?php endif; ?>
+            </div>
+        </div>
+    </td>
+
+    <td class="col subtotal delete-product" data-th="<?= $block->escapeHtml(__('Subtotal')) ?>">
+        <div class="actions-toolbar visible-xs hidden-xl">
+            <?= /* @escapeNotVerified */
+            $block->getActions($_item) ?>
+        </div>
+        <div class="cart-item-price-desktop">
+            <?php if ($canApplyMsrp): ?>
+                <span class="cart msrp subtotal">--</span>
+            <?php else: ?>
+                <span class="cart-price">
+                    <?php if($baseRowTotal == 0): ?>
+                        <span class="free-label price"><?= __('Gratis'); ?></span>
+                    <?php endif; ?>
+                    <span><?= str_replace("0,00", "0", $helperPrice->currency($baseRowTotal)); ?></span>
+                </span>
+            <?php endif; ?>
+        </div>
+    </td>
+    <td class="col item-actions-custom visible-xl hidden-xs" data-th="<?= $block->escapeHtml(__('Actions')) ?>">
+        <div class="actions-toolbar">
+            <div class="field gift-product-action">
+                <label id="<?= /* @escapeNotVerified */
+                $_item->getId() ?>-custom-gift" class="label gift-link <?= $_item->getId() ?>-gift-link <?php echo $_item->getData('is_gift')? "gift-link-red": "";?>"
+                       for="cart-<?= /* @escapeNotVerified */
+                $_item->getId() ?>-is-gift">
+                    <span><?= /* @escapeNotVerified */ __('Is Gift?') ?></span>
+                    <span><?= /* @escapeNotVerified */ __('Additional Price: %1', $helperPrice->currency(number_format($helperGiftProduct->getProductPriceGift(), 2), true, false)); ?></span>
+                    <p class="gift-uncheck" style="display: <?= $_item->getData('is_gift') ? "none": "inline-block"; ?>">
+                        <?= /* @escapeNotVerified */ __('NO es para regalar'); ?></p>
+                    <p class="gift-checked" style="display: <?= $_item->getData('is_gift') ? "inline-block": "none"; ?>">
+                        <?= /* @escapeNotVerified */ __('Es para regalar'); ?></p>
+                </label>
+                <div class="control is-gift">
+                    <input type="hidden"
+                           id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-is-gift"
+                           name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][is_gift]"
+                           value="<?php echo $_item->getData('is_gift') ? $_item->getData('is_gift') : '0'; ?>" />
+                </div>
+            </div>
+            <?= /* @escapeNotVerified */
+            $block->getActions($_item) ?>
+        </div>
+    </td>
+</tr>
+<tr class="item-info device-mobile">
+    <td class="col item">
+        <div class="field qty mobile">
+            <label class="label" for="cart-<?= /* @escapeNotVerified */
+            $_item->getId() ?>-qty">
+                    <span><?= /* @escapeNotVerified */
+                        __('Qty') ?></span>
+            </label>
+            <div class="control qty">
+                <?php if(!$isCheckout && !$isSampleProduct && ( $catalogInventoryConfig->getMaxSaleQty() > 1)): ?>
+                    <input id="cart-<?= /* @escapeNotVerified */
+                    $_item->getId() ?>-qty-mobile"
+                           name="cart[<?= /* @escapeNotVerified */
+                           $_item->getId() ?>][qty]"
+                           data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
+                           value="<?= /* @escapeNotVerified */
+                           $block->getQty() ?>"
+                           type="number"
+                           size="4"
+                           title="<?= $block->escapeHtml(__('Qty')) ?>"
+                           class="input-text qty"
+                           data-validate="{required:true,'validate-greater-than-zero':true}"
+                           data-role="cart-item-qty"/>
+                    <div class="qty_control">
+                        <button type="button" id="<?= /* @escapeNotVerified */
+                        $_item->getId() ?>-dec-mobile" class="decreaseQty"><span><?= $block->escapeHtml(__('-')) ?></button>
+                        <button type="button" id="<?= /* @escapeNotVerified */
+                        $_item->getId() ?>-upt-mobile" class="increaseQty"><span><?= $block->escapeHtml(__('+')) ?></button>
+                    </div>
+                <?php else: ?>
+                    <input id="cart-<?= $_item->getId() ?>-qty-mobile-hidden"
+                           name="cart[<?= /* @escapeNotVerified */
+                           $_item->getId() ?>][qty]"
+                           data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
+                           value="<?= /* @escapeNotVerified */
+                           $block->getQty() ?>"
+                           type="hidden"
+                           size="4"
+                           title="<?= $block->escapeHtml(__('Qty')) ?>"
+                           class="input-text qty"
+                           data-validate="{required:true,'validate-greater-than-zero':true}"
+                           data-role="cart-item-qty"/>
+                    <span class="qty-no-editable"><?= $block->getQty(); ?></span>
+                <?php endif; ?>
+            </div>
+        </div>
+    </td>
+    <td class="col subtotal mobile" data-th="<?= $block->escapeHtml(__('Subtotal')) ?>">
+        <div class="cart-item-price-mobile">
+            <?php if ($canApplyMsrp): ?>
+                <span class="cart msrp subtotal">--</span>
+            <?php else: ?>
+                <span class="cart-price">
+                    <?php if($baseRowTotal == 0): ?>
+                        <span class="free-label price"><?= __('Gratis'); ?></span>
+                    <?php endif; ?>
+                    <span><?= str_replace("0,00", "0", $helperPrice->currency($baseRowTotal)); ?></span>
+                </span>
+            <?php endif; ?>
+        </div>
+    </td>
+</tr>
+<tr class="item-info-action">
+    <td class="col item-actions-custom visible-xl device-xs device-xxs" data-th="<?= $block->escapeHtml(__('Actions')) ?>">
+        <div class="actions-toolbar">
+            <div class="field gift-product-action">
+                <label id="<?= /* @escapeNotVerified */
+                $_item->getId() ?>-custom-gift-mobile" class="label gift-link <?= $_item->getId() ?>-gift-link <?php echo $_item->getData('is_gift')? "gift-link-red": "";?>"
+                       for="cart-<?= /* @escapeNotVerified */
+                $_item->getId() ?>-is-gift-mobile">
+                    <span><?= /* @escapeNotVerified */ __('Is Gift?') ?></span>
+                    <span><?= /* @escapeNotVerified */ __('Additional Price: %1', $helperPrice->currency(number_format($helperGiftProduct->getProductPriceGift(), 2), true, false)); ?></span>
+                    <p class="gift-uncheck" style="display: <?= $_item->getData('is_gift') ? "none": "inline-block"; ?>">
+                        <?= /* @escapeNotVerified */ __('NO es para regalar'); ?></p>
+                    <p class="gift-checked" style="display: <?= $_item->getData('is_gift') ? "inline-block": "none"; ?>">
+                        <?= /* @escapeNotVerified */ __('Es para regalar'); ?></p>
+                </label>
+            </div>
+            <?= /* @escapeNotVerified */
+            $block->getActions($_item) ?>
+        </div>
+    </td>
+</tr>
+</tbody>
+<?php endif; ?>
+<script type="text/javascript">
+    require(["jquery"], function ($) {
+        // $('.increaseQty, .decreaseQty').on("click",function(){
+        $('#<?php echo $_item->getId();?>-upt, #<?php echo $_item->getId();?>-upt-mobile,  #<?php echo $_item->getId();?>-dec, #<?php echo $_item->getId();?>-dec-mobile').on(" click ", function () {
+            var $this = $(this);
+            var selectField = $('#cart-<?php echo $_item->getId();?>-qty');
+            var selectFieldMobile = $('#cart-<?php echo $_item->getId();?>-qty-mobile');
+            var currentQty = selectField.val();
+            var qty = 1;
+            if ($this.hasClass('increaseQty')) {
+                qty = parseInt(currentQty) + 1;
+            } else {
+                if (currentQty > 1) {
+                    qty = parseInt(currentQty) - 1;
+                }
+            }
+            selectField.val(qty);
+            selectFieldMobile.val(qty);
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function ($) {
+        $(document).ready(function ($) {
+            $('#<?= $_item->getId() ?>-custom-gift, #<?= $_item->getId() ?>-custom-gift-mobile').on('click', function () {
+                var giftLabel = $('.<?= $_item->getId() ?>-gift-link');
+                var giftChecked = giftLabel.find('.gift-checked'), giftUnChecked = giftLabel.find('.gift-uncheck');
+                var inputCheckbox = $('#cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-is-gift');
+                <?php if(!$isCheckout): ?>
+                    if ($(this).hasClass('gift-link-red')){
+                        giftChecked.hide();
+                        giftUnChecked.show();
+                        $('#<?= $_item->getId() ?>-custom-gift, #<?= $_item->getId() ?>-custom-gift-mobile').removeClass('gift-link-red');
+                        inputCheckbox.val(0);
+
+                    } else {
+                        giftUnChecked.hide();
+                        giftChecked.show();
+                        $('#<?= $_item->getId() ?>-custom-gift, #<?= $_item->getId() ?>-custom-gift-mobile').addClass('gift-link-red');
+                        inputCheckbox.val(1);
+                    }
+                <?php else: ?>
+                    return false;
+                <?php endif; ?>
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function ($) {
+        function waitForElement(query, callback){
+            var poops = setInterval(function(){
+                if(document.querySelector(query)){            clearInterval(poops);
+                    callback();
+                }
+            }, 100);
+        }
+
+        waitForElement(".opc-block-summary .data.table.table-totals .totals.discount .amount .price", function(){
+            $( ".opc-block-summary .data.table.table-totals .totals.discount .amount .price" ).hide();
+        });
+             
+    });
+</script>
+
+

@@ -1,0 +1,35 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\PaymentPoints\Api\Data;
+
+interface CustomerPointsExtensionInterface extends \Magento\Framework\Api\ExtensibleDataInterface {
+
+    const LOYALTY_POINTS = 'loyalty_points';
+
+    const POINTS = 'points';
+    const EXPIRATION_DATE = 'expiration_date';
+
+    /**
+     * @return int
+     */
+    public function getPoints();
+
+    /**
+     * @param int $points
+     * @return $this
+     */
+    public function setPoints($points);
+
+    /**
+     * @return string
+     */
+    public function getExpirationDate();
+
+    /**
+     * @param string $expirationDate
+     * @return $this
+     */
+    public function setExpirationDate($expirationDate);
+}

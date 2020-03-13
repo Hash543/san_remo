@@ -1,0 +1,38 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\PaymentPoints\Model;
+
+class CustomerPointsExtension extends \Magento\Framework\Model\AbstractExtensibleModel
+    implements \PSS\PaymentPoints\Api\Data\CustomerPointsExtensionInterface {
+    /**
+     * {@inheritdoc}
+     */
+    public function getPoints() {
+        return $this->getData(self::POINTS);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPoints($points) {
+        $this->setData(self::POINTS, $points);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExpirationDate(){
+        return $this->getData(self::EXPIRATION_DATE);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setExpirationDate($expirationDate) {
+        $this->setData(self::EXPIRATION_DATE, $expirationDate);
+        return $this;
+    }
+}

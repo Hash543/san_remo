@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="newsletter_subscriber_save_before">
+        <observer name="alfa9_mdirector_observer_subscribe_save_before" instance="Alfa9\MDirector\Observer\Subscribe" />
+    </event>
+    <event name="newsletter_subscriber_delete_after">
+        <observer name="alfa9_mdirector_observer_subscriber_delete_before" instance="Alfa9\MDirector\Observer\DeleteSubscribe" />
+    </event>
+    <event name="customer_save_after">
+        <observer name="alfa9_mdirector_observer_customer_save_after" instance="Alfa9\MDirector\Observer\SaveCustomer" />
+    </event>
+</config>

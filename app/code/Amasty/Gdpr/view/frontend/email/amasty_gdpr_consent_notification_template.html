@@ -1,0 +1,21 @@
+<!--@subject Consent Request @-->
+{{template config_path="design/email/header_template"}}
+<div>
+    <p>We have recently updated our privacy policy. Due to the changes related to the EU GDPR (General Data Protection Regulation) we are required to notify you about this update and are required to get your consent to the updated policy.</p>
+
+    <p>In order to have your account still active with Amasty, to be able to download free updates and get support, it's necessary to read and agree with the updated privacy policy.</p>
+
+    <p>There are no major differences, we still take care of all your personal data, we store
+        it securely and use it only for processing your orders and support requests.</p>
+
+    <a href="{{var accountUrl}}" style="font-weight: bold; font-size: 18px;">I agree and wish to keep my account</a>
+
+    <hr>
+
+    <div style="padding: 0 10px 0 10px; margin-left: 10px; background-color: #ebebeb; border: 1px solid #494949">
+        <div>{{var policyText|raw}}</div>
+        <a href="{{var accountUrl}}" style="font-weight: bold; font-size: 18px;">I agree and wish to keep my account</a>
+    </div>
+
+</div>
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,12 @@
+<?php
+/** @var \Magento\Cms\Helper\Wysiwyg\Images $wysiwyg */
+$wysiwyg = $this->helper(\Magento\Cms\Helper\Wysiwyg\Images::class);
+$wysiwygURL = $wysiwyg->getCurrentUrl();
+$mediaurl = implode(explode('wysiwyg', $wysiwygURL));
+?>
+
+<div class="section-container section-gray section-instagram">
+    <div class="container">
+        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('home-page-instagram')->toHtml(); ?>
+    </div>
+</div>

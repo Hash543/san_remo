@@ -1,0 +1,78 @@
+<?php
+$categoryId = 17;
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$posts = $objectManager->create('\PSS\WordPress\Model\ResourceModel\Post\Collection')
+    ->addPostTypeFilter('post')
+    ->addCategoryIdFilter($categoryId)
+    ->setOrderByPostDate()
+    ->addIsViewableFilter()
+    ->setPageSize(3)
+    ->load();
+?>
+<?php if (count($posts) > 0): ?>
+    <div class="section-container section-blog">
+        <div class="section-title">
+            <h2><?= __('Nuestro Blog') ?></h2>
+        </div>
+        <div class="section-wrapper container">
+            <?php foreach($posts as $post): ?>
+                <?php
+                $postDay = $post->getPostDate('d');
+                $postMonth = __($post->getPostDate('F'));
+                $postYear = $post->getPostDate('Y');
+                ?>
+                <div class="post-item">
+                    <div class="post-content">
+                        <?php if ($image = $post->getFeaturedImage()): ?>
+                            <img class="post-image" src="<?php echo $image->getFullSizeImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>" />
+                        <?php endif; ?>
+                        <div class="post-data">
+                            <a href="<?php echo $post->getUrl() ?>">
+                                <h2 class="post-title"><?php echo $this->escapeHtml($post->getPostTitle()) ?></h2>
+                                <span class="post-date"><?php echo $this->escapeHtml($postDay . ' ' . $postMonth . ' ' . $postYear) ?></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="section-wrapper mobile container">
+            <?php foreach($posts as $post): ?>
+                <?php
+                $postDay = $post->getPostDate('d');
+                $postMonth = __($post->getPostDate('F'));
+                $postYear = $post->getPostDate('Y');
+                ?>
+                <div class="post-item">
+                    <div class="post-content">
+                        <?php if ($image = $post->getFeaturedImage()): ?>
+                            <img class="post-image" src="<?php echo $image->getFullSizeImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>" />
+                        <?php endif; ?>
+                        <div class="post-data">
+                            <a href="<?php echo $post->getUrl() ?>">
+                                <h2 class="post-title"><?php echo $this->escapeHtml($post->getPostTitle()) ?></h2>
+                                <span class="post-date"><?php echo $this->escapeHtml($postDay . ' ' . $postMonth . ' ' . $postYear) ?></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <script>
+        require([
+            'jquery',
+            'owl_carousel',
+            'owl_config'
+        ], function ($) {
+            $(".section-blog .section-wrapper.mobile").owlCarousel({
+                nav: true,
+                dots: false,
+                autoPlay: false,
+                autoHeight: true,
+                items : 1
+            });
+        });
+    </script>
+<?php endif; ?>

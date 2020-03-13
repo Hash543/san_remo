@@ -1,0 +1,40 @@
+<!--@subject {{trans "treatment_poll"}} @-->
+<!--@vars {
+"template config_path=\"design\/email\/footer_template\"":"Email Footer Template",
+"template config_path=\"design\/email\/header_template\"":"Email Header Template",
+"var customer.email":"Customer Email",
+"var product.name":"Product Name",
+"var product.price":"Product Price",
+"var product.description":"Product Description",
+"var product.poll":"Product Poll",
+"var poll_url":"Product Poll"
+} @-->
+<style>
+    td { vertical-align: center;}
+
+</style>
+{{template config_path="design/email/header_template"}}
+<table class="message-details">
+    <tr>
+        <td colspan="2">
+            <p>¡Hola!</p>
+            <p>¿Qué te ha parecido <strong>{{var product.name}}</strong>? ¿Te ha funcionado? ¿Es mejor de lo que imaginabas?</p>
+            <p>¡Pues díselo al resto para que sepa que este producto ES INDISPENSABLE!</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align: center;"><b>{{trans "Product Name"}}</b></td>
+        <td style="vertical-align: center;">{{var product.name}}</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: center;"><b>{{trans "Message"}}</b></td>
+        <td style="vertical-align: center;">En el siguiente enlace usted puede llenar una encuesta de acuerdo a la experiencia con el producto.</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="vertical-align: center; text-align: center;">
+            <a href="{{var poll_url}}" style="color: #ffffff !important; display: inline-block; font-size: 14px; padding: 7px 15px; text-decoration: none; background-color: #003056; border: none;">Realizar Encuesta</a>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

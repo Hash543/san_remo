@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_gdpr>
+            <general>
+                <enabled>1</enabled>
+                <avoid_anonymisation>0</avoid_anonymisation>
+            </general>
+            <customer_access_control>
+                <download>1</download>
+                <anonymize>1</anonymize>
+                <delete>1</delete>
+            </customer_access_control>
+            <deletion_notification>
+                <enable_admin_notification>0</enable_admin_notification>
+                <admin_sender>general</admin_sender>
+                <admin_template>amasty_gdpr_deletion_notification_admin_template</admin_template>
+                <sender>general</sender>
+                <template>amasty_gdpr_deletion_notification_template</template>
+                <deny_sender>general</deny_sender>
+                <deny_template>amasty_gdpr_deletion_notification_deny_template</deny_template>
+            </deletion_notification>
+            <anonymisation_notification>
+                <sender>general</sender>
+                <template>amasty_gdpr_anonymisation_notification_template</template>
+            </anonymisation_notification>
+            <consent_notification>
+                <sender>general</sender>
+                <template>amasty_gdpr_consent_notification_template</template>
+            </consent_notification>
+            <privacy_checkbox>
+                <eea_only>0</eea_only>
+                <eea_countries>AT,BE,BG,HR,CY,CZ,DK,EE,FI,FR,DE,GR,HU,IS,IE,IT,LV,LI,LT,LU,MT,NL,NO,PL,PT,RO,SK,SI,ES,SE,GB,CH</eea_countries>
+                <consent_text><![CDATA[I have read and accept the <a href="#">privacy policy</a>]]></consent_text>
+                <display_at_registration>1</display_at_registration>
+                <display_at_checkout>1</display_at_checkout>
+                <display_at_contact>0</display_at_contact>
+                <display_at_newsletter>0</display_at_newsletter>
+            </privacy_checkbox>
+        </amasty_gdpr>
+    </default>
+</config>

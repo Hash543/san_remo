@@ -1,0 +1,33 @@
+not set,not set
+Available Qty,Available Qty
+Stock Status,Stock Status
+Please insert qty for products.,Please insert qty for products.
+from,from
+Qty not specified for any product.,Qty not specified for any product.
+General,General
+Change browser history URL?,Change browser history URL?
+Change product name?,Change product name?
+Product title block html class or id,Product title block html class or id
+Change product SKU?,Change product SKU?
+Change product short description?,Change product short description?
+Product short description block html class or id,Product short description block html class or id
+Change product description?,Change product description?
+Product description block html class or id,Product description block html class or id
+Change product tier prices?,Change product tier prices?
+Product tier prices block html class or id,Product tier prices block html class or id
+Change product "More Information" block?,Change product "More Information" block?
+Product "More Information" block html class or id,Product "More Information" block html class or id
+Custom content,Custom content
+Custom block html class or id,Custom block html class or id
+Product attribute,Product attribute
+Custom content 2,Custom content 2
+Custom content 3,Custom content 3
+Matrix Options,Matrix Options
+Replace default swatches on matrix?,Replace default swatches on matrix?
+Enable tier price in matrix?,Enable tier price in matrix?
+Custom shipping logic,Custom shipping logic
+Enable delivery logic?,Enable delivery logic?
+Custom attribute text,Custom attribute text
+Custom attribute start date,Custom attribute start date
+Custom attribute end date,Custom attribute end date
+Delivery date block in frontend,Delivery date block in frontend

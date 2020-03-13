@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Customer\Block\Widget\Taxvat" type="Alfa9\Customer\Block\Widget\Taxvat" />
+    <preference for="Magento\Customer\Observer\UpgradeCustomerPasswordObserver" type="Alfa9\Customer\Observer\UpgradeCustomerPasswordObserver" />
+    <preference for="Magento\Customer\Block\Form\Edit" type="Alfa9\Customer\Block\Form\Edit" />
+    <preference for="Mageplaza\SocialLogin\Model\Social" type="Alfa9\Customer\Model\Social" />
+    <type name="Magento\Customer\Controller\Account\LoginPost">
+        <plugin name="customer_login_post_plugin" type="Alfa9\Customer\Plugin\Controller\Account\LoginPost" sortOrder="1" />
+    </type>
+</config>

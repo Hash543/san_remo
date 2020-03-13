@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="gift_product" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+            <class>separator-top</class>
+            <label>IESEP Gift Products</label>
+            <tab>alfa9</tab>
+            <resource>Alfa9_Base::Config</resource>
+            <group id="gift" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="price" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Price</label>
+                    <comment>The additional Price to convert the product as gift.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

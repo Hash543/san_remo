@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+	<module name="PSS_PaymentPoints" setup_version="1.0.1" >
+		<sequence>
+			<module name="PSS_Base" />
+			<module name="PSS_CRM" />
+			<module name="PSS_Checkout" />
+			<module name="Mageplaza_RewardPoints" />
+			<module name="Mageplaze_RewardPointsPro" />
+		</sequence>
+	</module>
+</config>

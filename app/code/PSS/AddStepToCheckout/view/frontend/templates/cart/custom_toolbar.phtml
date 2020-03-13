@@ -1,0 +1,64 @@
+<?php
+$totalUrl = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$baseUrl = $block->getBaseUrl();
+$currentUrl = str_replace($baseUrl, "", $totalUrl);
+$checkIn = $block->getUrl('checkout/onepage/success');
+?>
+<div class="actions-toolbar actions-register" id="additional-toolbar">
+    <?php if ($currentUrl === 'steps/steps/singup/'): ?>
+        <button type="button"
+                class="custom-button-action"
+                title="Purchase Summary"
+                onclick="window.location='<?= /* @escapeNotVerified */
+                $checkIn ?>'">
+            <span data-bind="i18n: 'Purchase Summary'"></span>
+        </button>
+    <?php endif; ?>
+    <button type="button"
+            class="custom-button-action mobile-icon"
+            title="Keep Buying"
+            onclick="window.location='<?= /* @escapeNotVerified */
+            $baseUrl ?>'">
+        <span data-bind="i18n: 'Keep Buying'"></span>
+    </button>
+</div>
+
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function ($) {
+        $(document).ready(function () {
+            $('.cart-summary').find('.action.primary.checkout span').text('Finalizar Compra');
+            $('.btn-facebook').html('<span class="fa fa-facebook"></span> Inicia sesión con Facebook');
+            $('.btn-instagram').html('<span class="fa fa-instagram"></span>Inicia sesión con Instagram');
+            $('.create-account-container .btn-facebook').html('<span class="fa fa-facebook"></span> Regístrate con Facebook');
+            $('.create-account-container .btn-instagram').html('<span class="fa fa-instagram"></span> Regístrate con Instagram');
+            $('.field.taxvat').find('span').text('DNI/NIE');
+            $( "#telephone" ).attr( "type", "number" );
+
+            var pathname = window.location.pathname;
+            var win = $(window);
+            var additional_tool = $('#additional-toolbar');
+            var mark = 0;
+
+            function checkWidth() {
+                var windowsize = win.width();
+
+                if (pathname === '/steps/steps/singup/') {
+                    console.log('rezize');
+                    if (windowsize <= 767 && (mark === 0 || mark === 2)
+                    ) {
+                        mark = 1;
+                        additional_tool.detach().appendTo(".create-account-container");
+                        additional_tool.css("margin-top", "0");
+                    } else if (windowsize >= 768 && (mark === 1)
+                    ) {
+                        mark = 2;
+                        additional_tool.detach().appendTo(".login-container");
+                    }
+                }
+            }
+
+            checkWidth();
+            $(window).resize(checkWidth);
+        });
+    });
+</script>

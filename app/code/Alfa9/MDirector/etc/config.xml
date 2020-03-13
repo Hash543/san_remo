@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <m_director>
+            <general>
+                <base_url>http://www.mdirector.com</base_url>
+            </general>
+            <pixel>
+                <enabled>1</enabled>
+                <regexp>utm_source=mdirector</regexp>
+            </pixel>
+        </m_director>
+    </default>
+</config>

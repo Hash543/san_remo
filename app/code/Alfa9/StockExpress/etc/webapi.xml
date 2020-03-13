@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<!--
+  ~  @author Xavier Sanz <xsanz@alfa9.com>
+  ~  @copyright Copyright (c) 2017 Alfa9 (http://www.alfa9.com)
+  ~  @package Alfa9
+  -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/stockexpress/getlist/" method="POST">
+        <service class="Alfa9\StockExpress\Api\StockRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

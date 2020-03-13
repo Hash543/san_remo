@@ -1,0 +1,58 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\SampleProducts\Controller\Ajax;
+
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+/**
+ * Class AddToCart
+ * @package PSS\SampleProducts\Controller\Ajax
+ */
+class AddToCart extends Cart {
+    /**
+     * {@inheritdoc}
+     */
+    public function execute() {
+        $productId = $this->getRequest()->getParam('productId');
+        $response = [
+            'error' => false,
+            'message' => ''
+        ];
+        if ($this->formKeyValidator->validate($this->getRequest()) && $productId) {
+            $params = [
+                'form_key' => $this->formKey->getFormKey(),
+                'product' => $productId,
+                'qty' => 1
+            ];
+            /** @var \Magento\Catalog\Model\Product $product */
+            try {
+                $product = $this->productRepository->getById($productId);
+            } catch (NoSuchEntityException $exception) {
+                $product = null;
+            }
+            if ($product) {
+                try {
+                    $this->cart->addProduct($product, $params);
+                    $response['message'] = __("Added successfully the item.");
+                } catch (LocalizedException $exception) {
+                    $response['error'] = true;
+                    $response['message'] = __("Error adding the product. %1", $exception->getMessage());
+                }
+            } else {
+                $response['error'] = true;
+                $response['message'] = __("Error adding the product. Invalid Parameters.");
+            }
+        } else {
+            $response['error'] = true;
+            $response['message'] = __("Invalid Product.");
+        }
+        /**
+         * @var  \Magento\Framework\Controller\Result\Json
+         */
+        $jsonResponse = $this->jsonFactory->create();
+        $jsonResponse->setData($response);
+        return $response;
+    }
+}

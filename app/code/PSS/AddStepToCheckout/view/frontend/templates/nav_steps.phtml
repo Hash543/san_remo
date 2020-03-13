@@ -1,0 +1,27 @@
+<?php
+$totalUrl = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$baseUrl = $block->getBaseUrl();
+$currentUrl = str_replace($baseUrl, "", $totalUrl);
+?>
+<div class="arrow-steps">
+    <?php switch ($currentUrl):
+        case 'checkout/cart/index/':
+            ?>
+            <div class="step current">
+                <span><?= $block->escapeHtml(__('Purchase Summary')) ?></span></div>
+            <div class="step">
+                <span><?= $block->escapeHtml(__('Check In')) ?></span></div>
+            <div class="step"><span><?= $block->escapeHtml(__('Delivery Method')) ?></span></div>
+            <div class="step"><span><?= $block->escapeHtml(__('Payment Method')) ?></span></div>
+            <?php break; ?>
+        <?php case 'steps/steps/singup/': ?>
+            <div class="step">
+                <span><?= $block->escapeHtml(__('Purchase Summary')) ?></span></div>
+            <div class="step current">
+                <span><?= $block->escapeHtml(__('Check In')) ?></span></div>
+            <div class="step">
+                <span><?= $block->escapeHtml(__('Delivery Method')) ?></span></div>
+            <div class="step"><span><?= $block->escapeHtml(__('Payment Method')) ?></span></div>
+            <?php break; ?>
+        <?php endswitch; ?>
+</div>

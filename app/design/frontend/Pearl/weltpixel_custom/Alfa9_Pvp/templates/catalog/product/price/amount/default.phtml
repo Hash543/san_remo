@@ -1,0 +1,98 @@
+<?php /** @var \Magento\Framework\Pricing\Render\Amount $block */ ?>
+<?php
+/** @var \Alfa9\Pvp\Helper\ProductHelper $productHelper */
+$productHelper = $this->helper(\Alfa9\Pvp\Helper\ProductHelper::class);
+/** @var \Magento\Framework\Pricing\Helper\Data $priceHelper */
+$priceHelper = $this->helper(\Magento\Framework\Pricing\Helper\Data::class);
+
+/** @var \Magento\Tax\Helper\Data $taxHelper */
+$taxHelper = $this->helper(\Magento\Tax\Helper\Data::class);
+/** @var \Magento\Catalog\Model\Product $product */
+$product = $block->getSaleableItem();
+//$product = $productHelper->loadByPrice($block->getPriceId());
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$pvp_product = 0;
+$pvpPriceAarry = [];
+if($product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+    $productTypeInstance = $product->getTypeInstance();
+    $usedProducts = $productTypeInstance->getUsedProducts($product);
+    foreach ($usedProducts  as $child) {
+        $child = $objectManager->get('Magento\Catalog\Model\Product')->load($child->getId());
+        $pvpPriceAarry[] = $child->getResource()->getAttributeRawValue($child->getId(),'pvp',$storeManager->getStore()->getStoreId());
+    }
+    if(!empty($pvpPriceAarry)){
+        $pvp_product = min($pvpPriceAarry);
+    }
+    
+    
+    $pvp_product = round($pvp_product, 2);
+    
+}else{
+    $pvp_product = round($product->getPvp(), 2);
+}
+
+$regularPriceValue = $product->getPriceInfo()->getPrice(\Magento\Catalog\Pricing\Price\RegularPrice::PRICE_CODE)->getAmount()->getValue();
+$finalPriceValue = $product->getPriceInfo()->getPrice(\Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE)->getAmount()->getValue();
+$finalPriceProductView = max($regularPriceValue, $finalPriceValue);
+
+?>
+
+<?php /** @var \Magento\Framework\Pricing\Render\Amount $block */ ?>
+
+<?php if ($pvp_product && ($pvp_product > $product->getPrice())) : ?>
+    <span class="price-container <?= /* @escapeNotVerified */
+    $block->getAdjustmentCssClasses() ?>"
+        <?= $block->getSchema() ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '' ?>>
+        <?php if ($block->getDisplayLabel()): ?>
+            <span class="final-price"><?= /* @escapeNotVerified */
+                $block->getDisplayLabel() ?></span>
+            <span class="price-label"><?= /* @escapeNotVerified */
+                $block->getDisplayLabel() ?></span>
+        <?php endif; ?>
+        <?php
+        $finalprice = $product->getFinalPrice();
+        $finalpriceshow = $pvp_product;
+        $savePercent = (1 - ($finalprice / $pvp_product)) * 100;
+        $descuento = round($savePercent, 2);
+        ?>
+        <span class="regular-price">
+            <?php if( $product->getTypeId() != 'simple' ){ ?><span class="price-label"><?php echo __('Desde') ?></span><?php } ?>
+            <span class="price"><?php echo $priceHelper->currency($finalprice, true, false); ?></span>
+        </span>
+        <span class="final-price">
+            <span class="price-label"><?php echo __('Antes'); ?></span>
+            <span class="price"><?php echo $priceHelper->currency($finalpriceshow, true, false); ?></span>
+        </span>
+        <span class="discount-price">
+            <span class="price"><?php echo $descuento . '%'; ?></span>
+        </span>
+        <?php if($attributeVolume = $product->getResource()->getAttribute('volumen')): ?>
+            <span class="volumen-umen"><?= /* @escapeNotVerified */ $attributeVolume->getFrontend()->getValue($product); ?></span>
+        <?php endif; ?>
+
+</span>
+<?php else: ?>
+    <span class="price-container <?= /* @escapeNotVerified */
+    $block->getAdjustmentCssClasses() ?>"
+        <?= $block->getSchema() ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '' ?>>
+<?php if ($block->getDisplayLabel()): ?>
+    <span class="price-label"><?= /* @escapeNotVerified */
+        $block->getDisplayLabel() ?></span>
+<?php endif; ?>
+        <span class="regular-price">
+            <span class="price"> <?php echo $priceHelper->currency($finalPriceProductView, true, false); ?></span>
+        </span>
+        <?php if($taxHelper->displayBothPrices()): ?>
+            <?php $originalFinalPrice = $product->getFinalPrice(); ?>
+            <span id="price-excluding-tax-4" data-label="Excl. Tax" data-price-amount="<?php echo $originalFinalPrice; ?>" data-price-type="basePrice" class="final-price price-wrapper price-excluding-tax">
+                <span class="price"><?= $priceHelper->currency($originalFinalPrice, true, false);?></span>
+            </span>
+        <?php endif; ?>
+        <?php if($attributeVolume = $product->getResource()->getAttribute('volumen')): ?>
+            <span class="volumen-umen"><?= /* @escapeNotVerified */ $attributeVolume->getFrontend()->getValue($product); ?></span>
+        <?php endif; ?>
+
+</span>
+<?php endif; ?>
+<?php unset($pvpPriceAarry); ?>

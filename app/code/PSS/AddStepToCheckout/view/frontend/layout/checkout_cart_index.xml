@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Rules
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="page.main.title" remove="true"/>
+            <block name="nav.steps" template="PSS_AddStepToCheckout::nav_steps.phtml" before="-"/>
+        </referenceContainer>
+        <move element="cart.summary" destination="checkout.cart.container" after="-"/>
+        <move element="checkout.cart.coupon" destination="checkout.cart.form" />
+        <referenceContainer name="cart.summary">
+            <block class="PSS\AddStepToCheckout\Block\Checkout\Cart\Coupon" name="checkout.cart.coupon" as="coupon"
+                   template="PSS_AddStepToCheckout::cart/coupon.phtml"/>
+            <block name="custom.button" template="PSS_AddStepToCheckout::cart/custom_toolbar.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="checkout.cart.form">
+            <block class="Magento\Framework\View\Element\Text\ListText" name="checkout.cart.bottom.form"/>
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">PSS_AddStepToCheckout::cart/form.phtml</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="checkout.cart.methods.onepage.bottom"
+                        template="PSS_AddStepToCheckout::onepage/link.phtml">
+            <arguments>
+                <argument name="cartPlaceOrder" xsi:type="object">PSS\AddStepToCheckout\ViewModel\CartPlaceOrder
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

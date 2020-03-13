@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Firebear Studio. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Helper\Product">
+        <plugin name="firebear_show_configurable_product" type="Firebear\ConfigurableProducts\Plugin\Helper\Catalog\Product"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="firebear_model_product" type="Firebear\ConfigurableProducts\Plugin\Model\Catalog\Product"/>
+    </type>
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="firebear_set_default_attribute_values" type="Firebear\ConfigurableProducts\Plugin\Block\ConfigurableProduct\Product\View\Type\Configurable"/>
+    </type>
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="firebear_add_simple_product_to_cart" type="Firebear\ConfigurableProducts\Plugin\Model\Checkout\Cart"/>
+    </type>
+    <type name="Magento\Swatches\Block\Product\Renderer\Configurable">
+        <plugin name="changeRendererTemplate" type="Firebear\ConfigurableProducts\Plugin\Block\Swatches\Product\Renderer\Configurable"/>
+    </type>
+    <type name="Magento\Swatches\Block\Product\Renderer\Listing\Configurable">
+        <plugin name="changeListingRendererTemplate" type="Firebear\ConfigurableProducts\Plugin\Block\Swatches\Product\Renderer\Listing\Configurable"/>
+    </type>
+    <type name="Magento\Checkout\Controller\Cart\Add">
+        <plugin name="firebear_add_configurable_matrix_to_cart" type="Firebear\ConfigurableProducts\Plugin\Controller\Checkout\Cart\Add"/>
+    </type>
+
+    <type name="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart">
+        <arguments>
+            <argument name="productRepository" xsi:type="object">\Magento\Catalog\Api\ProductRepositoryInterface</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\ConfigurableProduct\Model\Product\Type\Configurable">
+        <plugin name="before_prepare_for_cart_configurable" type="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart" sortOrder="1"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Type\Simple">
+        <plugin name="before_prepare_for_cart_simple" type="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product\Type\Virtual">
+        <plugin name="before_prepare_for_cart_virtual" type="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Downloadable\Model\Product\Type">
+        <plugin name="before_prepare_for_cart_downloadable" type="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart" sortOrder="1"/>
+    </type>
+
+
+    <type name="Magento\Framework\Pricing\Render\PriceBox">
+        <plugin name="firebear_change_pricing_renderer" type="Firebear\ConfigurableProducts\Plugin\Block\Pricing\PriceBox" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="firebear_configurable_price_range" type="Firebear\ConfigurableProducts\Plugin\Block\Product\ListProduct" sortOrder="1"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Options\AbstractOptions">
+        <plugin name="firebear_configurable_change_abstract_render_for_customizible_options" type="Firebear\ConfigurableProducts\Plugin\Block\Product\View\Options\AbstractOptions" sortOrder="2"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Options\Type\Select">
+        <plugin name="firebear_configurable_custom_options_type_select_price" type="Firebear\ConfigurableProducts\Plugin\Block\Product\View\Options\TypeSelect" sortOrder="2"/>
+    </type>
+
+    <type name="Magento\CatalogInventory\Model\StockStateProvider">
+        <plugin name="after_check_qty" type="Firebear\ConfigurableProducts\Plugin\AfterCheckQty" sortOrder="1"/>
+    </type>
+    
+    <type name="Magento\Framework\View\Page\Config\Renderer">
+        <plugin name="Seo_Canonical" type="Firebear\ConfigurableProducts\Plugin\Seo\Canonical" />
+    </type>
+
+    <type name="Magento\CatalogInventory\Helper\Stock">
+        <plugin name="firebear_set_in_stock_if_in_bundle_have_configurable" type="Firebear\ConfigurableProducts\Plugin\Helper\CatalogInventory\Stock"/>
+    </type>
+    
+    <type name="Magento\CatalogInventory\Model\Quote\Item\QuantityValidator">
+        <plugin name="firebear_set_in_stock_if_in_bundle_have_configurable_observer" type="Firebear\ConfigurableProducts\Plugin\Model\Quote\Item\QuantityValidator"/>
+    </type>
+    
+    <type name="Magento\Bundle\Model\ResourceModel\Selection\Collection">
+        <plugin name="firebear_set_in_stock_if_in_bundle_have_configurable_collection" type="Firebear\ConfigurableProducts\Plugin\Model\ResourceModel\Selection\Collection"/>
+    </type>
+
+    <preference for="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Select" type="Firebear\ConfigurableProducts\Block\Product\View\Type\Bundle\Single"/>
+    <preference for="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio" type="Firebear\ConfigurableProducts\Block\Product\View\Type\Bundle\Radio"/>
+    <preference for="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox" type="Firebear\ConfigurableProducts\Block\Product\View\Type\Bundle\Checkbox"/>
+    <preference for="Magento\Catalog\Block\Product\View" type="Firebear\ConfigurableProducts\Block\Product\View"/>
+    <preference for="Magento\ConfigurableProduct\Helper\Product\Options\Loader" type="Firebear\ConfigurableProducts\Helper\Product\Options\Loader"/>
+    <preference for="Magento\Quote\Model\Quote" type="Firebear\ConfigurableProducts\Model\Quote\Model\Quote"/>
+    <preference for="Magento\Swatches\Block\Product\Renderer\Configurable" type="Firebear\ConfigurableProducts\Block\Product\Renderer\Configurable"/>
+<!--    <preference for="Magento\Catalog\Model\Product\Option" type="Firebear\ConfigurableProducts\Model\Product\Option"/>-->
+</config>

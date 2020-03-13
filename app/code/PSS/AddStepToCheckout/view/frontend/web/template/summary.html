@@ -1,0 +1,38 @@
+<!-- ko if: (isVisible()) -->
+<div class="opc-block-summary">
+    <span data-bind="i18n: 'Order Summary'" class="title"></span>
+    <!-- ko foreach: { data: elems(), as: 'item'} -->
+        <!-- ko if: $parent.showSummaryBlock(item) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+    <!-- /ko -->
+</div>
+<!-- /ko -->
+<div class="checkout-block-actions-toolbar">
+    <!-- ko if: (isVisible()) -->
+    <div class="checkout-actions-payment">
+        <button type="button"
+                data-bind="click: goToPrevStep"
+                class="action back"
+                id="back-shipping-step">
+            <span data-bind="i18n: 'Delivery Method'"></span>
+        </button>
+        <button type="button"
+                data-bind="click: goToKeepBuying"
+                class="custom-button-action"
+                id="back-home-page">
+            <span data-bind="i18n: 'Keep Buying'"></span>
+        </button>
+    </div>
+    <div class="actions-toolbar-trigger" id="place-order-trigger-wrapper">
+        <!-- ko foreach: { data: elems(), as: 'item'} -->
+            <!-- ko ifnot: $parent.showSummaryBlock(item) -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+        <!-- /ko -->
+        <button type="button" data-bind="click: submitOrder" class="button action primary" id="place-order-trigger" value="Place Order">
+            <span data-bind="i18n: 'Finalize Purchase'"></span>
+        </button>
+    </div>
+    <!-- /ko -->
+</div>

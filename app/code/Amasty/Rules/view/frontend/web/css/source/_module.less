@@ -1,0 +1,71 @@
+.cart-totals tr[class=totals] .title:after,
+.totals.discount .title:after,
+.cart-totals tr[class=totals] .title.negative:after,
+.totals.discount .title.negative:after {
+    -webkit-font-smoothing: antialiased;
+    color: #858585;
+    display: inline-block;
+    font-family: 'luma-icons';
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 12px;
+    margin-left: 10px;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.totals.discount {
+    & {
+        cursor: pointer;
+    }
+
+    .title {
+        &:after {
+            content: '\e622';
+        }
+    }
+
+    .title.negative {
+        &:after {
+            content: '\e621';
+        }
+    }
+
+    .discount.coupon {
+        display: none;
+    }
+}
+
+.table-wrapper {
+    tr[class=totals] {
+        .title.enabled {
+            &:after {
+                content: '\e622';
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.table-wrapper {
+    tr[class=totals] {
+        .title.enabled.collapsed {
+            &:after {
+                content: '\e621';
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.total_coupons {
+    display: none;
+}
+
+.cart-totals {
+    .discount.coupon {
+        display: none;
+    }
+}

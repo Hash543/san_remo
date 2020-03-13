@@ -1,0 +1,130 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php /* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Select */ ?>
+<?php $_option = $block->getOption(); ?>
+<?php $_selections = $_option->getSelections(); ?>
+<?php $_default = $_option->getDefaultSelection(); ?>
+<?php list($_defaultQty, $_canChangeQty) = $block->getDefaultValues(); ?>
+<div class="field option <?php echo ($_option->getRequired()) ? ' required' : ''; ?>">
+    <label class="label" for="bundle-option-<?php echo $_option->getId() ?>">
+        <span><?php echo $block->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+    <div class="control">
+        <div class="nested bundle-option-nested">
+            <div class="field qty qty-holder">
+                <label class="label" for="bundle-option-<?php echo $_option->getId() ?>-qty-input">
+                    <span><?php echo __('Selection Qty') ?></span>
+                </label>
+                <div class="control">
+                    <input <?php if (!$_canChangeQty) echo ' disabled="disabled"' ?>
+                            id="bundle-option-<?php echo $_option->getId() ?>-qty-input"
+                            class="input-text qty<?php if (!$_canChangeQty) echo ' qty-disabled' ?>"
+                            type="number"
+                            name="bundle_option_qty[<?php echo $_option->getId() ?>]"
+                            data-selector="bundle_option_qty[<?php echo $_option->getId() ?>]"
+                            data-validate="{required:true}"
+                        <?php echo ($_option->getRequired()) ? 'min="1"' : '' ?>
+                            value="<?php echo $_defaultQty ?>"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="select-images" id="option-swatch-<?php echo $_option->getId() ?>">
+            <?php if ($block->mustShowImages() == true) : ?>
+                <?php foreach ($_selections as $selection) : ?>
+                    <a class="select-link<?php if ($block->isSelected($selection)) echo ' active' ?>"
+                       onclick="jQuery('select#bundle-option-<?php echo $_option->getId(
+                       ) ?>').val(<?php echo $selection->getSelectionId(
+                       ) ?>).change();jQuery('#option-swatch-<?php echo $_option->getId(
+                       ) ?> a').removeClass('active');jQuery(this).addClass('active');">
+                        <img src="<?php echo $block->getProductThumbnail(
+                            $selection
+                        ) ?>" alt="<?php echo $selection->getName() ?>"/>
+                    </a>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <select id="bundle-option-<?php echo $_option->getId() ?>"
+                    name="bundle_option[<?php echo $_option->getId() ?>]"
+                    data-selector="bundle_option[<?php echo $_option->getId() ?>]"
+                    class="bundle-option-<?php echo $_option->getId(
+                    ) ?> product bundle option bundle-option-select change-container-classname<?php if ($_option->getRequired(
+                    )) echo ' required' ?>"
+                <?php if ($_option->getRequired()) echo 'data-validate={required:true}' ?>>
+                <option value option-id="0"><?php echo __('Choose a selection...') ?></option>
+                <?php foreach ($_selections as $_selection): ?>
+                    <option value="<?php echo $_selection->getSelectionId() ?>"
+                        <?php if ($block->isSelected($_selection)) echo ' selected="selected"' ?>
+                        <?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>>
+                        <?php echo $block->getSelectionTitlePrice($_selection, false) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="swatch-opt" data-role="swatch-options-<?php echo $block->getOption()->getId() ?>"></div>
+        <div class="swatch-opt-price" data-role="swatch-options-price-<?php echo $block->getOption()->getId() ?>"></div>
+        <div class="product-custom-options-<?php echo $block->getOption()->getId() ?>"></div>
+
+
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-options-<?php echo $_option->getId() ?>]": {
+            "Firebear_ConfigurableProducts/js/matrix-renderer-bundle": {
+                "selectorProduct": ".main",
+                "productSelector": ".bundle-option-<?php echo $_option->getId() ?>",
+                "productConfiguration": <?php echo json_encode($block->getSuperOptions()) ?>,
+                "jsonConfig": <?php /* @escapeNotVerified */
+    echo $block->getJsonConfig(); ?>,
+                "multiJsonConfig": <?php /* @escapeNotVerified */
+    echo $block->getMultiJsonConfig(); ?>,
+                "jsonSwatchConfig": <?php /* @escapeNotVerified */
+    echo $block->getJsonSwatchConfig(); ?>,
+                "multiJsonSwatchConfig": <?php /* @escapeNotVerified */
+    echo $block->getMultiJsonSwatchConfig(); ?>,
+                "customOptions": <?php /* @escapeNotVerified */
+    echo $block->getMultiConfigurableOptions(); ?>,
+                "jsonCustomOptions": <?php /* @escapeNotVerified */
+    echo $block->getMultiConfigurableOptionsAsJson(); ?>,
+                "mediaCallback": "<?php /* @escapeNotVerified */
+    echo $block->getMediaCallback() ?>",
+                "selectedProduct": "<?php /* @escapeNotVerified */
+    echo $block->getSelectedProduct() ?>",
+                "optionId": <?php echo $block->getOption()->getId() ?>,
+                "isFixedPrice": <?php echo $block->getProduct()->getPriceType() ?>,
+                "onlyMainImg": <?php /* @escapeNotVerified */
+    echo $block->getVar(
+        'change_only_base_image',
+        'Magento_Swatches'
+    ) ?: 'false'; ?>
+            }
+        }
+    }
+
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Firebear_ConfigurableProducts/js/price-bundle": {
+                "optionConfig": <?php /* @escapeNotVerified */
+    echo $block->getConfigurableOptionsAsJson(); ?>,
+                "controlContainer": ".field",
+                "optionsContainer": ".product-custom-options-<?php echo $block->getOption()->getId() ?>",
+                "optionsSelector": ".product-custom-option-<?php echo $block->getOption()->getId() ?>",
+                "priceHolderSelector": "[data-role=priceBox]"
+            }
+        }
+    }
+
+</script>

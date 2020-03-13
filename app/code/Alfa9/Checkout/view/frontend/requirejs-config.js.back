@@ -1,0 +1,11 @@
+/**
+ * @author Israel Yasis
+ */
+
+var config = {
+    mixins : {
+        'Magento_Checkout/js/view/shipping' : {
+            'Alfa9_Checkout/js/view/checkout/shipping' : true
+        }
+    }
+};

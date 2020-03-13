@@ -1,0 +1,25 @@
+
+/**
+ * @api
+ */
+define([
+    'jquery',
+    'mage/url',
+    'PSS_SampleProducts/js/model/sample-products'
+], function ($, urlBuilder, sampleProducts) {
+    'use strict';
+
+    return function (productId, formKey) {
+        sampleProducts.isLoading(true);
+        return $.ajax({
+                url: urlBuilder.build(''),
+                type: 'POST',
+                data: {productId: productId, formKey: formKey },
+            }).done(function (result) {
+
+            }).fail(function (response) {
+            }).always(function () {
+                sampleProducts.isLoading(false);
+            });
+    };
+});

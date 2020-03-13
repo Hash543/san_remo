@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="rewardpoints" translate="label comment" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="general" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <field id="maximum_point" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Maximum Available Points Balance</label>
+                    <comment>If empty or 0, no limitation will be set</comment>
+                    <validate>integer not-negative-amount</validate>
+                </field>
+            </group>
+            <group id="earning" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Earning Configuration</label>
+                <field id="round_method" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Rounding Method</label>
+                    <comment>E.g, 10.2 points generated from an order can be rounded up to 11 points or down to 10 points.</comment>
+                    <source_model>Mageplaza\RewardPoints\Model\Source\RoundingMethod</source_model>
+                </field>
+                <field id="earn_from" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Earn Points from Tax</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to allow earning points from tax</comment>
+                </field>
+                <field id="earn_shipping" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Earn Points from Shipping Fee</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to allow earning points from shipping fee</comment>
+                </field>
+                <field id="point_refund" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Point Refund</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to allow getting points back from customer if an order is refunded</comment>
+                </field>
+                <group id="sales_earn" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sales Earning Process</label>
+                    <field id="earn_point_after_invoice_created" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Earning Points after Invoice Created</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>If No is set, customer will get points only when the order is completed</comment>
+                    </field>
+                    <field id="point_expired" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Points Expired After</label>
+                        <comment>Day(s) since the transaction date. If empty or 0, there is no expiration.</comment>
+                    </field>
+                </group>
+            </group>
+            <group id="spending" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Spending Configuration</label>
+                <field id="minimum_balance" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Minimum Balance to Spend Points</label>
+                    <comment>Enter the minimum points in balance that a customer has to earn before spending. If empty or 0, there is no limitation.</comment>
+                </field>
+                <field id="discount_label" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Discount Label</label>
+                    <comment>It will be displayed in Shopping cart, Checkout page, Order view and Emails</comment>
+                </field>
+                <field id="maximum_point_per_order" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Maximum Spending Points per Order</label>
+                    <comment>Enter the maximum points spent at once. If empty or 0, there is no limitation</comment>
+                </field>
+                <field id="spend_on_tax" translate="label comment" type="select" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Spending Points on Tax</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to allow spending points on tax</comment>
+                </field>
+                <field id="spend_on_ship" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Spending Points on Shipping Fee</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to allow spending points on Shipping fee/Shipping tax</comment>
+                </field>
+                <field id="restore_point_after_refund" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Restore Spent Points after Order Refunding</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If Yes is set, when an order is refunded, customer will get the points spent back.</comment>
+                </field>
+                <field id="use_max_point" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Use Max Points by Default</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If Yes, "Use Max Points" checkbox will be checked by default</comment>
+                </field>
+            </group>
+            <group id="display" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Display Configuration</label>
+                <field id="top_page" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Total Points on Top Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="mini_cart" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Display Earning Points on Minicart</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="email" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Email Configuration</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Email Notification</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select Yes to enable notification email.</comment>
+                </field>
+                <field id="subscribe_by_default" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Subscribe Customers by Default</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sender" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Sender Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <comment>Select a sender email for notification emails.</comment>
+                </field>
+                <group id="update" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Update Point Balance Email</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="template" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Update Balance Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                        <comment>Select an email template used to send customers when their point balance is updated.</comment>
+                    </field>
+                </group>
+                <group id="expire" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Points Expiration Email</label>
+                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Enabled</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="before_days" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Send Before</label>
+                        <comment>Day(s). If empty or zero, no reminder email is sent.</comment>
+                    </field>
+                    <field id="template" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>Points Expiration Template</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                        <comment>Select an email template used to send customers before a transaction expires.</comment>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

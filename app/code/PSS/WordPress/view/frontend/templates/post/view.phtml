@@ -1,0 +1,52 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * This package designed for Magento COMMUNITY edition
+ * PSS Digital does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * PSS Digital does not provide extension support in case of * incorrect edition usage.
+ *
+ * @author PSS Digital Team
+ * @category PSS
+ * @package PSS_WordPress
+ * @copyright Copyright (c) 2018 PSS (https://www.pss-ti.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+/**
+ * @var \PSS\WordPress\Block\Post\View $block
+ */
+?>
+<?php if ($post = $block->getPost()): ?>
+	<div class="post-view">
+		<div class="post-entry">
+			<?php if ($image = $post->getImage()): ?>
+				<div class="post-image">
+					<a href="<?php echo $post->getUrl() ?>" title="<?php echo $block->escapeHtml($post->getPostTitle()) ?>"><img src="<?php echo $image->getAvailableImage() ?>" alt="<?php echo $this->escapeHtml($post->getPostTitle()) ?>"/></a>
+				</div>
+			<?php endif; ?>
+			<?php if (($content = trim($post->getContent())) !== ''): ?>
+				<div class="post-content"><?php echo $block->filterContentCms($content); ?></div>
+			<?php endif; ?>
+		</div>
+		<div class="post-meta">
+			<?php if ($categoryString = $post->getTermCollectionAsString('category')): ?>
+				<div class="post-categories post-meta-item">
+					<strong><?php echo __('Categories') ?>:</strong> <?php echo $categoryString ?>
+				</div>
+			<?php endif; ?>
+			<?php if ($tagString = $post->getTermCollectionAsString('post_tag')): ?>
+				<div class="post-tags post-meta-item">
+					<strong><?php echo __('Tags') ?>:</strong> <?php echo $tagString ?>
+				</div>
+			<?php endif; ?>
+			<div class="post-date post-meta-item">
+				<strong><?php echo __('Posted On') ?>:</strong> <?php echo $post->getPostDate() ?>
+			</div>
+		</div>
+		<?php echo $this->getChildHtml('comments') ?>
+	</div>
+<?php endif; ?>

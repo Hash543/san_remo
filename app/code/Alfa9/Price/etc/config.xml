@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Store/etc/config.xsd">
+    <default>
+        <alfa9_price>
+            <price_decimals>
+                <enable>1</enable>
+             </price_decimals>
+        </alfa9_price>
+    </default>
+</config>

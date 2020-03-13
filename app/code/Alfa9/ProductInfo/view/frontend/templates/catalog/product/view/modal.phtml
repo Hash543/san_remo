@@ -1,0 +1,115 @@
+<?php
+// @codingStandardsIgnoreFile
+/** @var \Alfa9\ProductInfo\Block\Ajax\Form $block */
+$product = $block->getProduct();
+?>
+
+<div id="productinfo-modal" style="display:none;">
+
+    <div class="modal-title-wrapper">
+        <h1 class="modal-title">
+            <span class="base" data-ui-id="modal-title-wrapper"><?= $block->escapeHtml(__('Contact Information')) ?></span>
+        </h1>
+    </div>
+    <form class="form"
+          action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+          id="productinfo-form"
+          method="post"
+          data-hasrequired="<?php //= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+          data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset">
+            <div class="field name required">
+                <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+                <div class="control">
+                    <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>"
+                           value="<?= $block->escapeHtmlAttr('') ?>" class="input-text" type="text"
+                           data-validate="{required:true}"/>
+                </div>
+            </div>
+            <div class="field email required">
+                <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                <div class="control">
+                    <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                           value="<?= $block->escapeHtmlAttr('') ?>" class="input-text" type="email"
+                           data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="field comment required">
+                <label class="label" for="comment"><span><?= $block->escapeHtml(__('Comment')) ?></span></label>
+                <div class="control">
+                <textarea name="comment" id="comment" title="<?= $block->escapeHtmlAttr(__('Comment')) ?>"
+                          class="input-text" cols="5" rows="3"
+                          data-validate="{required:true}"><?= $block->escapeHtml('') ?></textarea>
+                </div>
+            </div>
+            <div class="field recommendation">
+                <p><?php echo $block->getRecommendationMessage();?></p>
+            </div>
+            <div class="field terms required">
+                <div class="control">
+                    <label class="label" for="terms">
+                        <input name="terms" id="terms" title="<?= $block->escapeHtmlAttr(__('terms')) ?>"
+                               class="input-checkbox validate-one-required-by-name" type="checkbox"
+                               data-validate="{required:true}"/>
+                        <?= $block->escapeHtml(__('Acepto las Condiciones De La Política De Privacidad')) ?>
+                    </label>
+                </div>
+            </div>
+
+            <?php if($product):?>
+                <input type="hidden" name="product-name" id="product-name" value="<?= $product->getName()?>"/>
+                <input type="hidden" name="product-sku" id="product-sku" value="<?= $product->getSku()?>"/>
+            <?php endif;?>
+
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <input type="hidden" name="hideit" id="hideit" value=""/>
+                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                    <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<script>
+    require([
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ], function ($, modal) {
+
+            $(document).ready(function () {
+                var options = {
+                    type: 'popup',
+                    autoOpen: false,
+                    responsive: true,
+                    clickableOverlay: true,
+                    modalClass: 'productinfo-modal',
+                    buttons: []
+                };
+
+                var popup = modal(options, $('#productinfo-modal'));
+                $('.open-productinfo-modal').click(function () {
+                    popup.openModal();
+                });
+
+                $('#productinfo-form').submit(function (event) {
+                    if ($(this).valid()) {
+                        $.ajax({
+                            url: '<?= /* @escapeNotVerified */ $block->getFormAction() ?>',
+                            type: "POST",
+                            data: $(this).serialize(),
+                            showLoader: true,
+                            success: function (response) {
+                                popup.closeModal();
+                            }
+                        });
+                        return false;
+                    }
+                });
+            });
+        }
+    );
+</script>

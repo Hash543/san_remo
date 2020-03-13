@@ -1,0 +1,32 @@
+/**
+ * @author Israel Yasis
+ */
+/*global alert*/
+define(
+    [
+        'Magento_Checkout/js/model/quote',
+        'Magento_Customer/js/model/customer',
+        'Magento_Checkout/js/model/full-screen-loader',
+        'mage/storage',
+        'underscore'
+    ],
+    function (quote, customer, fullScreenLoader, storage) {
+        'use strict';
+        return function (paymentMethod, rule) {
+            let payload = {
+                cartId: quote.getQuoteId(),
+                paymentMethod: paymentMethod,
+                rule: rule
+            };
+            fullScreenLoader.startLoader();
+            storage.post(
+                '/pss_payment/checkout/paybypoints',
+                JSON.stringify(payload)
+            ).done(function (response) {
+                quote.setTotals(response);
+            }).always(function () {
+                fullScreenLoader.stopLoader();
+            });
+        };
+    }
+);

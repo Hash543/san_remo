@@ -1,0 +1,223 @@
+<?php
+
+/** @var \Pss\AddStepToCheckout\Helper\CartItems $helperCart */
+$helperCart = $this->helper('PSS\AddStepToCheckout\Helper\CartItems');
+$helperCurrency = $this->helper('Magento\Framework\Pricing\Helper\Data');
+$helperImage = $this->helper('Magento\Catalog\Helper\Image');
+$items = $helperCart->getAllItemsCarts();
+$subTotal = $helperCart->getSubTotal();
+
+$helperGiftProduct = $this->helper('Alfa9\GiftProduct\Helper\Data');
+
+$mergedCells = ($this->helper('Magento\Tax\Helper\Data')->displayCartBothPrices() ? 2 : 1); ?>
+<?= $block->getChildHtml('form_before') ?>
+<form action="<?= /* @escapeNotVerified */
+$block->getUrl('steps/cart/updatePost') ?>" method="post" id="form-validate"
+      data-mage-init='{"Magento_Checkout/js/action/update-shopping-cart":{"validationURL" : "/checkout/cart/updateItemQty"}}'
+      class="form form-cart">
+    <?= $block->getBlockHtml('formkey') ?>
+    <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed' : '' ?>">
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="cart-products-toolbar cart-products-toolbar-top toolbar"
+                 data-attribute="cart-products-toolbar-top"><?= $block->getPagerHtml() ?></div>
+        <?php endif ?>
+        <table id="shopping-cart-table"
+               class="cart items data table"
+               data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
+               "updateCartActionContainer": "#update_cart_action_container"}}'>
+            <caption role="heading" aria-level="2" class="table-caption"><?= /* @escapeNotVerified */
+                __('Shopping Cart Items') ?></caption>
+            <thead>
+            <tr>
+                <th class="col item" scope="col"><span><?= /* @escapeNotVerified */
+                        __('Item') ?></span></th>
+                <th class="col price" scope="col"><span><?= /* @escapeNotVerified */
+                        __('Price') ?></span></th>
+                <th class="col qty" scope="col"><span><?= /* @escapeNotVerified */
+                        __('Qty') ?></span></th>
+                <th class="col subtotal" scope="col"><span><?= /* @escapeNotVerified */
+                        __('Subtotal') ?></span></th>
+                <th class="col subtotal" scope="col"><span><?= /* @escapeNotVerified */
+                        __('Actions') ?></span></th>
+            </tr>
+            </thead>
+            <?php $counter = 0; ?>
+            <?php foreach ($items as $item): ?>
+                <tbody class="cart item">
+                <tr class="item-info">
+                    <?php
+                    /** @var \Magento\Catalog\Model\Product $product */
+                    $product = $item->getProduct(); ?>
+                    <td class="col item">
+                        <?php $productImage = $helperImage->init($product, 'category_page_list')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(164, 164)->getUrl();
+                        $productUrl = $product->getUrlModel()->getUrl($product); ?>
+                        <a tabindex="-1" class="product photo product-item-photo" href="<?php echo $productUrl; ?>">
+                        <span class="product-image-container">
+                            <span style="padding-bottom: 125%;" class="product-image-wrapper">
+                                <img width="164" height="164"
+                                     alt="<?php echo $product->getName(); ?>"
+                                     src="<?php echo $productImage; ?>"
+                                     class="product-image-photo "
+                                <?php echo ' data-src="' . $productImage . '"' ?>/>
+                            </span>
+                        </span>
+                        </a>
+                        <div class="product-item-details">
+                            <h2 class="product-item-manufacturer"><?php echo $product->getResource()->getAttribute('manufacturer')->getFrontend()->getValue($product); ?></h2>
+                            <strong class="product-item-name">
+                                <?php echo $product->getName(); ?>
+                            </strong>
+                            <div class="product-item-description">
+                                <?php echo $item->getProduct()->getData('short_description'); ?>
+                            </div>
+                        </div>
+                        <!--<div class="col qty visible-xs hidden-xl" data-th="<?= $block->escapeHtml(__('Qty')) ?>">-->
+                        <div class="field qty">
+                            <label class="label" for="cart-<?= /* @escapeNotVerified */
+                            $item->getId() ?>-qty">
+                                <span><?= /* @escapeNotVerified */
+                                    __('Qty') ?></span>
+                            </label>
+                            <div class="control qty">
+                                <input id="cart-<?= /* @escapeNotVerified */
+                                $item->getId() ?>-qty"
+                                       name="cart[<?= /* @escapeNotVerified */
+                                       $item->getId() ?>][qty]"
+                                       data-cart-item-id="<?= $block->escapeHtml($item->getSku()) ?>"
+                                       value="<?= /* @escapeNotVerified */
+                                       $item->getQty() ?>"
+                                       type="number"
+                                       size="4"
+                                       title="<?= $block->escapeHtml(__('Qty')) ?>"
+                                       class="input-text qty"
+                                       data-validate="{required:true,'validate-greater-than-zero':true}"
+                                       data-role="cart-item-qty"/>
+                                <div class="qty_control">
+                                    <button type="button" id="<?= /* @escapeNotVerified */
+                                    $item->getId() ?>-dec" class="decreaseQty"><span><?= __('-') ?></button>
+                                    <button type="button" id="<?= /* @escapeNotVerified */
+                                    $item->getId() ?>-upt" class="increaseQty"><span><?= ('+') ?></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--</div>-->
+                    </td>
+                    <!--<td class="col qty visible-xl visible-l hidden-xs">
+                        <div class="control qty">
+                            <input id="cart-<? //= /* @escapeNotVerified */
+                            //$item->getId() ?>-qty"
+                                   name="cart[<? //= /* @escapeNotVerified */
+                                   //$item->getId() ?>][qty]"
+                                   data-cart-item-id="<? //= $block->escapeHtml($item->getSku()) ?>"
+                                   value="<? //= /* @escapeNotVerified */
+                                   //$item->getQty() ?>"
+                                   type="number"
+                                   size="4"
+                                   title="<? //= $block->escapeHtml(__('Qty')) ?>"
+                                   class="input-text qty"
+                                   data-validate="{required:true,'validate-greater-than-zero':true}"
+                                   data-role="cart-item-qty"/>
+                            <div class="qty_control">
+                                <button type="button" id="<? //= /* @escapeNotVerified */
+                                //$item->getId() ?>-dec" class="decreaseQty"><span><? //= __('-') ?></button>
+                                <button type="button" id="<? //= /* @escapeNotVerified */
+                                //$item->getId() ?>-upt" class="increaseQty"><span><? //= ('+') ?></button>
+                            </div>
+                        </div>
+                    </td>-->
+                    <td class="col subtotal">
+                        <a href="javascript:void(0);"
+                           class="visible-xs hidden-xl gift-link <?php echo ($counter % 2 == 0) ? 'gift-link-red' : ''; ?>"><span>Gift</span></a>
+                        <span class="price-excluding-tax" data-label="Excl. Tax">
+                        <span class="cart-price">
+                            <span class="price"><?php echo $helperCurrency->currency($item->getPrice(), true, false); ?></span>
+                        </span>
+                    </span>
+                    </td>
+                    <td class="col actions visible-xl hidden-xs">
+                        <!--<a href="javascript:void(0);"
+                           class="gift-link <?php /*echo ($counter % 2 == 0) ? 'gift-link-red' : ''; */?>"><span>Gift</span></a>-->
+                        <div class="field gift-product-action">
+                            <label id="<?= /* @escapeNotVerified */
+                            $item->getId() ?>-custom-gift" class="label gift-link" for="cart-<?= /* @escapeNotVerified */
+                            $item->getId() ?>-is-gift">
+                    <span><?= /* @escapeNotVerified */
+                        __('Is Gift?') ?></span>
+                                <span><?= /* @escapeNotVerified */
+                                    __('Additional Price: %1',
+                                        $helperCurrency->currency(number_format($helperGiftProduct->getProductPriceGift(), 2), true, false)); ?></span>
+                            </label>
+                            <div class="control is-gift">
+                                <input type="checkbox"
+                                       id="cart-<?= /* @escapeNotVerified */
+                                       $item->getId() ?>-is-gift"
+                                       name="cart[<?= /* @escapeNotVerified */
+                                       $item->getId() ?>][is_gift]"
+                                    <?php echo $item->getData('is_gift') ? 'checked' : ''; ?>/>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+                <script type="text/javascript">
+                    require(["jquery"], function ($) {
+                        // $('.increaseQty, .decreaseQty').on("click",function(){
+                        $('#<?php echo $item->getId();?>-upt, #<?php echo $item->getId();?>-dec').on(" click ", function () {
+                            var $this = $(this);
+                            var selectField = $(".control.qty").find('#cart-<?php echo $item->getId();?>-qty');
+                            var currentQty = selectField.val();
+                            if ($this.hasClass('increaseQty')) {
+                                var newAdd = parseInt(currentQty) + parseInt(1);
+                                selectField.val(newAdd)
+                            } else {
+                                if (currentQty > 1) {
+                                    var newAdd = parseInt(currentQty) - parseInt(1);
+                                    selectField.val(newAdd)
+                                }
+                            }
+                        });
+                    });
+                </script>
+                <script type="text/javascript">
+                    require(['jquery', 'jquery/ui'], function ($) {
+                        $('#<?php echo $item->getId();?>-custom-gift').on('click', function () {
+                            var $this = $(this);
+                            if ($this.hasClass('gift-link-red')){
+                                console.log('remove');
+                                $this.removeClass('gift-link-red');
+                            } else {
+                                console.log('add');
+                                $this.addClass('gift-link-red');
+                            }
+                        });
+                    });
+                </script>
+                <?php $counter++ ?>
+            <?php endforeach; ?>
+        </table>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="cart-products-toolbar cart-products-toolbar-bottom toolbar"
+                 data-attribute="cart-products-toolbar-bottom"><?= $block->getPagerHtml() ?></div>
+        <?php endif ?>
+    </div>
+    <div class="cart main actions">
+        <?php if ($block->getContinueShoppingUrl()): ?>
+            <a class="action continue"
+               href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>"
+               title="<?= $block->escapeHtml(__('Continue Shopping')) ?>">
+                <span><?= /* @escapeNotVerified */
+                    __('Continue Shopping') ?></span>
+            </a>
+        <?php endif; ?>
+        <button type="submit"
+                name="update_cart_action"
+                data-cart-item-update=""
+                value="update_qty"
+                title="<?= $block->escapeHtml(__('Update Shopping Cart')) ?>"
+                class="action update">
+            <span><?= /* @escapeNotVerified */
+                __('Update Shopping Cart') ?></span>
+        </button>
+        <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update=""/>
+    </div>
+</form>

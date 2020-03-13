@@ -1,0 +1,133 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+$helperProductPage = $this->helper('WeltPixel\ProductPage\Helper\Data');
+$accordionVersion = $helperProductPage->getAccordionVersion();
+$noBorder = '';
+$noBorderAccordion = '';
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')) : ?>
+    <?php if($helperProductPage->getTabsLayout() == 'accordion')  :  ?>
+        <?php
+            // Check if accordion version is Version 2
+            if($accordionVersion == '1'): ?>
+                <div class="product info detailed toggle toggle-bg">
+                    <?php $layout = $block->getLayout(); ?>
+                    <?php foreach ($detailedInfoGroup as $name):?>
+                        <?php
+                        $html = $layout->renderElement($name);
+                        if (!trim($html)) {
+                            continue;
+                        }
+                        $alias = $layout->getElementAlias($name);
+                        $label = $block->getChildData($alias, 'title');
+                        ?>
+                        <div class="data item title togglet"><?= /* @escapeNotVerified */ $label ?></div>
+                        <div class="data item content togglec">
+                            <?= /* @escapeNotVerified */ $html ?>
+                        </div>
+                    <?php endforeach;?>
+                </div>
+            <?php else: ?>
+                <?php $noBorderAccordion = $helperProductPage->getAccordionVersion() == '0' ? 'no-border-accordion' : '' ?>
+                <div class="product-info-main-extend">
+                    <div class="accordion-1 product info detailed <?php echo  $noBorder; ?>">
+                        <?php $layout = $block->getLayout(); ?>
+                        <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+                            <?php foreach ($detailedInfoGroup as $name):?>
+                                <?php
+                                $html = $layout->renderElement($name);
+                                if (!trim($html)) {
+                                    continue;
+                                }
+                                $alias = $layout->getElementAlias($name);
+                                $label = $block->getChildData($alias, 'title');
+                                ?>
+                                <div class="data item title <?php echo $noBorderAccordion; ?>"
+                                     aria-labeledby="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title"
+                                     data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */ $alias ?>">
+                                    <a class="data switch <?php echo $noBorderAccordion; ?>"
+                                       tabindex="-1"
+                                       data-toggle="switch"
+                                       href="#<?= /* @escapeNotVerified */ $alias ?>"
+                                       id="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title">
+                                        <?= /* @escapeNotVerified */ $label ?>
+                                    </a>
+                                </div>
+                                <div class="data item content <?php echo $noBorderAccordion; ?>" id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
+                                    <?= /* @escapeNotVerified */ $html ?>
+                                </div>
+                            <?php endforeach;?>
+                        </div>
+                    </div>
+                </div>
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="product info detailed toggle toggle-bg product-mobile-device">
+            <?php $layout = $block->getLayout(); ?>
+            <?php foreach ($detailedInfoGroup as $name):?>
+                <?php
+                $html = $layout->renderElement($name);
+                if (!trim($html)) {
+                    continue;
+                }
+                $alias = $layout->getElementAlias($name);
+                $label = $block->getChildData($alias, 'title');
+                ?>
+                <div class="data item main">
+                    <div class="data item title togglet" id="toggle-tab-label-<?= /* @escapeNotVerified */ $alias ?>"><?= /* @escapeNotVerified */ $label ?></div>
+                    <div class="data item content togglec" id="toggle-<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
+                        <?= /* @escapeNotVerified */ $html ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <?php $noBorder = $helperProductPage->getTabsLayout() == 'tab' && $helperProductPage->getTabsVersion() == '1' ? 'no-border' : '' ?>
+        <div class="tabs-1 product info detailed product-desktop-device <?php echo  $noBorder; ?>">
+            <?php $layout = $block->getLayout(); ?>
+            <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+                <?php foreach ($detailedInfoGroup as $name):?>
+                    <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                    ?>
+                    <div class="data item title"
+                         aria-labeledby="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title"
+                         data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */ $alias ?>">
+                        <a class="data switch"
+                           tabindex="-1"
+                           data-toggle="switch"
+                           href="#<?= /* @escapeNotVerified */ $alias ?>"
+                           id="tab-label-<?= /* @escapeNotVerified */ $alias ?>-title">
+                            <?= /* @escapeNotVerified */ $label ?>
+                        </a>
+                    </div>
+                    <div class="data item content" id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
+                        <?= /* @escapeNotVerified */ $html ?>
+                    </div>
+                <?php endforeach;?>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+<script type="text/javascript">
+    require(['jquery'],function($){
+        $(document).ready(function(){
+            function isMobile () {
+                if (window.matchMedia("(max-width: 767px)").matches) {$( ".product-desktop-device" ).remove();}
+                else { $( ".product-mobile-device" ).remove(); } 
+            }
+            $(function () {
+                setInterval(isMobile, 2000);
+            });
+        });
+    });
+</script>

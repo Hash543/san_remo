@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * email_templates
+ *
+ * @copyright Copyright © 2018 PSS Servicios Web, S.L.. All rights reserved.
+ * @author    xsanz@pss.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="crm_error_template" label="CRM " file="error.html" type="html" module="PSS_CRM" area="adminhtml"/>
+</config>
+

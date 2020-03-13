@@ -1,0 +1,12 @@
+<div data-role="amasty-gdpr-consent">
+    <div class="amasty-gdpr-consent required" data-bind="visible: isVisible">
+        <input type="checkbox"
+               value="0"
+               class="required-entry"
+               data-bind="checked: checkedGdprConsent, attr: {'title': getTitle(), 'name': getNewId(), 'id': getId()}"
+               data-validate="{required:true}" />
+        <label data-bind="attr: {'for': getId()}">
+            <span class="action" data-bind="html: checkboxText, afterRender: initModal"></span>
+        </label>
+    </div>
+</div>

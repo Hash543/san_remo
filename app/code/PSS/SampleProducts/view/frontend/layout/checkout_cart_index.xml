@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.bottom.form">
+            <block class="PSS\SampleProducts\Block\Checkout\Cart\ListProducts" name="sample_products" as="sample.products"
+                   template="PSS_SampleProducts::checkout/cart/list.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

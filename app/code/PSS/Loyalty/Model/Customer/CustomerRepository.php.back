@@ -1,0 +1,176 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\Loyalty\Model\Customer;
+
+use Magento\Customer\Model\Customer\NotificationStorage;
+use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Api\ImageProcessorInterface;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+use Magento\Customer\Model\Delegation\Storage as DelegatedStorage;
+use \Magento\Framework\Exception\NoSuchEntityException;
+/**
+ * Class CustomerRepository
+ * @package PSS\Loyalty\Model\Customer
+ */
+class CustomerRepository extends \Magento\Customer\Model\ResourceModel\CustomerRepository
+    implements \PSS\Loyalty\Api\Customer\CustomerRepositoryInterface {
+
+    /**
+     * @var \PSS\Loyalty\Api\Data\CustomerInterfaceFactory
+     */
+    protected $customerDataFactory;
+    /**
+     * @var \PSS\Loyalty\Api\Data\AddressInterfaceFactory
+     */
+    protected $addressDataFactory;
+    /**
+     * @param \Magento\Customer\Model\CustomerFactory $customerFactory
+     * @param \Magento\Customer\Model\Data\CustomerSecureFactory $customerSecureFactory
+     * @param \Magento\Customer\Model\CustomerRegistry $customerRegistry
+     * @param \Magento\Customer\Model\ResourceModel\AddressRepository $addressRepository
+     * @param \Magento\Customer\Model\ResourceModel\Customer $customerResourceModel
+     * @param \Magento\Customer\Api\CustomerMetadataInterface $customerMetadata
+     * @param \Magento\Customer\Api\Data\CustomerSearchResultsInterfaceFactory $searchResultsFactory
+     * @param \Magento\Framework\Event\ManagerInterface $eventManager
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Magento\Framework\Api\ExtensibleDataObjectConverter $extensibleDataObjectConverter
+     * @param DataObjectHelper $dataObjectHelper
+     * @param ImageProcessorInterface $imageProcessor
+     * @param \Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface $extensionAttributesJoinProcessor
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param NotificationStorage $notificationStorage
+     * @param DelegatedStorage|null $delegatedStorage
+     * @param \PSS\Loyalty\Api\Data\CustomerInterfaceFactory $customerDataFactory,
+     * @param \PSS\Loyalty\Api\Data\AddressInterfaceFactory $addressDataFactory
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     */
+    public function __construct(
+        \Magento\Customer\Model\CustomerFactory $customerFactory,
+        \Magento\Customer\Model\Data\CustomerSecureFactory $customerSecureFactory,
+        \Magento\Customer\Model\CustomerRegistry $customerRegistry,
+        \Magento\Customer\Model\ResourceModel\AddressRepository $addressRepository,
+        \Magento\Customer\Model\ResourceModel\Customer $customerResourceModel,
+        \Magento\Customer\Api\CustomerMetadataInterface $customerMetadata,
+        \Magento\Customer\Api\Data\CustomerSearchResultsInterfaceFactory $searchResultsFactory,
+        \Magento\Framework\Event\ManagerInterface $eventManager,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\Api\ExtensibleDataObjectConverter $extensibleDataObjectConverter,
+        DataObjectHelper $dataObjectHelper,
+        ImageProcessorInterface $imageProcessor,
+        \Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface $extensionAttributesJoinProcessor,
+        CollectionProcessorInterface $collectionProcessor,
+        NotificationStorage $notificationStorage,
+        \PSS\Loyalty\Api\Data\CustomerInterfaceFactory $customerDataFactory,
+        \PSS\Loyalty\Api\Data\AddressInterfaceFactory $addressDataFactory,
+        DelegatedStorage $delegatedStorage = null
+    ) {
+        $this->addressDataFactory = $addressDataFactory;
+        $this->customerDataFactory = $customerDataFactory;
+        parent::__construct($customerFactory, $customerSecureFactory, $customerRegistry, $addressRepository, $customerResourceModel, $customerMetadata, $searchResultsFactory, $eventManager, $storeManager, $extensibleDataObjectConverter, $dataObjectHelper, $imageProcessor, $extensionAttributesJoinProcessor, $collectionProcessor, $notificationStorage, $delegatedStorage);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deleteByCrmId($crmId) {
+        $customer = $this->getCustomerByCrmId($crmId);
+        return $this->deleteById($customer->getId());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createCustomer($customer)
+    {
+        $customer =  $this->save($customer);
+        return $this->convertMagentoCustomerToCrmCustomer($customer);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function updateCustomer($customer, $crmId)
+    {
+        $customerMagento = $this->getCustomerByCrmId($crmId);
+        $customer->setId($customerMagento->getId());
+        foreach ($customer->getAddresses() as $address) {
+            $address->setCustomerId($customerMagento->getId());
+        }
+        $customer =  $this->save($customer);
+        return $this->convertMagentoCustomerToCrmCustomer($customer);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getByCrmId($crmId) {
+        $customer = $this->getCustomerByCrmId($crmId);
+        $customer = $this->getById($customer->getId());
+        return $this->convertMagentoCustomerToCrmCustomer($customer);
+    }
+    private function convertMagentoCustomerToCrmCustomer(\Magento\Customer\Api\Data\CustomerInterface $customer) {
+        /** @var \PSS\Loyalty\Api\Data\CustomerInterface $customerData */
+        $customerData = $this->customerDataFactory->create();
+        $customerData = $this->convertObject($customer, $customerData);
+        $addressCrm = [];
+        foreach ($customerData->getAddresses() as $address) {
+            /** @var \PSS\Loyalty\Api\Data\AddressInterface $addressData */
+            $addressData = $this->addressDataFactory->create();
+            $addressCrm[] = $this->convertObject($address, $addressData);
+        }
+        $customerData->setAddresses($addressCrm);
+        return $customerData;
+    }
+    /**
+     * @param int $crmId
+     * @return \Magento\Customer\Model\Customer
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    private function getCustomerByCrmId($crmId){
+        /** @var \Magento\Customer\Model\ResourceModel\Customer\Collection $collection */
+        $collection = $this->customerFactory->create()->getCollection();
+        $collection->addAttributeToFilter('id_crm', $crmId)->load();
+        /** @var \Magento\Customer\Model\Customer $customer */
+        $customer = $collection->getFirstItem();
+        if($customer == null || !$customer->getId()) {
+            throw new NoSuchEntityException(__('There are no customer with the crm_id: %1', $crmId));
+        }
+        return $customer;
+    }
+    /**
+     * Convert From one object to another
+     * @param \Magento\Framework\Api\CustomAttributesDataInterface $objectMagento
+     * @param \Magento\Framework\Api\CustomAttributesDataInterface $objectCrm
+     * @return \Magento\Framework\Api\CustomAttributesDataInterface
+     */
+    private function convertObject(\Magento\Framework\Api\CustomAttributesDataInterface $objectMagento,
+                                \Magento\Framework\Api\CustomAttributesDataInterface $objectCrm) {
+
+        foreach (get_class_methods($objectMagento) as $method) {
+            if($method == 'getCustomAttribute') {
+                continue;
+            }
+            if(strpos($method, 'get') !== false) {
+                $setMethod =  str_replace('get', 'set', $method);
+                if(method_exists($objectCrm, $setMethod) && $objectMagento->$method()) {
+                    $objectCrm->$setMethod($objectMagento->$method());
+                }
+            }
+        }
+        $customAttributes = $objectMagento->getCustomAttributes();
+        //convert variable a method name: for instance customer_id -> getCustomerId
+        foreach ($customAttributes as $customAttribute) {
+            $customAttributeCode = $customAttribute->getAttributeCode();
+            if($customAttributeCode) {
+                $method = 'set'.ucwords($customAttributeCode, '_');
+                $method = str_replace('_', '', $method);
+                if(method_exists($objectCrm, $method)) {
+                    $objectCrm->$method($customAttribute->getValue());
+                }
+            }
+        }
+        return $objectCrm;
+    }
+}

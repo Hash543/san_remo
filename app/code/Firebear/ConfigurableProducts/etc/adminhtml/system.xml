@@ -1,0 +1,391 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="firebear" translate="label" sortOrder="200">
+            <label>Firebear Studio</label>
+        </tab>
+        <section id="firebear_configurableproducts" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Improved Configurable Products</label>
+            <tab>firebear</tab>
+            <resource>Firebear_ConfigurableProducts::config_configurableproducts</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <comment>
+                    <![CDATA[
+                    <div class="fire_menu">
+                        <img src="https://firebearstudio.com/blog/wp-content/uploads/2014/10/Firebear_logo_294x84_quer.png" height="50px">
+                         Firebear Improved Configurable Product
+                         <a target="_blank" class="" href="https://firebearstudio.com/blog/improved-configurable-products-for-magento-2.html">Extension manual</a>
+                         <a target="_blank" class="" href="https://firebearstudio.com/improved-configurable-products-for-magento-2.html">Extension details</a>
+                         <a target="_blank" class="" href="https://firebearstudio.com/contacts">Support</a>
+                         <a target="_blank" class="" href="https://firebearstudio.com/downloadable/customer/products/">Download latest version</a>
+                    </div>
+                    <style>
+                        .fire_menu {
+                            margin:20px 0px;
+                            padding:20px 10px;
+                            border:1px solid #e3e3e3;
+                            position:relative;
+                        }
+                        
+                        .fire_menu a {
+                            font-weight: bold !important;
+                            border-left: 2px solid #e3e3e3;
+                            padding-left:10px;
+                            padding-right:10px;
+                            color: rgb(228,131,49) !important;
+                        }
+                        .fire_menu img{
+                            position:relative;
+                            float:left;
+                            top:-17px;
+                            margin-right:5px;
+                        }
+                        
+                        .fire_menu a.first {
+                            border-left:none;
+                        }
+                        hr
+                        {
+                            position: absolute;
+                            left: 35%;
+                            width: 47%;
+                            border-color: #cccccc;
+                            border-top: none;
+                        }
+                    </style>
+                ]]>
+                </comment>
+                <field id="change_url" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Update page URL</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                    <![CDATA[<br/><hr/>]]>
+                    </comment>
+                </field>
+                <field id="allow_deselect_swatch" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow De-Select Swatch Option On Product Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                    <![CDATA[<br/><hr/>]]>
+                    </comment>
+                </field>
+                <field id="change_name" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Update product name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="name_id_class" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product name position</label>
+                    <comment>
+                        <![CDATA[
+                        HTML class (.some-class) or id (#some-id) for block reference.
+                        <br/><hr/>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="change_sku" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Update product SKU</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sku_id_class" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product SKU position</label>
+                    <comment>
+                        <![CDATA[
+                        HTML class (.some-class) or id (#some-id) for block reference.
+                        <br/><hr/>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="change_short_description" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Update short description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="short_description_id_class" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Short description position</label>
+                    <comment>
+                        <![CDATA[
+                        HTML class (.some-class) or id (#some-id) for block reference.
+                        <br/><hr/>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="change_description" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Update description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="description_id_class" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description block position</label>
+                    <comment>
+                        <![CDATA[
+                        HTML class (.some-class) or id (#some-id) for block reference.
+                        <br/><hr/>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="change_tier_prices" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Update tier prices</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tier_prices_id_class" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tier prices block position</label>
+                    <comment>
+                        <![CDATA[
+                        HTML class (.some-class) or id (#some-id) for block reference.
+                        <br/><hr/>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="change_attributes_block" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Update “More Information” block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="attributes_block_class" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>“More Information” block position</label>
+                    <comment>
+                        <![CDATA[
+                        HTML class (.some-class) or id (#some-id) for block reference.
+                        <br/><hr/>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="custom_block_1" translate="label" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom content #1</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="custom_block_1_id_class" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom content #1 position</label>
+                    <comment>
+                        <![CDATA[
+                        HTML class (.some-class) or id (#some-id) for block reference.
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="custom_block_1">1</field>
+                    </depends>
+                </field>
+                <field id="custom_block_1_data" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom content #1 product attribute</label>
+                    <comment>
+                        <![CDATA[
+                        Example: <i>{name}</i>.
+                        <br/>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="custom_block_1">1</field>
+                    </depends>
+                </field>
+                <field id="replace_custom_block_1" translate="label" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Append or Replace custom content #1</label>
+                    <source_model>Firebear\ConfigurableProducts\Model\Config\Source\AppendOrReplaceCustomContent</source_model>
+                    <comment>
+                        <![CDATA[
+                       <hr/>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="custom_block_1">1</field>
+                    </depends>
+                </field>
+                <field id="custom_block_2" translate="label" type="select" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom content #2</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="custom_block_2_id_class" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom content #2 position</label>
+                    <comment>
+                        <![CDATA[
+                        HTML class (.some-class) or id (#some-id) for block reference.
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="custom_block_2">1</field>
+                    </depends>
+                </field>
+                <field id="custom_block_2_data" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom content #2 product attribute</label>
+                    <comment>
+                        <![CDATA[
+                        Example: <i>{name}</i>.
+                        <br/>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="custom_block_2">1</field>
+                    </depends>
+                </field>
+                <field id="replace_custom_block_2" translate="label" type="select" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Append or Replace custom content #2</label>
+                    <source_model>Firebear\ConfigurableProducts\Model\Config\Source\AppendOrReplaceCustomContent</source_model>
+                    <comment>
+                        <![CDATA[
+                       <hr/>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="custom_block_2">1</field>
+                    </depends>
+                </field>
+
+                <field id="custom_block_3" translate="label" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom content #3</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="custom_block_3_id_class" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom content #3 position</label>
+                    <comment>
+                        <![CDATA[
+                        HTML class (.some-class) or id (#some-id) for block reference.
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="custom_block_3">1</field>
+                    </depends>
+                </field>
+                <field id="custom_block_3_data" translate="label" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom content #3 product attribute</label>
+                    <comment>
+                        <![CDATA[
+                        Example: <i>{name}</i>.
+                        <br/>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="custom_block_3">1</field>
+                    </depends>
+                </field>
+                <field id="replace_custom_block_3" translate="label" type="select" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Append or Replace custom content #3</label>
+                    <source_model>Firebear\ConfigurableProducts\Model\Config\Source\AppendOrReplaceCustomContent</source_model>
+                    <comment>
+                        <![CDATA[
+                       <hr/>
+                        ]]>
+                    </comment>
+                    <depends>
+                        <field id="custom_block_3">1</field>
+                    </depends>
+                </field>
+                <field id="price_range_product" translate="label" type="select" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Price range at product page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="price_range_product_original" translate="label" type="select" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display native price block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="price_range_product">1</field>
+                    </depends>
+                </field>
+                <field id="price_range_product_from_to_option" translate="label" type="select" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable From-To price format</label>
+                    <comment>
+                        <![CDATA[
+                        If enabled. Display price: From [min_price] - [max_price]
+                        </br>
+                        If disabled. Display price: From [min_price]
+
+                        <br/><hr/>
+                        ]]>
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="price_range_product">1</field>
+                    </depends>
+                </field>
+
+
+                <field id="price_range_category" translate="label" type="select" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Price range at category page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="price_range_category_original" translate="label" type="select" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display native price block</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="price_range_category">1</field>
+                    </depends>
+                </field>
+                <field id="price_range_category_from_to_option" translate="label" type="select" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable From-To price format</label>
+                    <comment>
+                        <![CDATA[
+                        If enabled. Display price: From [min_price] - [max_price]
+                        </br>
+                        If disabled. Display price: From [min_price]
+                        ]]>
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="price_range_category">1</field>
+                    </depends>
+                </field>
+
+
+                <field id="price_range_compatible_with_tier_price" translate="label" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Consider tier prices in From-To price format</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="disable_swatches_functionallity_in_listing" translate="label" type="select" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable swatches functionallity in category page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="matrix" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Matrix View</label>
+                <field id="matrix_swatch" translate="label" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Replace default swatches on matrix?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tier_price" translate="label" type="select" sortOrder="141" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable tier prices in matrix</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="matrix_swatch">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="shippign_logic" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Shipping Logic</label>
+                <field id="enable" translate="label" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom delivery message</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="custom_attr_code_text" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text attribute</label>
+                    <comment>Insert attribute code.</comment>
+                </field>
+                <field id="custom_attr_code_start" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start date attribute</label>
+                    <comment>Insert attribute code.</comment>
+                </field>
+                <field id="custom_attr_code_end" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>End date attribute</label>
+                    <comment>Insert attribute code.</comment>
+                </field>
+                <field id="custom_attr_block" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delivery message position</label>
+                    <comment>HTML class (.some-class) or id (#some-id) for block reference.</comment>
+                </field>
+            </group>
+            <group id="bundle_options" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Bundle options</label>
+                <field id="enable" translate="label" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable feature add configurable in bundle products.</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                 <field id="enable_swatch" translate="label" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable swatches in bundle products.</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,21 @@
+<?php
+    $visible = '';
+    $_product = $block->getProduct();
+    $priceInfo = $_product->getPriceInfo();
+    $finalPrice = $priceInfo->getPrice('final_price')->getAmount()->getValue();
+    $pvpPrice = $_product->getData('pvp');
+    $discountPvp = 0;
+
+    if($pvpPrice && $pvpPrice > 0 && $pvpPrice > $finalPrice) {
+        $visible = 'visible';
+        $pvpPrice = round($pvpPrice, 2);
+        $savePercent = (1 - ($finalPrice / $pvpPrice)) * 100;
+        $discountPvp = round($savePercent, 0);
+    }
+    if(!$discountPvp){
+        $visible = '';
+    }
+?>
+<div class="product pvp_discount <?= /* @escapeNotVerified */ $visible; ?>">
+    <div class="discountPvp">-<?= /* @escapeNotVerified */  $discountPvp; ?>%</div>
+</div>

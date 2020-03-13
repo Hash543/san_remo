@@ -1,0 +1,192 @@
+<?php
+?>
+<?php /** @var \Alfa9\StoreInfo\Block\Stockists $block */ ?>
+<?php $data = $block->getStoresForFrontend(); ?>
+<?php $countryList = $block->getCountries(); ?>
+<?php $modulePath = "storeinfo/stockist/image/"; ?>
+<?php $templateSetting = $block->getTemplateSettings(); ?>
+<?php $storeDetails = $this->getDetails(); ?>
+<?php
+if ($block->getMapPin()) {
+    $mapPin = $block->getMediaUrl() . "Alfa9_StoreInfo/" . $block->getMapPin();
+} else {
+    $mapPin = $block->getViewFileUrl('Alfa9_StoreInfo::images/map_pin.png');
+
+}
+$images = [];
+if(!empty($block->escapeHtml($storeDetails["image"]))) {
+    $images[] = [
+           'src' => ($block->getBaseImageUrl() . $modulePath . $block->escapeHtml($storeDetails["image"])),
+           'alt' => $block->escapeHtml(__($storeDetails["address"]))
+    ];
+}
+if(!empty($block->escapeHtml($storeDetails["image2"]))) {
+    $images[] = [
+        'src' => ($block->getBaseImageUrl() . $modulePath . $block->escapeHtml($storeDetails["image2"])),
+        'alt' => $block->escapeHtml(__($storeDetails["address"]))
+    ];
+}
+if(!empty($block->escapeHtml($storeDetails["image3"]))) {
+    $images[] = [
+        'src' => ($block->getBaseImageUrl() . $modulePath . $block->escapeHtml($storeDetails["image3"])),
+        'alt' => $block->escapeHtml(__($storeDetails["address"]))
+    ];
+}
+?>
+<div class="individual-stockists">
+    <?php if(count($images) > 0 ): ?>
+    <div class="image">
+        <?php foreach ($images as $image): ?>
+            <div class="picture">
+                <div class="item">
+                    <img
+                            src="<?php echo $image['src']; ?>"
+                            alt="<?php echo $image['alt']; ?>"/>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+    <div class="details">
+        <div class="title">
+            <p><?php echo $block->escapeHtml(__("Store Details")) ?></p>
+        </div>
+        <div class="border"></div>
+        <div class="address">
+            <div class="exact-address">
+                <p class="address-title"><?php echo $block->escapeHtml(__("Address")) ?></p>
+                <p><?php echo $block->escapeHtml($storeDetails["address"]) . ', ' . $block->escapeHtml($storeDetails["postcode"]) ?></p>
+                <p><?php echo $block->escapeHtml($storeDetails["city"]) . ', ' . $block->escapeHtml($storeDetails["region"]) ?></p>
+                <p><?php echo $block->escapeHtml($storeDetails["phone"]) ?></p>
+                <p><?php echo $block->escapeHtml($storeDetails["email"]) ?></p>
+            </div>
+            <?php /*if($storeDetails["station"]): */ ?><!--
+                <div class="station">
+                    <div class="nearest-station">
+                        <p>
+                            <span class="nearest"><?php /*echo $block->escapeHtml(__("Nearest Station")); */ ?>
+                            </span><?php /*echo $block->escapeHtml($storeDetails["station"]) */ ?></span>
+                        </p>
+                    </div>
+                    <div class="distance">
+                        <p><?php /*echo $storeDetails["distance"] */ ?></p>
+                    </div>
+                </div>
+            --><?php /*endif; */ ?>
+        </div>
+        <div class="clearfix"></div>
+        <div class="get-directions">
+            <a href="http://maps.google.com/maps?saddr=&daddr=<?php echo $block->escapeHtml($storeDetails["latitude"]) . "," . $block->escapeHtml($storeDetails["longitude"]); ?>"
+               target="_blank">
+                <?php echo $block->escapeHtml(__("Get Directions")) ?>
+            </a>
+        </div>
+        <div id="map-canvas-individual"></div>
+        <?php if ($storeDetails["description"]): ?>
+            <div class="intro">
+                <p class="intro">
+                    <?php echo $block->escapeHtml(__($storeDetails["description"])); ?>
+                </p>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($storeDetails["services"]): ?>
+            <div class="services">
+                <p class="address-title"><?php echo $block->escapeHtml(__("Services")) ?></p>
+                <p class="services">
+                    <?php echo $block->escapeHtml(__($storeDetails["services"])); ?>
+                </p>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($storeDetails["schedule"]): ?>
+            <div class="schedule">
+                <?php
+                $schedule = $block->escapeHtml($storeDetails["schedule"]);
+                $schedule = explode("\n", $schedule);
+                foreach ($schedule as $day): ?>
+                    <p class="day"><?php echo str_replace('\n', "", $day); ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+<div class="clearfix"></div>
+
+<?php if ($block->getOtherStoresSettings()): ?>
+    <div class="all-stores">
+        <div class="all-stores-title">
+            <p><?php echo $block->escapeHtml(__("View Our Other Stores")) ?></p>
+        </div>
+        <div class="all-stores-slider-wrapper">
+            <?php foreach ($data as $store): ?>
+                <?php if ($storeDetails["storeinfo_id"] != $store["storeinfo_id"]): ?>
+                    <div class="item">
+                        <div class="image">
+                            <img src="<?php echo $block->getBaseImageUrl() . $modulePath . $block->escapeHtml($store["image"]) ?>"
+                                 alt="<?php echo $block->escapeHtml($store["address"]) ?>"/>
+                        </div>
+                        <a href="<?php echo $block->escapeHtml(__($store["link"])) ?>" class="individual-store-link">
+                            <div class="details">
+                                <p><?php echo $block->escapeHtml(__($store["name"])) ?></p>
+                            </div>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+
+            "stockists_individual_stores": {
+                "map_styles" : "<?php echo $block->getMapStyles() ?>",
+                "map_pin" : "<?php echo $mapPin; ?>",
+                "slider_arrow" : "<?php echo $block->getViewFileUrl('Alfa9_StoreInfo::images/slider-arrow.svg'); ?>",
+                "geolocation" : <?php echo json_encode($block->getLocationSettings()) ?>,
+                "otherStores" : <?php echo json_encode($block->getOtherStoresSettings()) ?>,
+                "otherStoresSlider" : <?php echo json_encode($block->getSliderSettings()) ?>,
+                "modulePath" : "<?php echo $block->getBaseImageUrl() . $modulePath; ?>",
+                "zoom_individual" : <?php echo json_encode($block->getZoomIndividualSettings()) ?>,
+                "storeDetails" : <?php echo json_encode($storeDetails) ?>,
+                "radius" : <?php echo json_encode($block->getRadiusSettings()) ?>,
+                "apiKey" : "<?php echo $block->getApiKeySettings(); ?>",
+                "unit" : "<?php echo $block->getUnitOfLengthSettings() ?>",
+                "fillColor" : "<?php echo $block->getFillColorSettings() ?>",
+                "fillOpacity" : <?php echo json_encode($block->getFillOpacitySettings()) ?>,
+                "strokeColor" : "<?php echo $block->getStrokeColorSettings() ?>",
+                "strokeOpacity" : <?php echo json_encode($block->getStrokeOpacitySettings()) ?>,
+                "strokeWeight" : <?php echo json_encode($block->getStrokeWeightSettings()) ?>
+            }
+
+        }
+    }
+
+
+
+
+
+</script>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'stockists_slick'
+    ], function ($) {
+        $(document).ready(function () {
+            $('.image').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                adaptiveHeight: true,
+                adaptiveWidth: true,
+                autoplaySpeed: 2000,
+            });
+        });
+    });
+</script>

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<!--
+ /**
+  * @author Israel Yasis
+  */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Magento\SalesRule\Block\Adminhtml\Promo\Quote\Edit\Tab\Coupons\Grid"
+				type="PSS\Rule\Block\Adminhtml\Promo\Quote\Edit\Tab\Coupons\Grid" />
+</config>

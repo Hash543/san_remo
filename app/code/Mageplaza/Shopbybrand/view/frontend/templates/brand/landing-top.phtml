@@ -1,0 +1,8 @@
+<?php $brand = $block->getBrand(); ?>
+<?php if($block->getBrandImage()){ ?>
+<div class="landing-top-main">
+	<div class="top-brand-image">
+		<img src="<?= $block->getBrandImage() ?>" alt="<?= $brand->getDefaultValue() ?>">
+	</div>
+</div>
+<?php } ?>

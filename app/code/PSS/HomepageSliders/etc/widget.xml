@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="pss_home_categories" class="PSS\HomepageSliders\Block\Slider\Tabs">
+        <label translate="true">PSS - Homepage Tab Slider</label>
+        <description>PSS - Homepage Tab Slider</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" visible="true" required="true" sort_order="0">
+                <label translate="true">Title</label>
+            </parameter>
+
+            <parameter name="enable_category_1" xsi:type="select" visible="true" required="true" sort_order="10"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable category 1</label>
+            </parameter>
+            <parameter name="category_1" xsi:type="block" visible="true" sort_order="15">
+                <label translate="true">Category 1</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+            <parameter name="enable_category_2" xsi:type="select" visible="true" required="true" sort_order="20"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable category 2</label>
+            </parameter>
+            <parameter name="category_2" xsi:type="block" visible="true" sort_order="25">
+                <label translate="true">Category 2</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+            <parameter name="enable_category_3" xsi:type="select" visible="true" required="true" sort_order="30"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable category 3</label>
+            </parameter>
+            <parameter name="category_3" xsi:type="block" visible="true" sort_order="35">
+                <label translate="true">Category 3</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+            <parameter name="enable_category_4" xsi:type="select" visible="true" required="true" sort_order="40"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable category 4</label>
+            </parameter>
+            <parameter name="category_4" xsi:type="block" visible="true" sort_order="45">
+                <label translate="true">Category 4</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+            <parameter name="enable_category_5" xsi:type="select" visible="true" required="true" sort_order="50"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable category 5</label>
+            </parameter>
+            <parameter name="category_5" xsi:type="block" visible="true" sort_order="55">
+                <label translate="true">Category 5</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+            <parameter name="enable_category_6" xsi:type="select" visible="true" required="true" sort_order="60"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable category 6</label>
+            </parameter>
+            <parameter name="category_6" xsi:type="block" visible="true" sort_order="65">
+                <label translate="true">Category 6</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+            <parameter name="enable_category_7" xsi:type="select" visible="true" required="true" sort_order="70"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable category 7</label>
+            </parameter>
+            <parameter name="category_7" xsi:type="block" visible="true" sort_order="75">
+                <label translate="true">Category 7</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+            <parameter name="enable_category_8" xsi:type="select" visible="true" required="true" sort_order="80"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable category 8</label>
+            </parameter>
+            <parameter name="category_8" xsi:type="block" visible="true" sort_order="85">
+                <label translate="true">Category 8</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

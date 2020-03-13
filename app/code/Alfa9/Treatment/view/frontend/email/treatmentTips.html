@@ -1,0 +1,30 @@
+<!--@subject {{trans "treatment_tips"}} @-->
+<!--@vars {
+"template config_path=\"design\/email\/footer_template\"":"Email Footer Template",
+"template config_path=\"design\/email\/header_template\"":"Email Header Template",
+"var customer.email":"Customer Email",
+"var product.name":"Product Name",
+"var product.price":"Product Price",
+"var product.description":"Product Description",
+"var product.tips":"Product Tips"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+<table class="message-details">
+    <tr>
+        <td><b>{{trans "Product Name"}}</b></td>
+        <td>{{var product.name}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Price"}}</b></td>
+        <td>{{var product.price}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Description"}}</b></td>
+        <td style="text-align: justify">{{var product.description}}</td>
+    </tr>
+</table>
+<p><b>{{trans "Tips for use:"}}</b></p>
+<div style="text-align: justify">{{var product.tips|raw}}</div>
+
+{{template config_path="design/email/footer_template"}}

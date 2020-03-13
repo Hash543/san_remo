@@ -1,0 +1,9 @@
+<?php $priceRange = $block->getMaxMinProductPrices(); ?>
+<?php $displayingOption = $block->getDisplayingOption(); ?>
+<span class="price-container price-final_price tax weee" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+<?php if($displayingOption): ?>
+    <span class="price firebear_range_price"><?php echo __('From') ?> <?php echo $priceRange['min']; ?> - <?php echo $priceRange['max']; ?> </span>
+    <?php else: ?>
+    <span class="price firebear_range_price"><?php echo __('From') ?> <?php echo $priceRange['min']; ?></span>
+    <?php endif;?>
+</span>

@@ -1,0 +1,16 @@
+<?php
+    $_product = $block->getProduct();
+    $currentUrl = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true])
+?>
+<div class="product-comparte">
+    <strong><?php echo __('Comparte') ?></strong>
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($_product->getProductUrl());?>&t=<?php echo urlencode($_product->getName())?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=no");return false' title="Share on facebook">
+        <img src="<?php echo $block->getViewFileUrl('images/icon-share-facebook.png'); ?>" alt="facebook">
+    </a>
+    <!-- Whatsapp -->
+    <a href="https://api.whatsapp.com/send?text=<?php echo urlencode($currentUrl)?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=no");return false' >
+        <img src="<?php echo $block->getViewFileUrl('images/icon-share-whatsapp.png'); ?>" alt="whatsapp">
+    </a>
+    <!-- <a href="#"><img src="<?php echo $block->getViewFileUrl('images/icon-share-instagram.png'); ?>" alt="instagram"></a> -->
+</div>

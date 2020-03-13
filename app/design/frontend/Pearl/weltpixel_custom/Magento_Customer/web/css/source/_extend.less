@@ -1,0 +1,151 @@
+//
+//  Variables
+//  _____________________________________________
+
+
+//
+//  Common
+//  ----------------------------------------------
+& when (@media-common = true) {
+    // Create page
+    .customer-account-create {
+        .page-wrapper {
+            .page-main {
+                .column.main {
+                    .form-create-account {
+                        .field-dob {
+                            .customer-dob {
+                                .ui-datepicker-trigger {
+                                    background: none;
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Edit page
+    .customer-account-edit {
+        .page-wrapper {
+            .page-main {
+                .column.main {
+                    .form-edit-account {
+                        .field-dob {
+                            .customer-dob {
+                                .ui-datepicker-trigger {
+                                    background: none;
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sidebar-main {
+
+    }
+
+    .sidebar-additional {
+        .block-reorder {
+            .block-content {
+                .product-items {
+                    .product-item {
+                        clear: both;
+
+                        .field.item.choice {
+                            float: left;
+                            width: 10%;
+                        }
+
+                        .product-item-name {
+                            float: left;
+                            width: 90%;
+                        }
+                    }
+                }
+
+                #cart-sidebar-reorder-advice-container {
+                    clear: both;
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    // Create page
+    .customer-account-create {
+
+    }
+
+    // Edit page
+    .customer-account-edit {
+
+    }
+}
+
+
+//
+//  Mobile
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    // Create page
+    .customer-account-create {
+        .page-wrapper {
+            .page-main {
+                .column.main {
+                    .form-create-account {
+                        .field-dob {
+                            margin: 0 0 15px;
+
+                            .customer-dob {
+                                input#dob {
+                                    width: 100%;
+                                }
+
+                                .ui-datepicker-trigger {
+                                    margin-top: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Edit page
+    .customer-account-edit {
+        .page-wrapper {
+            .page-main {
+                .column.main {
+                    .form-edit-account {
+                        .field-dob {
+                            margin: 0 0 15px;
+
+                            .customer-dob {
+                                input#dob {
+                                    width: 100%;
+                                }
+
+                                .ui-datepicker-trigger {
+                                    margin-top: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * di.xml
+ *
+ * @copyright Copyright © 2017 Alfa9. All rights reserved.
+ * @author    xsanz@alfa9.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Alfa9\StockExpress\Api\StockRepositoryInterface" type="Alfa9\StockExpress\Model\StockRepository"/>
+    <type name="Alfa9\StockExpress\Model\Api\StockService">
+        <arguments>
+            <argument name="logger" xsi:type="object">\Alfa9\StockExpress\Logger\Logger</argument>
+            <argument name="transportBuilder" xsi:type="object">\Magento\Framework\Mail\Template\TransportBuilder</argument>
+            <argument name="soapClient" xsi:type="object">\Zend\Soap\Client</argument>
+            <argument name="componentRegistrar" xsi:type="object">\Magento\Framework\Component\ComponentRegistrarInterface</argument>
+            <argument name="helper" xsi:type="object">\Alfa9\StockExpress\Helper\StockService</argument>
+            <argument name="wsdl" xsi:type="string">/etc/service/stock/wsdl/SOAPXMLServer.wsdl</argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StockExpress\Model\Api\AbstractModel">
+        <arguments>
+            <argument name="logger" xsi:type="object">\Alfa9\StockExpress\Logger\Logger</argument>
+            <argument name="soapClient" xsi:type="object">\Zend\Soap\Client</argument>
+            <argument name="componentRegistrar" xsi:type="object">\Magento\Framework\Component\ComponentRegistrarInterface</argument>
+            <argument name="transportBuilder" xsi:type="object">\Magento\Framework\Mail\Template\TransportBuilder</argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StockExpress\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">\Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StockExpress\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">Stock WS Logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">\Alfa9\StockExpress\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,19 @@
+<?php
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\abstractView
+ */
+/** @var \Magento\Catalog\Model\Product $product */
+$product = $block->getProduct();
+?>
+<?php if(($product->getData('express_stock') > 0 && $product->getTypeId() == 'simple')
+    || ($product->getTypeId() == 'configurable')): ?>
+    <div class="express-stock" id="stock-express-button" style="display: <?= $product->getTypeId() == 'simple' ? 'block' : 'none'; ?>">
+        <?php echo __('Express Delivery') ?>
+    </div>
+    <!--div id="block-store-list" data-bind="scope:'store-list'" class="express-stock-block">
+        <span class="stock-express" data-role="title"></span>
+        <div id="stock-express" class="content" data-role="content"></div>
+    </div-->
+<?php endif; ?>

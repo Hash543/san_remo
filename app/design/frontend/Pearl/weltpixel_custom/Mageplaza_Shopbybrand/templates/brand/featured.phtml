@@ -1,0 +1,114 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Shopbybrand
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+$timeId = time();
+$featureBrands = $block->getFeaturedBrand();
+$helper = $block->helper();
+?>
+<?php echo $block->includeCssLib(); ?>
+<?php if ($helper->enableFeature() && sizeof($featureBrands)) : ?>
+<div class="section-container section-brands">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-section">
+                <div class="block-brand-feature widget">
+                    <div class="block-content">
+                        <?php if ($block->getStyleDisplayFeature() == 0 && sizeof($featureBrands) > 1) : ?>
+                        <div class="owl-carousels owl-theme brand-carousel" id="feature-brand-carousel-<?= $timeId ?>">
+                            <?php endif; ?>
+                            <?php foreach ($featureBrands as $brand) : ?>
+                            <?php if ($block->getStyleDisplayFeature() == 0) : ?>
+                            <div class="relate-content item">
+                                <?php else : ?>
+                                <div class="relate-content item mp-2 mp-sm-4 mp-xs-6 col-mp" style="float: left; padding: 5px 0;">
+                                    <?php endif; ?>
+                                    <a href="<?php echo $block->helper()->getBrandUrl($brand) ?>">
+                                        <img class="img-responsive brand-image"
+                                             src="<?php echo $block->helper()->getBrandImageUrl($brand) ?>">
+                                        <?php if ($block->showLabel() == 1) : ?>
+                                            <span><?php echo $brand->getValue() ?></span>
+                                        <?php endif; ?>
+                                    </a>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+require(['jquery','owl_carousel', 'owl_config'],function($){
+    $(document).ready(function(){
+        var slider_id = <?php echo $timeId; ?>;
+        $("#feature-brand-carousel-"+slider_id).owlCarousel({
+            center: true,
+            loop: true,
+            dots: false,
+            margin: 25,
+            pagination: false,
+            autoplay : true,
+            navigation : false,
+            lazyLoad : true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            nav: false,
+            responsive:{
+                320:{
+                    nav     :false,
+                    loop: true,
+                    items   :2,
+                    center: false,
+                    margin: 10,
+                },
+                425:{
+                    nav     :false,
+                    loop: true,
+                    items   :2,
+                    center: false,
+                    margin: 10,
+                },
+                768:{
+                    nav     :false,
+                    loop: true,
+                    items   :3,
+                    margin: 10,
+                },
+                1024:{
+                    nav     :false,
+                    loop: true,
+                    items   :5,
+                },
+                1280:{
+                    nav     :false,
+                    loop: true,
+                    items   :5,
+                }
+            }
+        });
+    });
+});
+</script>
+<?php endif; ?>
+
+

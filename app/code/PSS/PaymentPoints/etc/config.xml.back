@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <payment_method_points>
+                <active>1</active>
+                <title>Pago Por puntos</title>
+                <order_status>pending</order_status>
+                <payment_action>true</payment_action>
+                <model>PSS\PaymentPoints\Model\Payment\PaymentPoints</model>
+                <group>offline</group>
+            </payment_method_points>
+        </payment>
+    </default>
+</config>

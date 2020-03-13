@@ -1,0 +1,61 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_GdprCookie
+ */
+?>
+<?php
+/** @var \Amasty\GdprCookie\Block\CookieBar $block */
+
+if ($cookiePrivacyText = $block->getCookiePolicyText()) : ?>
+    <div data-role="gdpr-cookie-container" data-bind="scope: 'gdpr-cookie-container'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+    <script type="text/x-magento-init">
+    {
+        "[data-role=gdpr-cookie-container]": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "gdpr-cookie-container": {
+                        "component": "Amasty_GdprCookie/js/cookies",
+                        "noticeType": <?= $block->escapeHtml($block->getNoticeType()); ?>,
+                        "policyText": <?= /** @escapeNotVerified */ $cookiePrivacyText; ?>,
+                        "allowLink": "<?= $block->escapeUrl($block->getAllowLink()) ?>",
+                        "settingsLink": "<?= $block->escapeUrl($block->getSettingsLink()) ?>",
+                        "websiteInteraction": "<?= $block->escapeHtml($block->getWebsiteInteraction()); ?>"
+                    }
+                }
+            }
+        }
+    }
+    </script>
+    <style>
+        .message.global.cookie.am-cookie {
+        <?php if($block->getBarLocation()): ?>
+            bottom: unset;
+        <?php endif; ?>
+            z-index: 10;
+            background-color: <?= /* @escapeNotVerified */ $block->getBackgroundBarCollor() ?>;
+        }
+
+        .am-cookie .content p {
+            color: <?= /* @escapeNotVerified */ $block->getTextBarCollor() ?>;
+        }
+
+        .message.global.cookie a, .message.global.cookie a:hover {
+            color: <?= /* @escapeNotVerified */ $block->getLinksBarCollor() ?>;
+        }
+
+        .actions button.action.primary.cookiebar {
+            background-color: <?= /* @escapeNotVerified */ $block->getButtonsBarCollor() ?>;
+            border-color: <?= /* @escapeNotVerified */ $block->getButtonsBarCollor() ?>;
+            color: <?= /* @escapeNotVerified */ $block->getButtonTextBarCollor() ?>;
+        }
+
+        .actions button.action.primary.cookiebar:hover {
+            opacity: 0.9;
+        }
+    </style>
+
+<?php endif; ?>

@@ -1,0 +1,118 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+<?php $_product = $block->getProduct(); ?>
+
+ 
+
+<div class="product-add-form <?php if($_product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){ ?>product-add-custom-wrapper<?php } ?>">
+    <form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
+          action="<?= /* @NoEscape */ $block->getSubmitUrl($_product) ?>" method="post"
+          id="product_addtocart_form"<?php if ($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("PSS_Preloader::preloader.phtml")->toHtml(); ?>
+        <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />
+        <input type="hidden" name="selected_configurable_option" value="" />
+        <input type="hidden" name="related_product" id="related-products-field" value="" />
+        <input type="hidden" name="item"  value="<?= /* @noEscape */ $block->getRequest()->getParam('id') ?>" />
+        <?= $block->getBlockHtml('formkey') ?>
+        <?= $block->getChildHtml('form_top') ?>
+        <?php if (!$block->hasOptions()):?>
+            <?= $block->getChildHtml('product_info_form_content') ?>
+        <?php else:?>
+            <?php if ($_product->isSaleable() && $block->getOptionsContainer() == 'container1'):?>
+                <?= $block->getChildChildHtml('options_container') ?>
+            <?php endif;?>
+        <?php endif; ?>
+        <?php if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2'):?>
+            <?= $block->getChildChildHtml('options_container') ?>
+        <?php endif;?>
+        <?= $block->getChildHtml('form_bottom') ?>
+    </form>
+</div>
+<?php
+$moveOptions = false;
+/** @var \Magento\ConfigurableProduct\Model\Product\Type\Configurable $productInstance */
+$productInstance = $_product->getTypeInstance();
+if($_product->getTypeId() == 'configurable'
+    && $productInstance instanceof \Magento\ConfigurableProduct\Model\Product\Type\Configurable ) {
+    $configurableOptions = $productInstance->getConfigurableOptions($_product);
+    foreach ($configurableOptions as $key => $attribute) {
+        if($key == 182) { //182 means attribute configurable with color
+            $moveOptions = true;
+            break;
+        }
+    }
+}
+?>
+<script>
+    require([
+        'jquery',
+        'priceBox'
+    ], function($){
+        
+        $(document).ready(function () {
+            function waitForElements(query, callback){
+                var poops = setInterval(function(){
+                    if(document.querySelector(query)){ 
+                        clearInterval(poops);
+                        callback();
+                    }
+                }, 100);
+            }
+
+            waitForElements(".swatch-attribute.volumen", function(){
+                $(".swatch-option-tr").eq(0).trigger('click');
+            });
+        });
+        
+        var dataPriceBoxSelector = '[data-role=priceBox]',
+            dataProductIdSelector = '[data-product-id=<?= $block->escapeHtml($_product->getId()) ?>]',
+            priceBoxes = $(dataPriceBoxSelector + dataProductIdSelector);
+        priceBoxes = priceBoxes.filter(function(index, elem){
+            return !$(elem).find('.price-from').length;
+        });
+
+        priceBoxes.priceBox({'priceConfig': <?= /* @escapeNotVerified */ $block->getJsonConfig() ?>});
+        <?php if( $moveOptions): ?>
+            let containerMobile = $('#product-details-information-form');
+            let containerDesktop = $('#product-details-information-top');
+            var resizeMobile = function() {
+                if(containerMobile.length === 0
+                    || containerDesktop.length === 0) {
+                    return;
+                }
+                const width = $(window).width();
+                if(width < 768 ) {
+                    if(containerMobile.has('.product-details-top').length === 0) {
+                        containerMobile.html(containerDesktop.html());
+                        containerDesktop.html('');
+                    }
+                } else {
+                    if(containerDesktop.has('.product-details-top').length === 0) {
+                        containerDesktop.html(containerMobile.html());
+                        containerMobile.html('')
+                    }
+                }
+                return;
+            };
+            $(document).ready(function () {
+                resizeMobile();
+                $(window).resize(function () {
+                   resizeMobile();
+                });
+            });
+        <?php endif; ?>
+    });
+</script>

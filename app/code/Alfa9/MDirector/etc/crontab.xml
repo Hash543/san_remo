@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="m_director_unsubscribe" instance="Alfa9\MDirector\Cron\Observer" method="run">
+            <config_path>crontab/default/jobs/m_director_unsubscribe/schedule/cron_expr</config_path>
+        </job>
+    </group>
+</config>

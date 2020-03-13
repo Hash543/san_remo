@@ -1,0 +1,52 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * This package designed for Magento COMMUNITY edition
+ * PSS Digital does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * PSS Digital does not provide extension support in case of * incorrect edition usage.
+ *
+ * @author PSS Digital Team
+ * @category PSS
+ * @package PSS_WordPress
+ * @copyright Copyright (c) 2018 PSS (https://www.pss-ti.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+?>
+<?php $archives = $this->getArchives() ?>
+<?php if (count($archives) > 0): ?>
+	<div class="block block-blog block-blog-archives">
+		<?php if ($title = $this->getTitle()): ?>
+			<div class="block-title">
+				<strong><?php echo __($title) ?></strong>
+			</div>
+		<?php endif; ?>
+		<div class="block-content">
+			<ul id="wp-archive-list">
+			<?php if ($this->getDropdown()): ?>
+				<li class="item">
+					<select name="blog-archive-dropdown" onchange="window.location.href=this.value">
+							<option value="#"><?php echo __('Select Month') ?></option>
+						<?php foreach($archives as $archive): ?>
+							<option value="<?php echo $archive->getUrl() ?>"<?php if ($this->isCurrentArchive($archive)): ?> selected="selected"<?php endif; ?>>
+								<?php echo $this->translateDate($archive->getName()) ?> <?php if ($this->getCount()): ?> (<?php echo $archive->getPostCount() ?>)<?php endif; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</li>
+			<?php else: ?>
+				<?php foreach($archives as $archive): ?>
+					<li class="item<?php if ($this->isCurrentArchive($archive)): ?> active<?php endif; ?>">
+						<a href="<?php echo $archive->getUrl() ?>" title="<?php echo $archive->getName() ?>"><?php echo $this->translateDate($archive->getName()) ?></a>
+						<?php if ($this->getCount()): ?> (<?php echo $archive->getPostCount() ?>)<?php endif; ?>
+					</li>
+				<?php endforeach; ?>
+			<?php endif; ?>
+			</ul>
+		</div>
+	</div>
+<?php endif; ?>

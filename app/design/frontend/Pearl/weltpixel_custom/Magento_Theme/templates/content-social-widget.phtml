@@ -1,0 +1,19 @@
+<?php
+/** @var \Magento\Cms\Helper\Wysiwyg\Images $wysiwyg */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeInformation = $objectManager->create('Magento\Store\Model\Information');
+$store = $objectManager->create('Magento\Store\Model\Store');
+$storeInfo = $storeInformation->getStoreInformationObject($store);
+$phone = $storeInfo->getPhone();
+
+?>
+<div id="social-widget">
+    <ul>
+        <li class="social-phone">
+            <a href="tel:<?= $phone ?>"><i class="icon icon-phone"></i></a>
+        </li>
+        <li class="social-email">
+            <a href="#" class="open-contactform-modal"><i class="icon icon-mail"></i></a>
+        </li>
+    </ul>
+</div>

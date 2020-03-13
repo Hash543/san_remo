@@ -1,0 +1,7 @@
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
+    <title>PSS - Custom Pearl Theme (Loyalty)</title>
+    <parent>Pearl/weltpixel_custom</parent>
+    <media>
+        <preview_image>media/pss_logo.png</preview_image>
+    </media>
+</theme>

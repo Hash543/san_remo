@@ -1,0 +1,35 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * This package designed for Magento COMMUNITY edition
+ * PSS Digital does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * PSS Digital does not provide extension support in case of * incorrect edition usage.
+ *
+ * @author PSS Digital Team
+ * @category PSS
+ * @package PSS_WordPress
+ * @copyright Copyright (c) 2018 PSS (https://www.pss-ti.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+?>
+<li class="level<?php echo $this->getLevel() ?> item<?php if ($this->isCurrentTerm($this->getTerm())): ?> active<?php endif; ?>">
+	<a  class="level<?php echo $this->getLevel() ?>" href="<?php echo $this->getTerm()->getUrl() ?>" title="<?php echo $this->__($this->escapeHtml($this->getTerm()->getName())) ?>">
+		<?php echo $this->__($this->escapeHtml($this->getTerm()->getName())) ?>
+	</a>
+	<?php if ($this->canShowCount()): ?> (<?php echo $this->getTerm()->getItemCount() ?>)<?php endif; ?>
+	<?php if ($this->isHierarchical()): ?>
+		<?php $children = $this->getTerm()->getChildrenTerms()->load() ?>
+		<?php if (count($children) > 0): ?>
+			<ul class="level<?php echo $this->getLevel() + 1?>">
+				<?php foreach($children as $child): ?>
+					<?php echo $this->drawChildItem($child, $this->getLevel() + 1) ?>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	<?php endif; ?>
+</li>

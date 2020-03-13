@@ -1,0 +1,32 @@
+<?php
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\abstractView
+ */
+$_product = $block->getProduct();
+?>
+
+<?php if ($tip = $_product->getData($this->getCode())):
+    echo $tip;
+else: ?>
+    <p></p>
+<?php endif; ?>
+<script type="text/javascript">
+	require(['jquery'],function($){
+		$(document).ready(function(){
+			if ($('#tips p').is(':empty')){
+				$('#tab-label-tips').hide();
+			}
+ 		});
+	});
+</script>
+<script type="text/javascript">
+	require(['jquery'],function($){
+		$(document).ready(function(){
+			if ($('#toggle-tips p').is(':empty')){
+				$('#toggle-tab-label-tips').hide();
+			}
+ 		});
+	});
+</script>

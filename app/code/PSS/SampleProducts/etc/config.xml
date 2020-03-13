@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sample_products>
+            <settings>
+                <enable>1</enable>
+                <show_slider>1</show_slider>
+                <number_products_add>3</number_products_add>
+                <products>0</products>
+            </settings>
+        </sample_products>
+    </default>
+</config>

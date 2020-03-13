@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  * @author Israel Yasis
+  */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:DataObject/etc/fieldset.xsd">
+    <scope id="global">
+        <fieldset id="customer_account">
+            <field name="list_id">
+                <aspect name="to_quote" targetField="list_marketing_id" />
+            </field>
+        </fieldset>
+    </scope>
+</config>

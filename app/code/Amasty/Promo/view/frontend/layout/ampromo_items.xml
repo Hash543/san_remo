@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <block name="ampromo.items" class="Amasty\Promo\Block\Items" after="-" template="items.phtml">
+            <block class="Magento\Catalog\Block\Product\View\Options" name="ampromo.options.prototype" as="options_prototype" template="product/view/options.phtml">
+                <block class="Magento\Catalog\Block\Product\View\Options\Type\DefaultType" as="default" template="product/view/options/type/default.phtml"/>
+                <block class="Magento\Catalog\Block\Product\View\Options\Type\Text" as="text" template="product/view/options/type/text.phtml"/>
+                <block class="Magento\Catalog\Block\Product\View\Options\Type\File" as="file" template="product/view/options/type/file.phtml"/>
+                <block class="Magento\Catalog\Block\Product\View\Options\Type\Select" as="select" template="product/view/options/type/select.phtml"/>
+                <block class="Magento\Catalog\Block\Product\View\Options\Type\Date" as="date" template="product/view/options/type/date.phtml"/>
+            </block>
+
+            <block class="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable" name="ampromo.configurable.prototype" as="configurable_prototype" template="Amasty_Promo::product/view/type/options/configurable.phtml"/>
+            <block class="Magento\Downloadable\Block\Catalog\Product\Links" name="ampromo.downloadable.prototype" as="downloadable_prototype" template="Amasty_Promo::catalog/product/links.phtml" />
+        </block>
+    </body>
+</page>

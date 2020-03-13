@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/sales.xsd">
+    <section name="quote">
+        <group name="totals">
+            <item name="fee_paypal" instance="PSS\Paypal\Model\Quote\Address\Total\PayPalFee" sort_order="400"/>
+        </group>
+    </section>
+    <section name="order_invoice">
+        <group name="totals">
+            <item name="fee_paypal" instance="PSS\Paypal\Model\Quote\Address\Total\Invoice\PayPalFee" sort_order="400"/>
+        </group>
+    </section>
+    <section name="order_creditmemo">
+        <group name="totals">
+            <item name="fee_paypal" instance="PSS\Paypal\Model\Quote\Address\Total\Creditmemo\PayPalFee" sort_order="400"/>
+        </group>
+    </section>
+</config>

@@ -1,0 +1,17 @@
+<!-- ko if:isShowNotificationBar() -->
+<div  role="alertdialog" tabindex="-1" class="message global cookie am-cookie" id="gdpr-cookie-block">
+    <div role="document" class="content" tabindex="0">
+        <p data-bind="html: policyText"></p>
+        <div class="actions">
+            <button id="btn-cookie-allow" class="action allow primary cookiebar" data-bind="click: allowCookies">
+                <span data-bind="i18n:'Allow Cookies'"></span>
+            </button>
+            <!-- ko if:showDisallowButton -->
+            <button id="btn-cookie-disallow" class="action disallow primary cookiebar" data-bind="click: setupCookies">
+                <span data-bind="i18n:'Cookies Settings'"></span>
+            </button>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
+<!-- /ko -->

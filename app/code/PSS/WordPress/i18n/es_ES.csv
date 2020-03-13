@@ -1,0 +1,48 @@
+"Search","Buscar",PSS_WordPress
+"Recent Posts", "Publicaciones recientes",PSS_WordPress
+"Recent Comments","Comentarios recientes",PSS_WordPress
+"Archives", "Archivos",PSS_WordPress
+"Posted On","Publicado en",PSS_WordPress
+"Posted By","Publicado por",PSS_WordPress
+"Leave a Reply","Deje un comentario",PSS_WordPress
+"Leave a comment","Deje su comentario",PSS_WordPress
+"Your comment has been posted.","Tu comentario ha sido publicado.",PSS_WordPress
+"Your comment has been posted and is awaiting moderation.","Tu comentario ha sido publicado y está a la espera de una revisión.",PSS_WordPress
+"This category no longer exists.","La categoría ya no existe.",PSS_WordPress
+"This CMS Page no longer exists.","La página ya no existe.",PSS_WordPress
+"This product no longer exists.","El producto ya no existe.",PSS_WordPress
+"Tags","Etiquetas",PSS_WordPress
+"Related Products","Productos relacionados",PSS_WordPress
+"Name","Nombre",PSS_WordPress
+"Email","Correo electrónico",PSS_WordPress
+"Website","Página web",PSS_WordPress
+"Comment","Comentario",PSS_WordPress
+"%1 Comments","%1 Comentarios",PSS_WordPress
+"Loading next step...","Cargando el siguiente paso...",PSS_WordPress
+"Please wait...", "Por favor espere...",PSS_WordPress
+"1 Comment","1 comentario",PSS_WordPress
+"%1 at %2", "%1 en %2",PSS_WordPress
+"%1 on %2", "%1 en %2",PSS_WordPress
+"Previous","Anterior",PSS_WordPress
+"Reply", "Responder",PSS_WordPress
+"Next","Siguiente",PSS_WordPress
+"Page","Página",PSS_WordPress
+"No Comments","No hay comentarios",PSS_WordPress
+"Select Category","Selecciona una categoría",PSS_WordPress
+"Wordpress - Pre Patch", "Wordpress - parche",PSS_WordPress
+"Continue reading <span class=\"meta-nav\">&rarr;</span>","Continúe leyendo <span class=\"meta-nav\">&rarr;</span>"
+"Error saving the post relation ....","Existe un error mientras se guardaba la publicación ....",PSS_WordPress
+"Sorry, you must be logged in to post a comment.","Lo siento, debe iniciar sesión para dejar su comentario.",PSS_WordPress
+"Wordpress Post","Publicación WordPress",PSS_WordPress
+"Can't write file '%1'.","No se puede escribir el archivo '%1'.",PSS_WordPress
+"Can't read file '%1'.","No se puede leer el archivo '%1'.",PSS_WordPress
+"Continue reading", "Continúe leyendo",PSS_WordPress
+"There are no posts matching your selection.","No hay publicaciones que coincidan con su búsqueda.",PSS_WordPress
+"Powered by WordPress, state-of-the-art semantic personal publishing platform.", "Desarrollado por WordPress",PSS_WordPress
+"WordPress Integration Setup","Configuración de integración de WordPress",PSS_WordPress
+"Enabled","Activado",PSS_WordPress
+"Path","Ruta",PSS_WordPress
+"Enter the path to your WordPress installation.","Ingrese la ruta a su instalación de WordPress.",PSS_WordPress
+"Theme Integration","Integración con el tema",PSS_WordPress
+"Ignore Store Code","Ignorar el código de la tienda",PSS_WordPress
+"If Yes, Blog URL is displayed without Magento store code.","Si la respuesta es sí, la URL del blog se muestra sin el código de la tienda.",PSS_WordPress

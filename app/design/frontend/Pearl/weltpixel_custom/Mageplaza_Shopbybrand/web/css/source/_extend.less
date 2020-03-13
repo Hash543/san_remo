@@ -1,0 +1,182 @@
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    .mpbrand-index-index {
+        .page-main {
+            .block-brand-search {
+                .block-title {
+                    font-size: 14px;
+
+                    strong {
+                        color: @white !important;
+                    }
+                }
+
+                .block-content {
+                    margin-bottom: 20px;
+
+                    .mp-searchbox {
+                        .mp-search {
+
+                        }
+
+                        .search-btn {
+                            background-color: transparent;
+                            border: none;
+                        }
+                    }
+                }
+            }
+
+            .block-brand-list {
+                .block-title {
+                    .navbar-nav {
+                        padding: 0;
+
+                        #mp-first-opt {
+
+                        }
+
+                        .control {
+                            text-align: center;
+
+                            &.active,
+                            &:hover {
+                                background-color: @primary-blue;
+
+                                .mp-option-item {
+                                    color: @white;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .brand-mix-container {
+                    display: flex;
+                    justify-content: center;
+                    flex-flow: row wrap;
+
+                    .product-list-container {
+                        border-top: none;
+                        display: inline-block;
+                        vertical-align: top;
+                        padding: 0 10px;
+
+                        .brand-char-title {
+                            width: 100%;
+                            font-size: 22px;
+                            border-bottom: 1px solid @border-gray;
+                        }
+
+                        .brand-list-content {
+                            width: 100%;
+
+                            .product-items {
+                                .product-item {
+                                    width: 100% !important;
+                                    margin-bottom: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop Extra Large
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .mpbrand-index-index {
+
+    }
+}
+
+
+//
+//  Desktop Large
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .mpbrand-index-index {
+
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .mpbrand-index-index {
+        .page-main {
+            .block-brand-search {
+                .block-title {
+                    strong {
+                        font-size: 3.5em;
+                    }
+                }
+            }
+
+            .block-brand-list {
+                .brand-mix-container {
+                    .product-list-container {
+                        width: 20%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .mpbrand-index-index {
+        .page-main {
+            .block-brand-search {
+                .block-title {
+                    strong {
+                        font-size: 2em;
+                    }
+                }
+            }
+
+            .block-brand-list {
+                .brand-mix-container {
+                    .product-list-container {
+                        width: 50%;
+
+                        .brand-list-content {
+                            .product-items {
+                                .product-item {
+                                    .product-item-name {
+                                        .product-item-link {
+                                            text-align: left !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile Extra Small
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .mpbrand-index-index {
+
+    }
+}

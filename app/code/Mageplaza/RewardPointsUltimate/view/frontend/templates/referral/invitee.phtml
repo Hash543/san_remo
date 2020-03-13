@@ -1,0 +1,62 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_RewardPointsUltimate
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+
+<?php /** @var Mageplaza\RewardPointsUltimate\Block\Referral\Invitee $block */
+$invitees = $block->getInvitees(); ?>
+<?php if (count($invitees)) : ?>
+    <div class="block mp-invitee col-mp mp-12 mp-md-12 mp-sm-12 mp-xs-12">
+        <div class="block-title">
+            <strong><?= /** @noEscape */ __('Your Invitee') ?></strong>
+        </div>
+        <div class="box-content">
+            <div class="history">
+                <table class="data table " id="transactions-history">
+                    <caption class="table-caption"><?= /** @noEscape */ __('Your Invitee') ?></caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="col"><?= /** @noEscape */ __('ID') ?></th>
+                        <th scope="col" class="col"><?= /** @noEscape */ __('Receiver') ?></th>
+                        <th scope="col" class="col"><?= /** @noEscape */ __('Receiver earn') ?></th>
+                        <th scope="col" class="col"><?= /** @noEscape */ __('Receiver discount') ?></th>
+                        <th scope="col" class="col"><?= /** @noEscape */ __('You earn') ?></th>
+                        <th scope="col" class="col"><?= /** @noEscape */ __('Date') ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($invitees as $invitee) : ?>
+                        <tr>
+                            <td class="col"><?= /** @noEscape */ $invitee->getId() ?></td>
+                            <td class="col"><?= /** @noEscape */ $invitee->getInvitedEmail() ?></td>
+                            <td class="col"><?= /** @noEscape */ $invitee->getInvitedEarn() ?></td>
+                            <td class="col"><?= /** @noEscape */ $block->formatPrice($invitee->getInvitedDiscount()) ?></td>
+                            <td class="col"><?= /** @noEscape */$invitee->getReferralEarn() ?></td>
+                            <td class="col"><?= /** @noEscape */ $block->formatDate($invitee->getCreatedAt()) ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+                <?= /** @noEscape */ $block->getPagerHtml(); ?>
+            </div>
+        </div>
+    </div>
+<?php endif ?>
+

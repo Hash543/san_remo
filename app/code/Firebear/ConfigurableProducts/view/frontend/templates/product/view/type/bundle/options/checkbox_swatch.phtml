@@ -1,0 +1,106 @@
+<?php
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php /* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox */ ?>
+<?php $_option = $block->getOption() ?>
+<?php $_selections = $_option->getSelections() ?>
+<div class="field option <?php echo ($_option->getRequired()) ? ' required': ''; ?>">
+    <label class="label">
+        <span><?php echo $block->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+    <div class="nested options-list" data-role="single-options-<?php echo $block->getOption()->getId() ?>">
+        <?php if ($block->showSingle()): ?>
+            <?php /* @escapeNotVerified */ echo $block->getSelectionQtyTitlePrice($_selections[0]) ?>
+            <input type="hidden"
+                   class="bundle-option-<?php /* @escapeNotVerified */ echo $_option->getId() ?>  product bundle option"
+                   name="bundle_option[<?php /* @escapeNotVerified */ echo $_option->getId() ?>]"
+                   value="<?php /* @escapeNotVerified */ echo $_selections[0]->getSelectionId() ?>"/>
+        <?php else:?>
+            <div style="overflow: auto;">
+                <div style="width: 45%; float: left; clear: left;border-bottom: 1px solid #000;">
+                    <b>Name</b>
+                </div>
+                <div style="width: 35%; float: left;border-bottom: 1px solid #000;">
+                    <b>Qty</b>
+                </div>
+                <div style="width: 20%; float: left;border-bottom: 1px solid #000; text-align: right;">
+                    <b>Price</b>
+                </div>
+            </div>
+
+            <?php foreach($_selections as $_selection): ?>
+                <div class="field choice">
+                   <div style="margin-top: 10px; overflow: auto;">
+                        <div style="width: 45%; float: left;">
+                            <img src="<?php echo $block->getProductThumbnail($_selection, 50, 50) ?>" alt="<?php echo $_selection->getName() ?>" style="float: left;" />
+                        </div>
+                       <div style="width: 20%; float: left; padding: 15px 0; text-align: right;">
+                           <input <?php if (!$_selection->getData('selection_can_change_qty')) echo ' disabled="disabled"' ?>
+                               id="bundle-option-<?php echo $_option->getId() ?>-<?php echo $_selection->getId() ?>-qty-input"
+                               class="input-text qty<?php if (!$_selection->getData('selection_can_change_qty')) echo ' qty-disabled' ?>"
+                               type="number"
+                               name="bundle_option_qty[<?php echo $_option->getId() ?>][<?php echo $_selection->getId()?>]"
+                               data-selector="bundle_option_qty[<?php echo $_option->getId() ?>][<?php echo $_selection->getId()?>]"
+                               data-validate="{required:true}"
+                               <?php echo ($_option->getRequired()) ? 'min="1"' : '' ?>
+                               value="<?php echo rtrim ((int)$_selection->getData('selection_qty', 0)) ?>"/>
+                           </div>
+                        <div style="width: 20%; float: left; padding: 15px 0; text-align: right;">
+                            <b><?php echo $block->renderPriceString($_selection, false) ?></b>
+                        </div>
+                       <div style="width: 100%; float: left; padding: 15px 0; text-align: right;">
+                            <input class="bundle-option-<?php /* @escapeNotVerified */ echo $_option->getId() ?>-<?php echo $_selection->getId() ?> checkbox bundle-selection-checkbox product bundle option change-container-classname hidden"
+                                   id="bundle-option-<?php /* @escapeNotVerified */ echo $_option->getId() ?>-<?php /* @escapeNotVerified */ echo $_selection->getSelectionId() ?>"
+                                   type="checkbox"
+                                <?php if ($_option->getRequired()) echo 'data-validate="{\'validate-one-required-by-name\':\'input[name^=&quot;bundle_option[' . $_option->getId() . ']&quot;]\'}"'?>
+                                   name="bundle_option[<?php /* @escapeNotVerified */ echo $_option->getId() ?>][<?php /* @escapeNotVerified */ echo $_selection->getId() ?>]"
+                                   data-selector="bundle_option[<?php /* @escapeNotVerified */ echo $_option->getId() ?>][<?php /* @escapeNotVerified */ echo $_selection->getId() ?>]"
+                                <?php if ($block->isSelected($_selection)) echo ' checked="checked"' ?>
+                                <?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>
+                                   value="<?php /* @escapeNotVerified */ echo $_selection->getSelectionId() ?>"/>
+                           <label class="label" style="margin-left: 0; float: left;"
+                                  for="bundle-option-<?php /* @escapeNotVerified */
+                                  echo $_option->getId() ?>-<?php /* @escapeNotVerified */
+                                  echo $_selection->getSelectionId() ?>">
+                               <span><?php echo $_selection->getName() ?></span>
+                           </label>
+                       </div>
+                    </div>
+                </div>
+
+                <div class="bundle-custom-options simple-options" style"display: block;text-align: left;border: 1px solid #000;padding: 25px;" id="custom-option-<?php echo $_option->getId() ?>-<?php echo $_selection->getSelectionId() ?>">
+                    <?php echo $block->getOptionsHtml($_selection); ?>
+                </div>
+                <div id="bundle-option-<?php /* @escapeNotVerified */ echo $_option->getId() ?>-container"></div>
+                <div class="swatch-opt" data-role="swatch-options-<?php echo $block->getOption()->getId() ?>-<?php echo $_selection->getId() ?>"></div>
+                <script type="text/x-magento-init">
+                    {
+                        "[data-role=swatch-options-<?php echo $_option->getId() ?>-<?php echo $_selection->getId() ?>]": {
+                             "Firebear_ConfigurableProducts/js/swatch-renderer-checkbox-bundle": {
+                                "selectorProduct": ".main",
+                                "productSelector": ".bundle-option-<?php echo $_option->getId() ?>-<?php echo $_selection->getId() ?>",
+                                "productConfiguration": <?php echo json_encode($block->getSuperOptions()) ?>,
+                                "jsonConfig": <?php /* @escapeNotVerified */ echo $block->getJsonConfig(); ?>,
+                                "multiJsonConfig": <?php /* @escapeNotVerified */ echo $block->getMultiJsonConfig(); ?>,
+                                "jsonSwatchConfig": <?php /* @escapeNotVerified */ echo $block->getJsonSwatchConfig(); ?>,
+                                "multiJsonSwatchConfig": <?php /* @escapeNotVerified */ echo $block->getMultiJsonSwatchConfig(); ?>,
+                                "customOptions": <?php /* @escapeNotVerified */ echo $block->getMultiConfigurableOptions(); ?>,
+                                "jsonCustomOptions": <?php /* @escapeNotVerified */ echo $block->getMultiConfigurableOptionsAsJson(); ?>,
+                                "mediaCallback": "<?php /* @escapeNotVerified */ echo $block->getMediaCallback() ?>",
+                                "selectedProduct": "<?php /* @escapeNotVerified */ echo $block->getSelectedProduct() ?>",
+                                "optionId": <?php echo $block->getOption()->getId() ?>,
+                                "isFixedPrice": <?php echo $block->getProduct()->getPriceType() ?>,
+                                "onlyMainImg": <?php /* @escapeNotVerified */ echo $block->getVar('change_only_base_image',
+                        'Magento_Swatches') ?: 'false'; ?>
+                            }
+                        }
+                    }
+                </script>
+            <?php endforeach; ?>
+            
+        <?php endif; ?>
+    </div>
+</div>

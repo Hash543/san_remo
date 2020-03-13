@@ -1,0 +1,15 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+
+<meta property="og:type" content="product" />
+<meta property="og:title" content="<?= $block->escapeHtmlAttr($block->stripTags($block->getVariationProduct()->getName())) ?>" />
+<meta property="og:image" content="<?= $block->escapeUrl($block->getImage($block->getVariationProduct(), 'product_base_image')->getImageUrl()) ?>" />
+<meta property="og:description" content="<?= $block->escapeHtmlAttr($block->stripTags($block->getVariationProduct()->getShortDescription())) ?>" />
+<meta property="og:url" content="<?= $block->escapeUrl($block->getVariationProduct()->getProductUrl()) ?>" />
+<?php if ($priceAmount = $block->getVariationProduct()->getFinalPrice()):?>
+    <meta property="product:price:amount" content="<?= /* @escapeNotVerified */ $priceAmount ?>"/>
+    <?= $block->getChildHtml('meta.currency') ?>
+<?php endif;?>

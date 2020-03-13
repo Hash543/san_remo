@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Amasty\Xlanding\Controller\Page\View">
+        <plugin name="xlanding_page_controller"
+                type="PSS\LayeredNavigation\Plugin\Controller\Xlanding\Page\View"/>
+    </type>
+</config>

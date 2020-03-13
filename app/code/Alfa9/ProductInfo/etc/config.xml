@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <email>
+                <recipient_email>
+                    <![CDATA[to@example.com]]>
+                </recipient_email>
+                <sender_email_identity>custom2</sender_email_identity>
+                <recomendation_email>
+                    <![CDATA[Antes de enviarnos tu consulta. Debes leer la información básica sobre como tratamos en PERFUMERÍAS SAN REMO tus datos de carácter personal. Disponible en nuestra información básica sobre protección de datos.]]>
+                </recomendation_email>
+            </email>
+        </catalog>
+    </default>
+</config>

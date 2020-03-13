@@ -1,0 +1,20 @@
+<?php $brand = $block->getBrand(); ?>
+<div class="landing-sidebar-main">
+	<div class="sidebar-static-block-main">
+		<?= $block->getSidebarBlock() ?>
+	</div>
+	<div class="landing-sidebar-categories">
+		<?php $catCollection = $block->getBrandCategories(); ?>
+		<div class="sidebar-block-title"><span><?php echo __('Brand Categories')?></span></div>
+		<ul>    
+            <?php foreach ($catCollection as $category): ?>
+                <?php $categoryUrl = $block->getCategoryUrl($category) ?>
+                <li class="block__content">
+                    <a href="<?php echo $categoryUrl; ?>">
+                    	<span class="landing-sidebar-cat-name"><?php echo $category->getName(); ?></span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+	</div>
+</div>

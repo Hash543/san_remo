@@ -1,0 +1,24 @@
+<?php
+/** @var \Alfa9\StoreInfoStock\Block\StockInfo $block */
+$stores = $block->getStoreList();
+?>
+
+<table>
+    <?php foreach ($stores as $store): ?>
+        <tr>
+            <td>
+                <?php if(isset($store['link']) && $store['link']): ?>
+                    <a href="<?= $store['link']; ?>">
+                        <?= $store['name']; ?>
+                    </a>
+                <?php else: ?>
+                    <?= $store['name']; ?>
+                <?php endif; ?>
+            </td>
+            <td><?= $store['address'] ?>, <?= $store['city'] ?></td>
+            <td><?= $store['schedule'] ?></td>
+            <td><?= $store['delivery'] ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+

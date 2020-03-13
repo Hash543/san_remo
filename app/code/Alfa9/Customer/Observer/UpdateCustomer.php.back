@@ -1,0 +1,40 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace Alfa9\Customer\Observer;
+
+use Magento\Framework\Event\ObserverInterface;
+use Magento\Customer\Model\Session as CustomerSession;
+/**
+ * Class UpdateCustomer
+ * @package Alfa9\Customer\Observer
+ */
+class UpdateCustomer implements ObserverInterface {
+
+    /**
+     * @var CustomerSession
+     */
+    private $customerSession;
+
+    /**
+     * @param CustomerSession $customerSession
+     */
+    public function __construct(
+        CustomerSession $customerSession
+    ) {
+        $this->customerSession = $customerSession;
+    }
+    /**
+     * In case the customer update his dates successfully remove the restriction
+     * @param \Magento\Framework\Event\Observer $observer
+     * @return $this
+     */
+    public function execute(\Magento\Framework\Event\Observer $observer) {
+        if($this->customerSession->getRequiredAttributesMissing()) {
+            $this->customerSession->unsRequiredAttributesMissing();
+            $this->customerSession->unsRequiredAttributesMissingMessage();
+        }
+        return $this;
+    }
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="PSS_CRM::crm" title="SanRemo CRM" module="PSS_CRM" sortOrder="50" resource="Magento_Backend::content"/>
+        <add id="PSS_CRM::configuration" title="Configuration" module="PSS_CRM" sortOrder="10" parent="PSS_CRM::crm" action="adminhtml/system_config/edit/section/crm" resource="PSS_CRM::config_crm"/>
+        <add id="PSS_CRM::queue" title="Queue" module="PSS_CRM" sortOrder="10" parent="PSS_CRM::configuration" action="crm/queue/grid" resource="Magento_Backend::content"/>
+    </menu>
+</config>

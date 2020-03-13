@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="PSS\Paypal\Api\PaymentInformationManagementInterface"
+                type="PSS\Paypal\Service\V1\PaymentInformationManagement"/>
+    <preference for="PSS\Paypal\Api\GuestPaymentInformationManagementInterface"
+                type="PSS\Paypal\Service\V1\GuestPaymentInformationManagement"/>
+    <!--
+    <type name="Magento\Paypal\Model\Cart">
+        <plugin name="paypal_model_cart" type="PSS\Paypal\Plugin\Model\PaypalCart"/>
+    </type>-->
+</config>

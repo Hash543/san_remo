@@ -1,0 +1,30 @@
+<!--@subject {{trans "treatment_reminder"}} @-->
+<!--@vars {
+"template config_path=\"design\/email\/footer_template\"":"Email Footer Template",
+"template config_path=\"design\/email\/header_template\"":"Email Header Template",
+"var customer.email":"Customer Email",
+"var product.name":"Product Name",
+"var product.image_url":"Product Image Url",
+"var product.description":"Product Description",
+"var product.price":"Product Price",
+"var product.addCart":"Add Product to Cart"
+} @-->
+
+
+{{template config_path="design/email/header_template"}}
+
+<div>
+    <h1>Renueve su tratamiento: {{var product.name}}</h1>
+    <p><strong>{{var product.email}}</strong></p>
+    <p style="text-align: center;">{{var product.description|raw}}</p>
+    <img style="margin: 0 auto;" src="{{var product.image_url}}"/>
+</div>
+<div style="text-align: center">
+    <a href="{{var product.addCart}}" style="text-decoration:none">
+        <span style="font-size:16.5pt;color:white;text-transform:uppercase;letter-spacing:.75pt;background:#d74128;border: 0px;padding: 15px 20px;">
+            Comprar
+        </span>
+    </a>
+</div>
+
+{{template config_path="design/email/footer_template"}}

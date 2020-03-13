@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<carriers>
+			<storepickup>
+				<model>Alfa9\StorePickup\Model\Carrier\StorePickup</model>
+				<active>0</active>
+				<title><![CDATA[Click & Collect]]></title>
+				<name>Store Pickup</name>
+				<bcc_email>hola@perfumerissanremo.es</bcc_email>
+				<price>0.00</price>
+				<specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+				<sallowspecific>0</sallowspecific>
+				<order_new_template>carriers_storepickup_order_new_template</order_new_template>
+				<order_new_template_guest>carriers_storepickup_order_new_template_guest</order_new_template_guest>
+				<storepickup_cancel_template>carriers_storepickup_storepickup_cancel_template</storepickup_cancel_template>
+				<storepickup_confirm_template>carriers_storepickup_storepickup_confirm_template</storepickup_confirm_template>
+			</storepickup>
+		</carriers>
+	</default>
+</config>

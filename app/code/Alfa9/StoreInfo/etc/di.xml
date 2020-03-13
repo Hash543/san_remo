@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Alfa9\StoreInfo\Api\StockistRepositoryInterface" type="Alfa9\StoreInfo\Model\StockistRepository" />
+    <preference for="Alfa9\StoreInfo\Api\Data\StockistInterface" type="Alfa9\StoreInfo\Model\Stores" />
+    <preference for="Alfa9\StoreInfo\Api\Data\Stockist\CustomAttributeListInterface" type="Alfa9\StoreInfo\Model\Stores\CustomAttributeList" />
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="storeinfo_stores_listing_data_source" xsi:type="string">Alfa9\StoreInfo\Model\ResourceModel\Stores\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StoreInfo\Model\ResourceModel\Stores\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">alfa9_storeinfo_store</argument>
+            <argument name="eventPrefix" xsi:type="string">limesharp_stockists_stores_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">stores_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Alfa9\StoreInfo\Model\ResourceModel\Stores</argument>
+        </arguments>
+    </type>
+    <virtualType name="LimesharpStockistsStoresImageUploader" type="Alfa9\StoreInfo\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">Alfa9\StoreInfo\Model\Uploader::IMAGE_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">Alfa9\StoreInfo\Model\Uploader::IMAGE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Alfa9\StoreInfo\Controller\Adminhtml\Stores\Image\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">LimesharpStockistsStoresImageUploader</argument>
+        </arguments>
+    </type>
+    <virtualType name="LimesharpStockistsStoresFileUploader" type="Alfa9\StoreInfo\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">Alfa9\StoreInfo\Model\Uploader::FILE_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">Alfa9\StoreInfo\Model\Uploader::FILE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array" />
+        </arguments>
+    </virtualType>
+    <type name="Alfa9\StoreInfo\Controller\Adminhtml\Stores\File\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">LimesharpStockistsStoresFileUploader</argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StoreInfo\Model\UploaderPool">
+        <arguments>
+            <argument name="uploaders" xsi:type="array">
+                <item name="image" xsi:type="string">LimesharpStockistsStoresImageUploader</item>
+                <item name="file" xsi:type="string">LimesharpStockistsStoresFileUploader</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StoreInfo\Controller\Adminhtml\Stores\Save">
+        <arguments>
+            <argument name="uploaderPool" xsi:type="object">Alfa9\StoreInfo\Model\UploaderPool</argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StoreInfo\Model\Stores">
+        <arguments>
+            <argument name="uploaderPool" xsi:type="object">Alfa9\StoreInfo\Model\UploaderPool</argument>
+            <argument name="optionProviders" xsi:type="array">
+                <item name="country" xsi:type="object">Alfa9\StoreInfo\Model\Source\Country</item>
+                <item name="store_id" xsi:type="object">Alfa9\StoreInfo\Model\Source\Stores</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StoreInfo\Ui\Component\Listing\Column\Image">
+        <arguments>
+            <argument name="imageModel" xsi:type="object">LimesharpStockistsStoresImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StoreInfo\Model\Output">
+        <arguments>
+            <argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+        </arguments>
+    </type>
+    <virtualType name="LimesharpStockistsModelStoresSourceStatus" type="Alfa9\StoreInfo\Model\Source\Options">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="1" xsi:type="array">
+                    <item name="value" xsi:type="const">Alfa9\StoreInfo\Model\Stores::STATUS_ENABLED</item>
+                    <item name="label" xsi:type="string" translate="true">Enabled</item>
+                </item>
+                <item name="2" xsi:type="array">
+                    <item name="value" xsi:type="const">Alfa9\StoreInfo\Model\Stores::STATUS_DISABLED</item>
+                    <item name="label" xsi:type="string" translate="true">Disabled</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>  
+    <type name="Alfa9\StoreInfo\Model\Image">
+        <arguments>
+            <argument name="uploader" xsi:type="object">LimesharpStockistsStoresImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Alfa9\StoreInfo\Ui\Component\Listing\Column\Image">
+        <arguments>
+            <argument name="imageModel" xsi:type="object">LimesharpStockistsStoresImageUploader</argument>
+        </arguments>
+    </type>
+</config>

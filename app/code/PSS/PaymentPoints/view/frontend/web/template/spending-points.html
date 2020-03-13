@@ -1,0 +1,59 @@
+<!-- ko if: canSpendPoints() -->
+<div class="messages" id="mp-reward-message"></div>
+<div class="payment-method reward">
+    <div class="payment-option-content reward-points-payment-content"
+         data-bind="css: {'payment-checkout-content': !isCheckoutCart}" data-role="content">
+        <div class="reward-box">
+            <div class="reward-box-wrapper reward-box-info">
+                <div class="payment-method-title">
+                    <span data-bind="html: balanceFormatted"></span>
+                </div>
+                <!-- ko if: window.checkoutConfig.points_show_slider -->
+                <div class="reward-spending-slider" afterRender="initSlider()" data-bind="visible : isDisplaySlider">
+                    <div class="range-slider">
+                        <input type="text" class="reward-range-slider" value=""/>
+                    </div>
+                    <div class="extra-controls" style="text-align: left">
+                        <span data-bind="i18n: 'You will spend'"></span>
+                        <span>
+                           <input type="text" class="mp-spent"
+                                  data-bind="value: pointSpent, event:{blur: changePointSpent}"/>
+                        </span>
+                    </div>
+                    <div class="field choice" style="text-align: left;">
+                        <input type="checkbox" name="max-point" id="reward-use-max-point"
+                               data-bind="checked: useMaxPoint,event:{change: changeMaxPoint}"/>
+                        <label data-bind="attr: {for: 'reward-use-max-point'}, i18n: 'Maximize my discount with points'"></label>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ifnot: window.checkoutConfig.points_show_slider -->
+                <div class="reward-spending-block fieldset">
+                    <div class="field">
+                        <input type="text" id="calculate-points" data-bind="attr: {placeholder: $t('Indica tus puntos')}" />
+                    </div>
+                    <button>
+                        <span data-bind="i18n: 'Calculate', click: calculatePoints"></span>
+                    </button>
+                </div>
+                <!-- /ko -->
+            </div>
+
+            <div class="reward-box-wrapper reward-box-message">
+                <div class="content">
+                    <!-- ko if: rules().length == 1 -->
+                    <!-- ko if: showLabelRule() -->
+                    <span data-bind="html: selectedRule().label"></span>
+                    <!-- /ko -->
+                    <!-- /ko -->
+
+                    <!-- ko if: rules().length > 1 -->
+                    <select name="reward-rules" id="reward-spending-rules"
+                            data-bind="options: rules, optionsText: 'label', value: selectedRule, event:{change: changeRule}"></select>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->

@@ -1,0 +1,54 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\Loyalty\Api\Customer;
+
+/**
+ * Interface CustomerRepositoryInterface
+ * @package PSS\Loyalty\Api
+ */
+interface CustomerRepositoryInterface {
+    /**
+     * Get customer by Customer ID.
+     *
+     * @param int $idCrm
+     * @return \PSS\Loyalty\Api\Data\CustomerInterface
+     * @throws \Magento\Framework\Exception\NoSuchEntityException If customer with the specified ID does not exist.
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getByCrmId($idCrm);
+
+    /**
+     * Delete customer by Customer ID.
+     *
+     * @param int $idCrm
+     * @return bool true on success
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function deleteByCrmId($idCrm);
+
+    /**
+     * Create customer.
+     *
+     * @param \PSS\Loyalty\Api\Data\CustomerInterface $customer
+     * @return \PSS\Loyalty\Api\Data\CustomerInterface
+     * @throws \Magento\Framework\Exception\InputException If bad input is provided
+     * @throws \Magento\Framework\Exception\State\InputMismatchException If the provided email is already used
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function createCustomer($customer);
+
+    /**
+     * Update customer.
+     *
+     * @param \PSS\Loyalty\Api\Data\CustomerInterface $customer
+     * @param integer $idCrm
+     * @return \PSS\Loyalty\Api\Data\CustomerInterface
+     * @throws \Magento\Framework\Exception\InputException If bad input is provided
+     * @throws \Magento\Framework\Exception\State\InputMismatchException If the provided email is already used
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function updateCustomer($customer, $idCrm);
+}

@@ -1,0 +1,11 @@
+<?php
+use PSS\ShippingMethod\Model\Carrier\ReserveAndCollect;
+
+$shippingMethod = $this->getData('order')->getShippingMethod();
+?>
+
+<?php if (strpos($shippingMethod, ReserveAndCollect::SHIPPING_CODE) !== false) : ?>
+    <div style="background: #c30808; width: 150px; display:inline-block; text-align: center; padding: 10px 0; float: right;">
+        <a class="cancel" href="<?= $this->getData('cancelAction'); ?>" style="padding: 10px 40px;font-weight: bold;" target="_blank"><span style=" color: #ffffff;"><?= /* @escapeNotVerified */  __('Cancelar') ?></span></a>
+    </div>
+<?php endif; ?>

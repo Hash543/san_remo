@@ -1,0 +1,14 @@
+<?php
+/** @var \Magento\Cms\Helper\Wysiwyg\Images $wysiwyg */
+$wysiwyg = $this->helper(\Magento\Cms\Helper\Wysiwyg\Images::class);
+$wysiwygURL = $wysiwyg->getCurrentUrl();
+$mediaurl = implode(explode('wysiwyg', $wysiwygURL));
+?>
+
+<div class="section-container section-gray section-info">
+    <div class="container">
+        <div class="row">
+            <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('bottom-mini-banners')->toHtml(); ?>
+        </div>
+    </div>
+</div>

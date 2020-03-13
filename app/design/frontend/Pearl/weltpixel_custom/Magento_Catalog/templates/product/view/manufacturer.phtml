@@ -1,0 +1,16 @@
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $brand_helper = $objectManager->get('\Mageplaza\Shopbybrand\Helper\Data');
+
+    $_product = $block->getProduct();
+    $brand_name = $_product->getResource()->getAttribute('manufacturer')->getFrontend()->getValue($_product);
+    $brand_url = $brand_helper->getCustomBrandUrl($brand_name);
+?>
+<?php $brand_name = $_product->getResource()->getAttribute('manufacturer')->getFrontend()->getValue($_product); ?>
+
+<h2 class="product-item-manufacturer">
+    <a class="product-item-link"
+       href="<?= /* @escapeNotVerified */ $brand_url ?>">
+        <?= /* @escapeNotVerified */ $brand_name; ?>
+    </a>
+</h2>

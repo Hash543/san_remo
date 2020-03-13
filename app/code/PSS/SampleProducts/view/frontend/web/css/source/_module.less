@@ -1,0 +1,36 @@
+//
+//  One Step Checkout
+//  ____________________________________________
+
+//
+//  Variables
+//  _____________________________________________
+@image_size: 80px;
+
+//
+//  Common
+//  ----------------------------------------------
+
+
+& when (@media-common = true) {
+    .sample-products {
+        .actions {
+            width: 100%;
+            display: inline-block;
+            text-align: right;
+            .select-checked {
+                color: #01445f;
+                text-transform: uppercase;
+            }
+        }
+        .add-cart-checkbox {
+            float: left;
+            margin-top: 35px;
+        }
+        .image-container-suggested {
+            width: @image_size;
+            height: @image_size;
+            float: left;
+        }
+    }
+}

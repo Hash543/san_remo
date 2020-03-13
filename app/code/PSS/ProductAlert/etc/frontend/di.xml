@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\ProductAlert\Block\Email\Stock">
+        <plugin name="pss_product_alert_email_url" type="PSS\ProductAlert\Plugin\Block\Email\Stock"/>
+    </type>
+    <!--
+    <preference for="Magento\ProductAlert\Controller\Unsubscribe" type="PSS\ProductAlert\Controller\Unsubscribe" />
+    -->
+    <type name="Magento\ProductAlert\Controller\Unsubscribe\Stock">
+        <plugin name="pss_unsubscribe_stock_product_alert" type="PSS\ProductAlert\Plugin\Controller\Unsubscribe\Stock"/>
+    </type>
+    <type name="Magento\ProductAlert\Controller\Unsubscribe\StockAll">
+        <plugin name="pss_unsubscribe_stock_product_alert_all" type="PSS\ProductAlert\Plugin\Controller\Unsubscribe\StockAll"/>
+    </type>
+</config>

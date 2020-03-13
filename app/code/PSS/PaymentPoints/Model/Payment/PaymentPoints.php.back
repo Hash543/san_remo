@@ -1,0 +1,93 @@
+<?php
+namespace PSS\PaymentPoints\Model\Payment;
+use Magento\Directory\Helper\Data as DirectoryHelper;
+use Magento\Framework\Exception\NoSuchEntityException;
+
+/**
+ * @author Israel Yasis
+ */
+class PaymentPoints extends \Magento\Payment\Model\Method\AbstractMethod {
+
+    const PAYMENT_METHOD_PAYMENT_POINTS = 'payment_method_points';
+    /**
+     * Payment method code
+     *
+     * @var string
+     */
+    protected $_code = self::PAYMENT_METHOD_PAYMENT_POINTS;
+    /**
+     * @var bool
+     */
+    protected $_isOffline = true;
+    /**
+     * @var \Mageplaza\RewardPoints\Helper\Calculation
+     */
+    protected $calculation;
+    /**
+     * PaymentPoints constructor.
+     * @param \Magento\Framework\Model\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\Api\ExtensionAttributesFactory $extensionFactory
+     * @param \Magento\Framework\Api\AttributeValueFactory $customAttributeFactory
+     * @param \Magento\Payment\Helper\Data $paymentData
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Payment\Model\Method\Logger $logger
+     * @param \Mageplaza\RewardPoints\Helper\Calculation $calculation
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
+     * @param array $data
+     * @param DirectoryHelper|null $directory
+     */
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Api\ExtensionAttributesFactory $extensionFactory,
+        \Magento\Framework\Api\AttributeValueFactory $customAttributeFactory,
+        \Magento\Payment\Helper\Data $paymentData,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Payment\Model\Method\Logger $logger,
+        \Mageplaza\RewardPoints\Helper\Calculation $calculation,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = [],
+        DirectoryHelper $directory = null
+    ) {
+        $this->calculation = $calculation;
+        parent::__construct($context, $registry, $extensionFactory, $customAttributeFactory, $paymentData, $scopeConfig, $logger, $resource, $resourceCollection, $data, $directory);
+    }
+    /**
+     * If there is a possibility to Pay all the Cart with Points this Method is available
+     * @param \Magento\Quote\Api\Data\CartInterface|null $quote
+     * @return bool
+     */
+    public function isAvailable(
+        \Magento\Quote\Api\Data\CartInterface $quote = null
+    ) {
+
+        /** @var \Magento\Quote\Model\Quote $quote */
+        $isAvailable = parent::isAvailable($quote);
+        if(!$isAvailable || !$this->calculation->isAllowSpending($quote)) {
+            return false;
+        }
+        try {
+            $spendingRate = $this->calculation->getSpendingRateByQuote($quote);
+        }catch (NoSuchEntityException $exception) {
+            $spendingRate = null;
+        }
+        $shippingAddress = $quote->getShippingAddress();
+        $shippingCost = 0.0;
+        if($shippingAddress) {
+            $shippingCost = $shippingAddress->getShippingAmount();
+        }
+        $balance = $this->calculation->getAccountHelper()->get()->getBalance();
+        if ($spendingRate && $spendingRate->getId() && $shippingCost == 0.00) {
+
+            $grandTotal = $quote->getGrandTotal();
+            $totalAvailableToPayWithPoints = $spendingRate->getDiscountByPoint($balance);
+            if($grandTotal <= $totalAvailableToPayWithPoints) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

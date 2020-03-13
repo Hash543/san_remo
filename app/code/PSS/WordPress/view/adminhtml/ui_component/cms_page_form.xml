@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * This package designed for Magento COMMUNITY edition
+ * PSS Digital does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * PSS Digital does not provide extension support in case of * incorrect edition usage.
+ *
+ * @author PSS Digital Team
+ * @category PSS
+ * @package PSS_WordPress
+ * @copyright Copyright (c) 2018 PSS (https://www.pss-ti.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+ -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="wordpress_cms_page_tab" sortOrder="80">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Wordpress</label>
+        </settings>
+        <container name="custom_tab" sortOrder="180">
+            <htmlContent name="html_content">
+                <block class="PSS\WordPress\Block\Adminhtml\CmsPage\Edit\Form\Post" template="PSS_WordPress::category/edit/post/form.phtml" name="wordpress_cms_block">
+                    <block class="PSS\WordPress\Block\Adminhtml\CmsPage\Edit\Post\Grid" name="post_grid"/>
+                    <block class="PSS\WordPress\Block\Adminhtml\Serializer\Widget\Grid\Serializer" name="post_grid_serializer"
+                           template="PSS_WordPress::serializer/widget/grid/cms/serializer.phtml">
+                        <arguments>
+                            <argument name="grid_block" xsi:type="string">post_grid</argument>
+                            <argument name="callback" xsi:type="string">getPostByEntity</argument>
+                            <argument name="input_element_name" xsi:type="string">related_post</argument>
+                            <argument name="reload_param_name" xsi:type="string">selected_post</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

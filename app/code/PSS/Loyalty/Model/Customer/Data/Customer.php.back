@@ -1,0 +1,153 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\Loyalty\Model\Customer\Data;
+
+/**
+ * Class CustomerRepository
+ * @package PSS\Loyalty\Model\Customer
+ */
+class Customer extends \Magento\Customer\Model\Data\Customer implements \PSS\Loyalty\Api\Data\CustomerInterface {
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastname($lastName) {
+        $this->setData(self::LASTNAME, $lastName);
+        if($lastName) {
+            $lastnames = explode(' ', $lastName);
+            if(count($lastnames) > 0) {
+                $this->setData(self::LASTNAME1, current($lastnames));
+            }
+            if(count($lastnames) > 1) {
+                $this->setData(self::LASTNAME2, next($lastnames));
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastname1() {
+        return $this->_get(self::LASTNAME1);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastname1($lastname1) {
+        $this->setData(self::LASTNAME1, $lastname1);
+        $this->setData(self::LASTNAME, ($this->getLastname1().' '.$this->getLastname2()));
+        return $this;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastname2() {
+        return $this->_get(self::LASTNAME2);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastname2($lastname2) {
+        $this->setData(self::LASTNAME2, $lastname2);
+        $this->setLastname($this->getLastname1().' '.$this->getLastname2());
+        return $this;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getIdCrm() {
+        return $this->_get(self::ID_CRM);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setIdCrm($idCrm) {
+        $this->setData(self::ID_CRM, $idCrm);
+        $this->setCustomAttribute(self::ID_CRM, $idCrm);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOriginCrm() {
+        return $this->_get(self::ORIGIN_CRM);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setOriginCrm($originCrm) {
+        $this->setData(self::ORIGIN_CRM, $originCrm);
+        $this->setCustomAttribute(self::ORIGIN_CRM, $originCrm);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUpdateCrm() {
+        return $this->_get(self::UPDATE_CRM);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUpdateCrm($updateCrm) {
+        $this->setData(self::UPDATE_CRM, $updateCrm);
+        $this->setCustomAttribute(self::UPDATE_CRM, $updateCrm);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getListId() {
+        return $this->_get(self::LIST_ID);
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function setListId($listId) {
+        $this->setData(self::LIST_ID, $listId);
+        $this->setCustomAttribute(self::LIST_ID, $listId);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConversionEuroPoint() {
+        return $this->_get(self::CONVERSION_EURO_POINT);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setConversionEuroPoint($conversionEuroPoint) {
+        $this->setData(self::CONVERSION_EURO_POINT, $conversionEuroPoint);
+        $this->setCustomAttribute(self::CONVERSION_EURO_POINT, $conversionEuroPoint);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAvailablePoints() {
+        return $this->_get(self::AVAILABLE_POINTS);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAvailablePoints($availablePoints) {
+        $this->setData(self::AVAILABLE_POINTS, $availablePoints); //Todo: whe should save the points in the Reward Points
+        return $this;
+    }
+}

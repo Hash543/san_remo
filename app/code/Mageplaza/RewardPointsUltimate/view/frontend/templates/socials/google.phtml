@@ -1,0 +1,37 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_RewardPointsUltimate
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var Mageplaza\RewardPointsUltimate\Block\Socials\Google $block */
+if ($block->isEnabled()) : ?>
+    <div class=" mp-rw-social google-earning">
+        <a onclick="mpShareGooglePlus('https://plus.google.com/share?url=<?= /** @noEscape */ $block->getCurrentUrl(); ?>')">
+            <img src="<?= /** @noEscape */ $block->getViewFileUrl('Mageplaza_RewardPointsUltimate::images/google.png') ?>" alt="google-plus"
+                 style="height: 20px;cursor: pointer"/>
+        </a>
+    </div>
+    <script type="text/javascript">
+        function mpShareGooglePlus(url) {
+            window.open(url, "popupWindow", "width=400, height=600,left=0,top=0");
+            var googlePlusUrl = '<?= /** @noEscape */ $block->getUrl('customer/socials/google') ?>';
+            mpSocials.sendAjax(googlePlusUrl, '<?= /** @noEscape */ $block->getCurrentUrl() ?>');
+        }
+    </script>
+<?php endif; ?>

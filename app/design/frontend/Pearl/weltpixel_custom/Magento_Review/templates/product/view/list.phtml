@@ -1,0 +1,81 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var Magento\Review\Block\Product\View\ListView $block */
+
+$_items = $block->getReviewsCollection()->getItems();
+$format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
+?>
+<?php if (count($_items)):?>
+<div class="block review-list" id="customer-reviews">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Customer Reviews')) ?></strong>
+    </div>
+    <div class="block-content">
+        <div class="toolbar review-toolbar">
+            <?= $block->getChildHtml('toolbar') ?>
+        </div>
+        <ol class="items review-items">
+        <?php $ratingAvg = []; ?>
+        <?php foreach ($_items as $_review):?>
+            <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review">
+                <?php if (count($_review->getRatingVotes())): ?>
+                    <?php foreach ($_review->getRatingVotes() as $_vote): ?>
+                        <?php $ratingAvg[] = $_vote->getPercent(); ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <div class="review-rating-main">
+                    <div class="review-rating-info">
+                        <!-- <div class="review-customer-image"></div> -->
+                        <div class="review-ratings">
+                            <?php
+                                if(count($ratingAvg)) {
+                                    $ratingAvg = array_filter($ratingAvg);
+                                    $average = array_sum($ratingAvg)/count($ratingAvg);
+                                } 
+                            ?>
+                            <div class="rating-summary item" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                                <div class="rating-result" title="<?= $block->escapeHtmlAttr($average) ?>%">
+    	                           <meta itemprop="worstRating" content = "1"/>
+    	                           <meta itemprop="bestRating" content = "100"/>
+                                    <span style="width:<?= $block->escapeHtmlAttr($average) ?>%">
+                                        <span itemprop="ratingValue"><?= $block->escapeHtml($average) ?>%</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="review-details">
+                                <p class="review-author">
+                                    <span class="review-details-label"><?= $block->escapeHtml(__('Review by')) ?></span>
+                                    <strong class="review-details-value" itemprop="author"><?= $block->escapeHtml($_review->getNickname()) ?>,</strong>
+                                </p>
+                                <p class="review-date">
+                                    <span class="review-details-label"><?= $block->escapeHtml(__('Posted on')) ?></span>
+                                    <time class="review-details-value" itemprop="datePublished" datetime="<?= $block->escapeHtmlAttr($block->formatDate($_review->getCreatedAt(), $format)) ?>"><?= $block->escapeHtml($block->formatDate($_review->getCreatedAt(), $format)) ?></time>
+                                </p>
+                            </div>
+                            <div class="review-title" itemprop="name"><?= $block->escapeHtml($_review->getTitle()) ?></div>
+                        </div>
+                    </div>
+                    <div class="review-content" itemprop="description">
+                        <?= nl2br($block->escapeHtml($_review->getDetail())) ?>
+                    </div>
+                    <!-- <div class="review-rating-recomandation">
+                        <span class="recomandation"><?= __('Si, recomiendo este producto.') ?></span>
+                    </div> -->
+                </div>
+                <?php unset($ratingAvg); ?>
+                <?php $ratingAvg = []; ?>
+            </li>
+        <?php endforeach; ?>
+        </ol>
+        <div class="toolbar review-toolbar">
+            <?= $block->getChildHtml('toolbar') ?>
+        </div>
+    </div>
+</div>
+<?php endif;?>

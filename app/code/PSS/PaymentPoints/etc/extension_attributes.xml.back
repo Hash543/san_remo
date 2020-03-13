@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
+        <attribute code="loyalty_points" type="int" />
+        <attribute code="loyalty_points_detail" type="PSS\PaymentPoints\Api\Data\CustomerPointsExtensionInterface[]" />
+    </extension_attributes>
+</config>

@@ -1,0 +1,74 @@
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    .theme-pearl {
+        .header {
+            .quickcart-wrapper.active {
+                .block-quickcart {
+                    .quickcart-content-wrapper {
+                        .quickcart-top {
+                            background: @color-blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop Extra Large
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .theme-pearl {
+
+    }
+}
+
+
+//
+//  Desktop Large
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .theme-pearl {
+
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .theme-pearl {
+        .header {
+            .quickcart-wrapper.active {
+                .block-quickcart {
+                    z-index: 99;
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .theme-pearl {
+
+    }
+}
+
+
+//
+//  Mobile Extra Small
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .theme-pearl {
+
+    }
+}

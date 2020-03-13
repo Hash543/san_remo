@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Mageplaza\RewardPoints\Helper\Calculation"
+                type="PSS\PaymentPoints\Helper\Calculation" />
+    <preference for="Mageplaza\RewardPoints\Model\Total\Quote\Spending"
+                type="PSS\PaymentPoints\Model\Total\Quote\Spending" />
+    <!--
+    <preference for="PSS\PaymentPoints\Api\Data\CustomerPointsExtensionInterface"
+                type="PSS\PaymentPoints\Model\CustomerPointsExtension" />
+    <preference for="PSS\PaymentPoints\Api\SpendingPointsInterface"
+                type="PSS\PaymentPoints\Service\SpendingPoints" />-->
+</config>

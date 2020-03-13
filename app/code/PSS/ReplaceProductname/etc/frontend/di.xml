@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!-- <type name="Magento\Checkout\CustomerData\AbstractItem">
+		<plugin disabled="false" name="PSS_ReplaceProductname_Plugin_Magento_Checkout_CustomerData_AbstractItem" sortOrder="10" type="PSS\ReplaceProductname\Plugin\Magento\Checkout\CustomerData\AbstractItem"/>
+	</type>-->
+	<type name="Magento\ConfigurableProduct\CustomerData\ConfigurableItem">
+		<plugin disabled="false" name="pss_replace_product_name_by_child"
+				sortOrder="20" type="PSS\ReplaceProductname\Plugin\Magento\Checkout\CustomerData\ConfigurableItem"/>
+	</type>
+</config>

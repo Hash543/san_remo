@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Bss\HidePrice\Helper\Data" type="Alfa9\HidePrice\Helper\HidePriceHelper" />
+    <preference for="Bss\HidePrice\Model\Observer\AddCart" type="Alfa9\HidePrice\Model\Observer\AddCart" />
+</config>

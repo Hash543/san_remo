@@ -1,0 +1,600 @@
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    .page-footer {
+        background: none;
+        margin-top: 0;
+
+        .footer.content {
+            .footer-top,
+            .footer-down {
+                max-width: 100%;
+            }
+
+            .footer-top {
+                padding: 30px 0;
+                background: #D7E6EB;
+
+                p,
+                span,
+                a,
+                .icon a i {
+                    color: @primary-blue !important;
+                }
+
+                .social-networks.only-desktop {
+                    .social {
+                        .icon {
+                            margin-top: 8px;
+
+                            .social-icons {
+                                margin-right: 5px;
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+
+                .attention {
+                    .phone {
+                        font-size: 17px;
+                        font-family: hurme_geometric_sans_2bold;
+                        margin-top: 0;
+
+                        .phone-icon {
+                            margin-right: 5px;
+
+                            &:before {
+                                content: url("../images/phone-icon.png");
+                            }
+                        }
+                    }
+
+                    p {
+                        font-size: 12px;
+                        font-family: hurmegeometricsans1_regularRg;
+                        margin-top: 8px;
+
+                        .weekend {
+                            display: none;
+                        }
+                    }
+                }
+
+                .subscribe {
+                    span {
+                        font-size: 11px;
+                        font-family: hurmegeometricsans1_regularRg;
+                    }
+
+                    .subs-form {
+                        margin-top: 12px;
+
+                        .block.newsletter {
+                            width: 100%;
+                            margin: 0 auto;
+                            margin-bottom: 8px;
+
+                            .form.subscribe {
+                                .form-group.newsletter {
+                                    display: flex;
+                                    justify-content: flex-start;
+                                    margin-bottom: 13px;
+
+                                    .field.newsletter {
+                                        width: 100%;
+
+                                        .control {
+                                            &::before {
+                                                content: '';
+                                                margin: 0px;
+                                            }
+
+                                            input {
+                                                color: @primary-blue;
+                                                font-family: hurmegeometricsans1_regularRg;
+                                                padding-left: 20px;
+                                                border: none;
+
+                                                &::-webkit-input-placeholder {
+                                                    color: @primary-blue;
+                                                }
+
+                                                &::-moz-placeholder {
+                                                    color: @primary-blue;
+                                                }
+
+                                                &:-ms-input-placeholder {
+                                                    color: @primary-blue;
+                                                }
+
+                                                &:-moz-placeholder {
+                                                    color: @primary-blue;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .actions {
+                                        width: auto;
+
+                                        .action.subscribe.primary {
+                                            border: none;
+                                            -webkit-border-radius: 0;
+                                            border-radius: 0;
+
+                                            span {
+                                                color: @white !important;
+                                                text-transform: uppercase;
+                                                padding: 0 10px;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .form-group.checkbox {
+                                    input {
+                                        display: none;
+                                        height: auto;
+
+                                        + label {
+                                            font-size: 8px;
+                                            font-family: hurmegeometricsans1_regularRg;
+
+                                            &:before {
+                                                content: "\e658";
+                                                font-family: 'font-icons';
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                font-variant: normal;
+                                                text-transform: none;
+                                                line-height: inherit;
+                                                -moz-osx-font-smoothing: grayscale;
+                                                text-align: center;
+                                                font-size: 15px;
+                                                border: 1px solid #999999;
+                                                background-color: @button__color;
+                                                color: @button__color;
+                                                margin-right: 5px;
+                                            }
+                                        }
+
+                                        &:checked {
+                                            + label {
+                                                &:before {
+                                                    background-color: @button__background;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        label {
+                            color: @primary-blue;
+                            font-size: 12px;
+                            letter-spacing: 0;
+                        }
+                    }
+                }
+            }
+
+            .footer-down {
+                background: #004261;
+
+                .container {
+                    .footer-logo {
+                        &.only-deskop {
+                            display: block;
+                        }
+
+                        img {
+                            margin: 0 auto;
+                            width: 100px;
+                        }
+                    }
+
+                    .links {
+                        padding-right: 0;
+
+                        .only-deskop {
+                            display: block;
+                        }
+
+                        .only-movil_ {
+                            display: none;
+                        }
+
+                        .link {
+                            font-family: hurmegeometricsans1_regularRg;
+
+                            label {
+                                text-transform: uppercase;
+                                color: #FFFFFF;
+                            }
+
+                            ul {
+                                padding-right: 0;
+
+                                li {
+                                    font-size: 12px;
+                                    color: #FFFFFF;
+                                    margin: 0;
+
+                                    a {
+                                        color: #FFFFFF !important;
+                                        padding: 0;
+
+                                        &:hover {
+                                            text-decoration: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .address {
+                        .footer-logo.only-movil {
+                            display: none;
+                        }
+
+                        .cp {
+                            span {
+                                font-family: hurmegeometricsans1_regularRg;
+                                color: #FFFFFF;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .page-footer {
+        .footer.content {
+            .footer-top {
+                .row {
+                    .subscribe {
+                        .subs-form {
+                            .block.newsletter {
+                                .form.subscribe {
+                                    .form-group.newsletter {
+                                        .field.newsletter {
+                                            max-width: 262px;
+                                            margin-right: 17px;
+
+                                            .control {
+                                                input {
+                                                    font-size: 11px;
+                                                }
+                                            }
+                                        }
+
+                                        .actions {
+                                            .action.subscribe.primary {
+                                                background: @button-primary__background;
+
+                                                span {
+                                                    font-family: hurme_geometric_sans_2bold;
+                                                    font-size: 11px;
+                                                }
+
+                                                &:hover {
+                                                    background: @button-primary__hover__background;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            label {
+                                color: @primary-blue;
+                                font-size: 12px;
+                                letter-spacing: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .social-networks.only-movil {
+                display: none;
+            }
+
+            .footer-down {
+                padding: 60px 0 25px;
+
+                .container {
+                    padding-left: 0;
+                    padding-right: 0;
+
+                    .links {
+                        .link {
+                            display: flex;
+
+                            label {
+                                font-size: 10px;
+                                line-height: 18px;
+                                margin-right: 10px;
+                            }
+
+                            ul {
+                                li {
+                                    line-height: 18px;
+                                }
+                            }
+                        }
+                    }
+
+                    .address {
+                        .payment-logos {
+                            margin-bottom: 65px;
+
+                            .only-desktop {
+                                display: block;
+                            }
+
+                            .only-mobile {
+                                display: none;
+                            }
+                        }
+
+                        .footer-logo.only-movil_ {
+                            display: none;
+                        }
+
+                        .cp {
+                            span {
+                                font-size: 10px;
+                                font-family: hurmegeometricsans1_regularRg;
+                                color: #FFFFFF;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .page-footer {
+        .footer.content {
+            .footer-top {
+                background: #ECEFF0;
+
+                .container {
+                    padding: 0 40px;
+
+                    .row {
+                        display: flex;
+                        flex-direction: column;
+
+                        .social-networks {
+                            &.only-desktop {
+                                display: none;
+                            }
+                        }
+
+                        .social-networks,
+                        .attention,
+                        .subscribe {
+                            width: 100%;
+                            text-align: center;
+                            padding: 0;
+                        }
+
+                        .attention {
+                            order: 1;
+                            margin-bottom: 20px;
+
+                            .phone {
+                                font-size: 33px;
+
+                                .phone-icon {
+                                    display: none;
+
+                                }
+                            }
+
+                            p {
+                                font-size: 18px;
+
+                                .weekend {
+                                    display: inline;
+                                }
+                            }
+                        }
+
+                        .subscribe {
+                            order: 2;
+
+                            span {
+                                font-size: 16px;
+                            }
+
+                            .subs-form {
+                                .block.newsletter {
+                                    .form.subscribe {
+                                        .form-group.newsletter {
+                                            flex-direction: column;
+
+                                            .field.newsletter {
+                                                max-width: none;
+                                                margin-right: 0 !important;
+                                                margin-bottom: 10px;
+
+                                                .control {
+                                                    input {
+                                                        font-size: 14px;
+                                                        height: 50px;
+                                                        padding-left: 10px;
+                                                    }
+                                                }
+                                            }
+
+                                            .actions {
+                                                button.action.subscribe.primary {
+                                                    background: @color-blue;
+                                                    display: inline-block;
+                                                    height: 50px;
+
+                                                    span {
+                                                        font-family: 'hurme_geometric_sans_1bold';
+                                                        font-size: 25px;
+                                                        font-weight: normal;
+                                                        line-height: 25px;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        .form-group.checkbox {
+                                            label {
+                                                span {
+                                                    font-size: 14px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .social-networks.only-movil {
+                background-color: #FFFFFF;
+                display: block;
+                padding: 10px 0;
+                text-align: center;
+
+                .social {
+                    .icon {
+                        .social-icons {
+                            width: 60px;
+                            height: 60px;
+                            margin: 0 10px;
+                            font-size: 30px;
+                            line-height: 60px !important;
+
+                            i {
+                                color: @primary-blue !important;
+                            }
+
+                            &:hover {
+                                i {
+                                    color: @white !important;
+
+                                    &:first-child {
+                                        margin-top: -60px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .footer-down {
+                padding: 0;
+
+                .container {
+                    padding: 20px 15px 40px;
+
+                    .links {
+                        margin-bottom: 30px;
+
+                        .link {
+                            display: block;
+                            margin-bottom: 20px;
+
+                            &.information {
+                                display: none;
+                            }
+
+                            label {
+                                font-size: 18px;
+                            }
+
+                            ul {
+                                margin-bottom: 5px;
+                                padding-left: 15px;
+                                width: 100%;
+
+                                li {
+                                    border-bottom: 1px solid #C7C5C4;
+                                    line-height: 50px;
+
+                                    a {
+                                        font-size: 17px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .address {
+                        .payment-logos {
+                            margin-bottom: 54px;
+
+                            .only-desktop {
+                                display: none;
+                            }
+
+                            .only-mobile {
+                                display: block;
+                                margin: 0 auto;
+                            }
+                        }
+
+                        .footer-logo.only-movil_ {
+                            margin-bottom: 20px;
+                            text-align: center;
+                        }
+
+                        .cp {
+                            text-align: center;
+
+                            span {
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile Extra Small
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .theme-pearl {
+        .page-main,
+        .page-bottom {
+            .section-info {
+                .col-section {
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}

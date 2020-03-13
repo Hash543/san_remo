@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="columns.top">
+            <!--<block name="content-publicity-banners" template="Magento_Theme::content-publicity-banners.phtml" />-->
+            <block name="content-promociones" template="Magento_Theme::content-promociones.phtml" />
+            <block name="home-full-slider-complex" template="Magento_Theme::home-full-slider-complex.phtml">
+                <block name="slider-inside-complex" class="WeltPixel\OwlCarouselSlider\Block\Slider\Custom">
+                    <arguments>
+                        <argument name="slider_id" xsi:type="string">11</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="mega_promo">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">mega_promo</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="publicity-left">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">banner_publicity_left</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="publicity-right">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">banner_publicity_right</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Mageplaza\Shopbybrand\Block\Brand\Featured" name="featuredbrand" />
+            <!--<block name="home-content-brand" template="Magento_Theme::home-content-brand.phtml">
+                <block name="slider-brand" class="WeltPixel\OwlCarouselSlider\Block\Slider\Custom">
+                    <arguments>
+                        <argument name="slider_id" xsi:type="string">12</argument>
+                    </arguments>
+                </block>
+            </block>-->
+            <block name="home-content-info" template="Magento_Theme::home-content-info.phtml"/>
+            <block name="home-content-blog" template="Magento_Theme::home-content-blog.phtml"/>
+            <block name="home-content-instagram" template="Magento_Theme::home-content-instagram.phtml"/>
+            <block class="Pss\Seo\Block\Seotext" name="home-content-seo" template="Magento_Theme::home-content-seo.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

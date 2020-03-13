@@ -1,0 +1,66 @@
+<?php
+// @codingStandardsIgnoreFile
+/** @var \Alfa9\ProductInfo\Block\Ajax\Form $block */
+//$product = $block->getProduct();
+
+$formAction = $block->getUrl('storeinfostock/stock/ajax');
+?>
+
+<div id="storeinfostock-modal" style="display:none;">
+
+    <div class="modal-title-wrapper">
+        <h1 class="modal-title">
+            <span class="base" data-ui-id="modal-title-wrapper"><?= $block->escapeHtml(__('Puedes encontrar este artículo en las siguientes tiendas:')) ?></span>
+        </h1>
+    </div>
+    <div class="storeinfostock-ajax-content">
+    </div>
+</div>
+
+<script>
+    require([
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ], function ($, modal) {
+
+            $(document).ready(function () {
+                var options = {
+                    type: 'popup',
+                    autoOpen: false,
+                    responsive: true,
+                    clickableOverlay: true,
+                    modalClass: 'storeinfostock-modal',
+                    buttons: []
+                };
+                var popup = modal(options, $('#storeinfostock-modal'));
+                $('.open-storeinfostock-modal').click(function () {
+                    const formAddToCart = $('#product_addtocart_form'),
+                        skuAttribute = $('.product.attribute.sku .value');
+                    const selectedMatrix = $('.swatch-option-tr.selected');
+                    let qtyMatrix = 0;
+                    if(selectedMatrix.length > 0) {
+                        const inputQty = selectedMatrix.find('input[type="number"]');
+                        if(inputQty.length > 0 ) {
+                            qtyMatrix = inputQty.val();
+                        }
+                    }
+                    let skuValue = null;
+                    if(skuAttribute.length > 0) {
+                        skuValue = skuAttribute.text();
+                    }
+                    $.ajax({
+                        url: '<?= /* @escapeNotVerified */ $formAction ?>',
+                        data: formAddToCart.serialize()+'&sku='+skuValue+'&qtyMatrix='+qtyMatrix,
+                        type: "GET",
+                        cache: false,
+                        showLoader: true,
+                        success: function (response) {
+                            $('.storeinfostock-ajax-content').html(response);
+                            popup.openModal();
+                        }
+                    });
+                });
+            });
+        }
+    );
+</script>

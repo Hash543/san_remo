@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="columns.top">
+			<block class="Mageplaza\Shopbybrand\Block\Brand\Landing" name="brand-landing-top" template="brand/landing-top.phtml"/>
+		</referenceContainer>
+		<referenceContainer name="content">
+			<block class="Mageplaza\Shopbybrand\Block\Brand\Landing" name="brand-landing-main" template="brand/landing-main.phtml"/>
+		</referenceContainer>
+		<referenceContainer name="sidebar.main">
+			<block class="Mageplaza\Shopbybrand\Block\Brand\Landing" name="brand-landing-sidebar-block-static" template="brand/landing-sidebar.phtml"/>
+        </referenceContainer>
+	</body>
+</page>

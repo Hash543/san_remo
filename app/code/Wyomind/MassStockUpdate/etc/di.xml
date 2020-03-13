@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    
+    <!-- LOGGER -->
+    <type name="Wyomind\MassStockUpdate\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    
+    <type name="Wyomind\MassStockUpdate\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">MassStockUpdate</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="massstockupdate" xsi:type="object">Wyomind\MassStockUpdate\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <!-- LOGGER CRON -->
+    <type name="Wyomind\MassStockUpdate\Logger\HandlerCron">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    
+    <type name="Wyomind\MassStockUpdate\Logger\LoggerCron">
+        <arguments>
+            <argument name="name" xsi:type="string">MassStockUpdate-CRON</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="massstockupdatecron" xsi:type="object">Wyomind\MassStockUpdate\Logger\HandlerCron</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <!-- COMMAND LINE -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="wyomind_massstockupdate_run" xsi:type="object">Wyomind\MassStockUpdate\Console\Command\Run</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\OfflineShipping\Model\Carrier\Flatrate" type="PSS\ShippingMethod\Model\Carrier\Flatrate" />
+    <preference for="Amasty\ShippingTableRates\Model\Carrier\Table" type="PSS\ShippingMethod\Model\Carrier\ShippingTableRates" />
+    <type name="Magento\Quote\Model\Cart\ShippingMethodConverter">
+        <plugin name="shipping-store-info" type="PSS\ShippingMethod\Model\Cart\ShippingMethodConverter" sortOrder="1"/>
+    </type>
+    <preference for="PSS\ShippingMethod\Api\Data\ShippingMethodInterface" type="PSS\ShippingMethod\Model\StoreInfo" />
+</config>

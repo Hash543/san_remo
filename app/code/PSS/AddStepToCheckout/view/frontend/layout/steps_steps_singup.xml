@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="page.main.title" remove="true"/>
+            <container name="nav-options" label="nav-new" htmlTag="div" htmlClass="nav-container">
+                <container name="nav-options-content" label="nav-options" htmlTag="div" htmlClass="nav-options">
+                    <block name="nav.steps" template="PSS_AddStepToCheckout::nav_steps.phtml"/>
+                    <container name="customer.login.custom" label="Customer Login Custom" htmlTag="div"
+                               htmlClass="login-container">
+                        <block class="Mageplaza\SocialLogin\Block\Popup\Social" name="social.login"
+                               template="Mageplaza_SocialLogin::form/social.phtml"/>
+                        <block class="Magento\Customer\Block\Form\Login" name="customer_form_login"
+                               template="PSS_AddStepToCheckout::form/login.phtml">
+                            <container name="form.additional.info" as="form_additional_info"/>
+                            <block class="Magento\Captcha\Block\Captcha" name="custom-login-captcha" as="login.captcha"
+                                   after="-">
+                                <action method="setFormId">
+                                    <argument name="formId" xsi:type="string">user_login</argument>
+                                </action>
+                                <action method="setImgWidth">
+                                    <argument name="width" xsi:type="string">230</argument>
+                                </action>
+                                <action method="setImgHeight">
+                                    <argument name="width" xsi:type="string">50</argument>
+                                </action>
+                            </block>
+                        </block>
+                        <block name="custom.button" template="PSS_AddStepToCheckout::cart/custom_toolbar.phtml"/>
+                    </container>
+                    <container name="customer.create.custom" label="Create Account Custom" htmlTag="div"
+                               htmlClass="create-account-container">
+                        <block class="Magento\Customer\Block\Form\Register" name="customer_form_register"
+                               template="PSS_AddStepToCheckout::form/register.phtml" cacheable="false">
+                            <container name="form.additional.info" as="form_additional_info"/>
+                            <block class="Magento\Captcha\Block\Captcha" name="custom-create-captcha"
+                                   as="create.captcha" after="-">
+                                <action method="setFormId">
+                                    <argument name="formId" xsi:type="string">user_create</argument>
+                                </action>
+                                <action method="setImgWidth">
+                                    <argument name="width" xsi:type="string">230</argument>
+                                </action>
+                                <action method="setImgHeight">
+                                    <argument name="width" xsi:type="string">50</argument>
+                                </action>
+                            </block>
+                            <container name="form.additional.info.create" as="form_additional_info_create"/>
+                            <container name="customer.form.register.fields.before" as="form_fields_before"
+                                       label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
+                            <action method="setShowAddressFields">
+                                <argument name="show.address.fields" xsi:type="boolean">true</argument>
+                            </action>
+                        </block>
+                        <block class="Mageplaza\SocialLogin\Block\Popup\Social" name="social.login.create"
+                               template="Mageplaza_SocialLogin::form/social.phtml" before="-"/>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

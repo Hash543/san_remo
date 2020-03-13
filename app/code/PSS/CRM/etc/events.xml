@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~  @author Xavier Sanz <xsanz@pss.com>
+  ~  @copyright Copyright (c) 2017 PSS (http://www.pss.com)
+  ~  @package PSS
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_customer_save_after">
+        <observer name="adminhtml_customer_save_after" instance="PSS\CRM\Observer\UserService\Modify" />
+    </event>
+    <event name="customer_account_edited">
+        <observer name="crm_customer_save_after_data_object" instance="PSS\CRM\Observer\UserService\Modify" />
+    </event>
+    <event name="customer_delete_after">
+        <observer name="crm_remove_customer" instance="PSS\CRM\Observer\UserService\Deletion"/>
+    </event>
+    <!--<event name="sales_quote_save_after">
+        <observer name="crm_sales_quote_save_after" instance="PSS\CRM\Observer\TicketService\Creation" />
+    </event>
+    <event name="controller_action_predispatch_checkout_cart_couponPost">
+        <observer name="crm_controller_action_predispatch_checkout_cart_couponPost" instance="PSS\CRM\Observer\PromotionService\Query" />
+    </event>-->
+    <event name="salesrule_rule_save_after">
+        <!--<observer name="crm_salesrule_rule_save_after" instance="PSS\CRM\Observer\PromotionService\Creation" />-->
+        <observer name="promotion_salesrule_rule_save_after" instance="PSS\CRM\Observer\PromotionService\CreationCoupon" />
+    </event>
+    <event name="catalogrule_rule_save_after">
+        <!--<observer name="crm_catalogrule_rule_save_after" instance="PSS\CRM\Observer\PromotionService\Creation" />-->
+        <observer name="promotion_catalogrule_rule_save_after" instance="PSS\CRM\Observer\PromotionService\CreationCoupon" />
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="crm_checkout_submit_all_after" instance="PSS\CRM\Observer\PromotionService\Deletion" />
+    </event>
+    <event name="checkout_cart_save_after">
+        <observer name="crm_update_cart_after" instance="PSS\CRM\Observer\TicketService\QueryPoints" />
+    </event>
+</config>

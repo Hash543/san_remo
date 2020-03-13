@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rewardpoints>
+            <display>
+                <!--<show_change_points>1</show_change_points>-->
+                <show_cart>1</show_cart>
+                <message_cart><![CDATA[Estás a punto de conseguir %d puntos con tu compra.]]></message_cart>
+                <show_slider>0</show_slider>
+            </display>
+        </rewardpoints>
+    </default>
+</config>

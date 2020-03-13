@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_RewardPointsUltimate
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Mageplaza\RewardPoints\Controller\Adminhtml\AbstractTransaction">
+        <plugin name="mp_rw_mass_action" type="Mageplaza\RewardPointsUltimate\Plugin\Controller\Adminhtml\MassAction"/>
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Items\AbstractItems">
+        <plugin name="mp_rw_update_item" type="Mageplaza\RewardPointsUltimate\Plugin\Order\Item\Adminhtml\PointsItemRender"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Pdf\Items\AbstractItems">
+        <plugin name="mp_rw_pdf_items" type="Mageplaza\RewardPointsUltimate\Plugin\Order\Pdf\Items\AbstractItems"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Pdf\Items\AbstractItems">
+        <plugin name="mp_rw_pdf_items_creditmemo" type="Mageplaza\RewardPointsUltimate\Plugin\Order\Pdf\Items\Creditmemo\DefaultCreditmemo"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Invoice">
+        <plugin name="mp_rw_invoice_convert_sellpoints" type="Mageplaza\RewardPointsUltimate\Plugin\Order\Total\Invoice\ConvertSellPoints"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Creditmemo">
+        <plugin name="mp_rw_creditmemo_convert_sellpoints" type="Mageplaza\RewardPointsUltimate\Plugin\Order\Total\Creditmemo\ConvertSellPoints"/>
+    </type>
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="mp_rw_can_creditmemo" type="Mageplaza\RewardPointsUltimate\Plugin\Order\View\CanCreditmemo"/>
+    </type>
+    <type name="Magento\ImportExport\Controller\Adminhtml\Import\Download">
+        <plugin name="mp_reward_download_sample" type="Mageplaza\RewardPointsUltimate\Plugin\Controller\Adminhtml\ImportDownloadSample" sortOrder="250"/>
+    </type>
+    <type name="Mageplaza\Reports\Block\Menu">
+        <arguments>
+            <argument name="girdName" xsi:type="array">
+                <item name="mprewardultimate_reports_earned" xsi:type="string">mprewardultimate_reports_earned_grid.mp_reward_reports_earned_listing_data_source</item>
+                <item name="mprewardultimate_reports_spent" xsi:type="string">mprewardultimate_reports_spent_grid.mp_reward_reports_spent_listing_data_source</item>
+            </argument>
+            <argument name="menuUrls" xsi:type="array">
+                <item name="mprewardultimate/reports/earned" xsi:type="string" translate="true">Earned</item>
+                <item name="mprewardultimate/reports/spent" xsi:type="string" translate="true">Spent</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

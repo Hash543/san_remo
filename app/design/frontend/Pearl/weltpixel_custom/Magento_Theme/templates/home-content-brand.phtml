@@ -1,0 +1,17 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Cms\Helper\Wysiwyg\Images $wysiwyg */
+$wysiwyg = $this->helper(\Magento\Cms\Helper\Wysiwyg\Images::class);
+$wysiwygURL = $wysiwyg->getCurrentUrl();
+$mediaurl = implode(explode('wysiwyg', $wysiwygURL));
+?>
+
+<div class="section-container section-brands">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-section">
+                <?= $block->getChildHtml('slider-brand'); ?>
+            </div>
+        </div>
+    </div>
+</div>

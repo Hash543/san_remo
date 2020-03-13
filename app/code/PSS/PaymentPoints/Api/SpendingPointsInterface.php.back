@@ -1,0 +1,27 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\PaymentPoints\Api;
+use Magento\Framework\Exception\NoSuchEntityException;
+
+/**
+ * Interface SpendingManagementInterface
+ * @package Mageplaza\RewardPoints\Api
+ */
+interface SpendingPointsInterface
+{
+    /**
+     * @param string $cartId
+     * @param string $points
+     * @param string $ruleId
+     *
+     * @return \Magento\Quote\Api\Data\TotalsInterface
+     * @throws NoSuchEntityException
+     */
+    public function payByPoints(
+        $cartId,
+        $points,
+        $ruleId
+    );
+}

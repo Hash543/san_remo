@@ -1,0 +1,14 @@
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<!-- ko if: (cart().discountAmount < 0) -->
+<div class="amount price-container">
+    <span class="label">
+        <span data-bind="i18n: 'Descuento'"></span>
+        <span data-bind="text: '('+ cart().discountLabel+')'" class="small-text"></span>
+    </span>
+    <span class="price-wrapper" data-bind="html: cart().discountPriceHtml"></span>
+</div>
+<!-- /ko -->

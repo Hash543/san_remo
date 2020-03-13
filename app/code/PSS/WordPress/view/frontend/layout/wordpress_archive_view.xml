@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * This package designed for Magento COMMUNITY edition
+ * PSS Digital does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * PSS Digital does not provide extension support in case of * incorrect edition usage.
+ *
+ * @author PSS Digital Team
+ * @category PSS
+ * @package PSS_WordPress
+ * @copyright Copyright (c) 2018 PSS (https://www.pss-ti.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="content">
+			<block class="PSS\WordPress\Block\Archive\View" name="wp.postlist.wrapper" template="post/list/wrapper.phtml">
+				<block class="PSS\WordPress\Block\Post\ListPost" name="wp.post.list" template="post/list.phtml">
+					<block class="PSS\WordPress\Block\Post\PostList\Pager" name="wp.post_list.pager" as="pager" />
+				</block>
+			</block>
+		</referenceContainer>
+	</body>
+</page>

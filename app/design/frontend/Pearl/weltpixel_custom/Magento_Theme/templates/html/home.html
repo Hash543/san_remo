@@ -1,0 +1,21 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+$block->getViewFileUrl();
+/** @var \Magento\Cms\Helper\Wysiwyg\Images $wysiwyg */
+$wysiwyg = $this->helper(\Magento\Cms\Helper\Wysiwyg\Images::class);
+$fileurl = $wysiwyg->getCurrentUrl() . $filename;
+?>
+<div class="container">
+    <div class="row brands"></div>
+    <div class="row info">
+        <div class="box col-xs-3">
+            <img src="{{media url="wysiwyg/Home/Info/Envio.png"}}" />
+            <span class="text">Envio</span></div>
+        <div class="box col-xs-3"><img src="{{media url="wysiwyg/Home/Info/Reserva.png"}}" /> 
+             <span class="text">Reserva y recoje</span></div>
+        <div class="box col-xs-3"><img src="{{media url="wysiwyg/Home/Info/Tiendas.png"}}" /> 
+             <span class="text">Nuestras tiendas</span></div>
+        <div class="box col-xs-3"><img src="{{media url="wysiwyg/Home/Info/Contacto.png"}}" />
+             <span class="text">Contacto</span></div>
+    </div>
+</div>

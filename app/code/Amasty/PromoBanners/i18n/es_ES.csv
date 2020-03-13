@@ -1,0 +1,97 @@
+Banners,Banners
+"Save and Continue Edit","Guardar y continuar Editar"
+Banner,"Banner"
+"Cart Conditions","Condiciones del carrito"
+"Apply the rule only if the following conditions are met (leave blank for all products).","Aplique la regla solo si se cumplen las siguientes condiciones (deje en blanco para todos los productos)."
+Conditions,Condiciones
+"Banner Content","Contenido del banner"
+"Banner Position and Type","Posición y tipo de banner"
+Position,Posición
+"Where to display this banner","Dónde mostrar este banner"
+"Please note that position of sidebars depends on the theme layout. </br> By default Sidebar Main is situated on the left side of category pages.","Tenga en cuenta que la posición de las barras laterales depende del diseño del tema. </br> De manera predeterminada, Sidebar Main se encuentra en el lado izquierdo de las páginas de categoría."
+"Product line number","Número de línea de producto"
+"Banner width (number of products)","Ancho del banner (número de productos)"
+Categories,Categorias
+"Leave empty to show in all categories. Not applicable for `Above Cart` position.","Deje en blanco para mostrar en todas las categorías. No aplicable para la posición `Por encima del carro`."
+"Product SKUs","SKU de producto"
+"Comma separted list of product SKUs where this banner should be displayed. Leave field blank to display banner on all products","Lista separada por comas de SKU de productos donde se debe mostrar este banner. Deje el campo en blanco para mostrar el banner en todos los productos."
+"Search keywords","Buscar palabras clave"
+"Provide search keywords one per line. Leave empty to show banner on all catalog search pages","Proporcione palabras clave de búsqueda una por línea. Deje en blanco para mostrar el banner en todas las páginas de búsqueda del catálogo."
+"Banner Type","Tipo de banner"
+"What kind of content banner will display","¿Qué tipo de contenido se mostrará?"
+"Show Products","Mostrar productos"
+"Choose Yes to show selected products below banner","Elija Sí para mostrar los productos seleccionados debajo del banner"
+Image,Imagen
+Link,Link
+Title,Título
+"CMS Block","Bloque de CMS"
+"Use CMS block","Usar bloque CMS"
+"HTML Text","Texto HTML"
+"Product attributes","Atributos del producto"
+"HTML text","Texto HTML"
+General,General
+Name,Nombre
+Status,Estado
+Stores,Víveres
+"Leave empty to show the banner in all stores","Dejar en blanco para mostrar el banner en todas las tiendas"
+"Customer Groups","Grupos de clientes"
+"Leave empty to show the banner for all groups","Dejar en blanco para mostrar el banner para todos los grupos"
+"From Date","Partir de la fecha"
+"To Date","Hasta la fecha"
+Priority","Prioridad"
+ID,ID
+SKU,SKU
+Price,Precio
+"No Position","Ninguna posición"
+"Banner(s) were successfully deleted","Banner (s) fueron eliminados con éxito"
+"We can't delete Banner(s) right now. Please review the log and try again. ","No podemos eliminar Banner (s) en este momento. Por favor revise el registro e intente nuevamente."
+"Record does not exist.","El registro no existe."
+"Edit Banner `%1`","Editar banner `%1`"
+"Add new Banner","Agregar nuevo banner"
+"Record(s) have been updated.","Los registros han sido actualizados."
+"We can't change status of rules(s) right now. Please review the log and try again. ","No podemos cambiar el estado de las reglas en este momento. Por favor revise el registro e intente nuevamente."
+"Rules(s) were successfully deleted","Las reglas se eliminaron correctamente"
+"We can't delete rule(s) right now. Please review the log and try again. ","No podemos eliminar las reglas en este momento. Por favor revise el registro e intente nuevamente."
+"Promo Banners","Banners promocionales"
+"Banner has been successfully saved","El banner se ha guardado correctamente."
+"Above Cart","Sobre el carro"
+"Cart Page (Below Total)","Página del carrito (por debajo del total)"
+"Sidebar Additional","Barra lateral adicional"
+"Sidebar Main","Barra lateral principal"
+"Product Page (Top)","Página del producto (arriba)"
+"Product Page (Bottom)","Página del producto (abajo)"
+"Product Page (Below Cart Button)","Página del producto (debajo del botón del carrito)"
+"Category Page (Top)","Página de categoría (arriba)"
+"Category Page (Bottom)","Página de categoría (inferior)"
+"Category Page (Below Add to Cart Button)","Página de categoría (debajo del botón Agregar al carrito)"
+"Catalog Search (Top)","Búsqueda en el catálogo (arriba)"
+"On Top of Page","En la parte superior de la página"
+"Home Page under Menu","Página de inicio en Menú"
+"Product Page (Sidebar Right)","Página del producto (barra lateral derecha)"
+"Among Category Products","Entre productos de categoría"
+"Please choose a condition to add.","Por favor, elija una condición para agregar."
+"Products subselection","Subselección de productos"
+"Conditions combination","Combinación de condiciones"
+"Cart Attribute","Atributo del carro"
+"Inactive","Inactivo"
+"Active","Activo"
+"Show all, sorted by priority","Mostrar todo, ordenados por prioridad"
+"Show only one with the highest priority","Mostrar solo uno con la máxima prioridad"
+"Add to Cart","añadir a la cesta"
+"In stock","En stock"
+"Out of stock","Agotado"
+"General Settings","Configuración general"
+"In case several banners are active for one position","En caso de que varios banners estén activos para una posición"
+"Product collection container selector","Selector de contenedores de recogida de productos"
+"Product container selector","Selector de contenedor de producto"
+"Category page width (in products)","Ancho de página de categoría (en productos)"
+"Used as a limit for 'Among Category Products' banner position","Se utiliza como límite para la posición del banner 'Entre productos de categoría"
+"Products","Productos"
+"Add Banner","Agregar banner"
+"Are you sure?","¿Estás seguro?"
+Delete,Borrar
+Activate,Activar
+Inactivate,Desactivar
+"Date Start","Fecha de inicio"
+"Date Expire","Fecha de caducidad"
+Edit,Editar

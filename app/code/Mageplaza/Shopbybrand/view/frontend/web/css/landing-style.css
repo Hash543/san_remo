@@ -1,0 +1,30 @@
+/* Landing Page CSS */
+.mpbrand-landing-view .page-title-wrapper h1.page-title{
+    display: none;
+}
+.top-brand-image{text-align: center;}
+.landing-sidebar-main{display: block;}
+.landing-sidebar-main ul{padding: 0 0 15px 15px;margin: 0;}
+.landing-sidebar-main ul li{display: block;font-weight: 300;font-size: 15px;}
+.landing-sidebar-main ul li a{color: #333;}
+.landing-sidebar-main ul li a:hover{text-decoration: underline;}
+.sidebar-block-title{display: block;font-size: 18px;font-weight: 500;color: #333333;margin: 15px 0;text-transform: uppercase;}
+.landing-main-fullbanner,.landing-main-threebanner,.landing-main-twobanner{width: 100%;display: block;}
+.landing-main-fullbanner{margin: 0 0 25px;border: 1px solid #000;}
+.landing-main-fullbanner img,.landing-main-threebanner img,.landing-main-twobanner img{width: 100%;display: block;}
+.landing-main-threebanner{display: flex;display:-webkit-flex;justify-content: space-between;}
+.landing-main-threebanner .threebanner{width: calc(33.33% - 15px);background: red;margin: 0 0 25px;border: 1px solid #000;}
+.landing-main-twobanner{display: flex;display:-webkit-flex;justify-content: space-between;}
+.landing-main-twobanner .twobanner{width: calc(50% - 15px);/*background: red;*/margin: 0 0 25px;border: 1px solid #000;}
+
+/*responsive start*/
+@media (max-width: 600px) {
+.landing-main-threebanner,.landing-main-twobanner{display: block;display: -webkit-block;}
+.landing-main-threebanner .threebanner,.landing-main-twobanner .twobanner{width: 100%;margin: 0 0 15px;}
+.landing-main-fullbanner{margin: 0 0 15px;}
+.landing-sidebar-main ul li{font-size: 14px;}
+.mpbrand-landing-view .columns .column.main{order: 2;}
+.mpbrand-landing-view .columns .sidebar-main{order: 1;margin: 0 0 30px!important;}
+}  
+
+/* End */

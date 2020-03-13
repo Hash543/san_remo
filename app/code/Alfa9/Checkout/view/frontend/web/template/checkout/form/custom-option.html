@@ -1,0 +1,31 @@
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<div data-bind="blockLoader: customFormModel.isLoading" class="form-delivery" style="display: none">
+    <form id="optional-checkout-form" class="form">
+        <div class="message-error" data-bind="visible: customFormModel.error">
+            <span data-bind="text: customFormModel.errorMessage"></span>
+        </div>
+        <fieldset class="fieldset" data-bind="visible: !customFormModel.updateForm()">
+            <legend data-bind="i18n: 'Additional Options'"></legend>
+            <!-- ko foreach: getRegion('custom-checkout-form-fields') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <button type="button" data-bind="click: onSubmit" class="action">
+                <span data-bind="i18n: 'Update'"></span>
+            </button>
+        </fieldset>
+        <fieldset data-bind="visible: customFormModel.updateForm">
+            <!-- ko foreach: { data: customFormModel.formData, as: 'elem'}  -->
+                <li>
+                    <span><strong data-bind="text: elem.label"></strong>: <span data-bind="text: elem.value"></span></span>
+                </li>
+            <!-- /ko -->
+            <button type="button" data-bind="click: edit" class="action">
+                <span data-bind="i18n: 'Edit'"></span>
+            </button>
+        </fieldset>
+    </form>
+</div>

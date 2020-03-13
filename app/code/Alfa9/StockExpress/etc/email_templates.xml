@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * email_templates
+ *
+ * @copyright Copyright © 2018 Alfa9 Servicios Web, S.L.. All rights reserved.
+ * @author    xsanz@alfa9.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="stockexpress_error_template" label="Stock WS " file="error.html" type="html" module="Alfa9_StockExpress" area="adminhtml"/>
+</config>
+

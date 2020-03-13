@@ -1,0 +1,20 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace Alfa9\ConfigurableProduct\Plugin\Controller\ConfigurableProduct\Swatches\Ajax;
+
+/**
+ * Class Media
+ * @package Alfa9\ConfigurableProduct\Plugin\Controller\ConfigurableProduct\Swatches\Ajax
+ */
+class Media {
+    /**
+     * @param \Magento\Swatches\Controller\Ajax\Media $subject
+     * @param string
+     * @return string
+     */
+    public function afterExecute(\Magento\Swatches\Controller\Ajax\Media $subject, $result) {
+        return $result;
+    }
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    
+    <!-- LOGGER -->
+    <type name="Wyomind\MassProductImport\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    
+    <type name="Wyomind\MassProductImport\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">MassProductImport</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="massproductimport" xsi:type="object">Wyomind\MassProductImport\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <!-- LOGGER CRON -->
+    <type name="Wyomind\MassProductImport\Logger\HandlerCron">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    
+    <type name="Wyomind\MassProductImport\Logger\LoggerCron">
+        <arguments>
+            <argument name="name" xsi:type="string">MassProductImport-CRON</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="massproductimportcron" xsi:type="object">Wyomind\MassProductImport\Logger\HandlerCron</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <!-- COMMAND LINE -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="wyomind_massproductimport_run" xsi:type="object">Wyomind\MassProductImport\Console\Command\Run</item>
+            </argument> 
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="wyomind_massproductimport_sql" xsi:type="object">Wyomind\MassProductImport\Console\Command\Sql</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <preference for="Wyomind\MassStockUpdate\Helper\Data" type="Wyomind\MassProductImport\Helper\Data"/>
+    <preference for="Wyomind\MassStockUpdate\Helper\Storage" type="Wyomind\MassProductImport\Helper\Storage"/>
+    <preference for="Wyomind\MassStockUpdate\Helper\Config" type="Wyomind\MassProductImport\Helper\Config"/>
+    <preference for="Wyomind\MassStockUpdate\Helper\Ftp" type="Wyomind\MassProductImport\Helper\Ftp"/>
+    <preference for="Wyomind\MassStockUpdate\Logger\Handler" type="Wyomind\MassProductImport\Logger\Handler" />
+    <preference for="Wyomind\MassStockupdate\Logger\HandlerCron" type="Wyomind\MassProductImport\Logger\HandlerCron" />
+    <preference for="Wyomind\MassStockupdate\Logger\Logger" type="Wyomind\MassProductImport\Logger\Logger" />
+    <preference for="Wyomind\MassStockupdate\Logger\LoggerCron" type="Wyomind\MassProductImport\Logger\LoggerCron" />
+    <preference for="Wyomind\MassStockUpdate\Model\ResourceModel\Profiles\Collection" type="Wyomind\MassProductImport\Model\ResourceModel\Profiles\Collection"/>
+    <preference for="Wyomind\MassStockUpdate\Model\Profiles" type="Wyomind\MassProductImport\Model\Profiles"/>
+</config>

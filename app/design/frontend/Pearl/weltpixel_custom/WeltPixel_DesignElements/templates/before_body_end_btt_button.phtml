@@ -1,0 +1,18 @@
+<?php
+    $_helper = $this->helper('WeltPixel\DesignElements\Helper\Data');
+    $options = $_helper->getBttOptionsJson();
+?>
+<button type="button" title="<?php /* @escapeNotVerified */ echo __('Back To Top') ?>" class="btt-button action">
+    <!--    ADRIANO-->
+    <span class="only-movil">Volver a arriba</span>
+</button>
+
+<script>
+    require(['jquery','btt_button'],
+        function ($, SEMICOLONBTTBUTTON) {
+            var options = '<?php echo $options ?>';
+            $(document).ready(
+                SEMICOLONBTTBUTTON.widget.init(options)
+            );
+        });
+</script>

@@ -1,0 +1,14 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+/**
+ * @var \PSS\PaymentPoints\Block\Checkout\Cart\EarningPoints $block
+ */
+?>
+<!-- Earning Points Block -->
+<?php if($block->showEarningPoints() && $block->getEarningPointsCart() > 0): ?>
+    <div class="message-earning-points">
+        <span><?= $block->getMessageEarningPoints(); ?></span>
+    </div>
+<?php endif; ?>

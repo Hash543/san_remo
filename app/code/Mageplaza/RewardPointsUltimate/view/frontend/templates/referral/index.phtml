@@ -1,0 +1,165 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_RewardPointsUltimate
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<div id="mp_reward_referral">
+    <?php /** @var Mageplaza\RewardPointsUltimate\Block\Referral\Index $block */
+    if ($block->getRule()) : ?>
+        <div id="description">
+            <strong><?= /** @noEscape */ __('Share your referral link with your friends and earn commissions') ?></strong>
+            <div class="refer">
+                <span><?= /** @noEscape */ $block->getReferMessage() ?></span>
+            </div>
+            <div class="customer">
+                <span><?= /** @noEscape */ $block->getCustomerMessage() ?></span>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <div id="mp_section">
+        <div class="col-mp mp-6 mp-md-6 mp-sm-12 mp-xs-12">
+            <?php $referUrl = $block->getReferUrl(); ?>
+            <div class="block url_and_code">
+                <div class="block-title"><strong><?= /** @noEscape */ __('Referral URL And Code') ?></strong></div>
+                <div class="box-content">
+                    <div class="mp_url">
+                        <span class="mp-label"><?= /** @noEscape */ __('Refer URL') ?></span>
+                        <div class="mp_input">
+                            <input type="text" class="mp-input" name="refer_url" value="<?= /** @noEscape */ $referUrl ?>" readonly/>
+                            <div class="copy">
+                                <span><?= /** @noEscape */ __('copy') ?></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mp_code">
+                        <span class="mp-label"><?= /** @noEscape */ __('Refer Code') ?></span>
+                        <div class="mp_input">
+                            <input type="text" class="mp-input" name="refer_code"
+                                   value="<?= /** @noEscape */ $block->getCode() ?>" readonly/>
+                            <div class="copy">
+                                <span><?= /** @noEscape */ __('copy') ?></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mp_email">
+                        <span class="mp-label"><?= /** @noEscape */ __('Refer Email') ?></span>
+                        <div class="mp_input">
+                            <input type="text" class="mp-input" name="refer_email"
+                                   value="<?= /** @noEscape */ $block->getCustomerEmail() ?>" readonly/>
+                            <div class="copy">
+                                <span><?= /** @noEscape */ __('copy') ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="block refer-via-social">
+                <div class="block-title"><strong><?= /** @noEscape */ __('Referral via Social') ?></strong></div>
+                <div class="box-content">
+                    <div class="addthis_toolbox addthis_default_style addthis_32x32_style"
+                         addthis:url="<?= /** @noEscape */ $referUrl ?>"
+                         addthis:title="<?= /** @noEscape */ $referUrl ?>"
+                         addthis:description="<?= /** @noEscape */ $referUrl ?>">
+                        <a class="addthis_button_preferred_1"></a>
+                        <a class="addthis_button_preferred_2"></a>
+                        <a class="addthis_button_preferred_3"></a>
+                        <a class="addthis_button_preferred_4"></a>
+                        <a class="addthis_button_preferred_4"></a>
+                        <a href="//www.addthis.com/bookmark.php?v=250&pubid={YOUR_PROFILE_ID}"
+                           class="addthis_button_compact"></a>
+                        <a class="addthis_counter addthis_bubble_style"></a>
+                    </div>
+                    <script type="text/javascript"
+                            src="//s7.addthis.com/js/250/addthis_widget.js#pubid=xa-500a790c6c746380"></script>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="block col-mp mp-6 mp-md-6 mp-sm-12 mp-xs-12">
+            <div class="block-title"><strong><?= /** @noEscape */ __('Send Invitations') ?></strong></div>
+            <div class="box-content">
+                <form action="<?= /** @noEscape */ $block->getSaveInvitationsUrl(); ?>" method="post" name="invitation-data">
+                    <div class="send-from">
+                        <div class="mp-title mp-3">
+                            <span class="mp-label"><?= /** @noEscape */ __('Send from') ?></span>
+                        </div>
+                        <div class="mp-content mp-9">
+                            <select id="send-by" name="send-by">
+                                <option value="store"><?= /** @noEscape */ __('Store') ?></option>
+                                <option value="email_address"><?= /** @noEscape */ __('Your email address') ?></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="invite-friend">
+                        <span class="mp-label"><?= /** @noEscape */ __('Invite your friends by entering their email addresses below') ?></span>
+                        <textarea name="invitees"></textarea>
+                        <div class="comment">
+                            <p><?= /** @noEscape */ __('To reduce the chance that your message is marked as spam, please follow this format: "Contact name" <name@example.com>') ?></p>
+                            <p><?= /** @noEscape */ __('Example contact list:"John" <john@example.com>, peter@icloud.com,jennifer@google.com, hello@yahoo.com, mark@gmail.com') ?></p>
+                        </div>
+                    </div>
+                    <div class="invite-message">
+                        <span class="mp-label"><?= /** @noEscape */ __('Message (Just your message, referral links will be added automatically.)') ?></span>
+                        <textarea name="message"></textarea>
+                    </div>
+                    <div class="action primary bt-send">
+                        <button type="submit" title="<?= /** @noEscape */ __('message') ?>" class="action primary">
+                            <span><?= /** @noEscape */ __('SEND NOW') ?></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <?= /** @noEscape */ $block->getChildHtml() ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            isDislayInviteMessage();
+
+            $('#send-by').on('change', function () {
+                isDislayInviteMessage();
+            });
+
+            $('.url_and_code .mp-input').hover(function () {
+                $(this).siblings('.copy').text('<?= /** @noEscape */ __('copy') ?>');
+            });
+
+            $('.url_and_code .copy').click(function () {
+                $(this).siblings('.mp-input').select();
+                document.execCommand("copy");
+                $(this).text('<?= /** @noEscape */ __('copied') ?>');
+            });
+
+            function isDislayInviteMessage() {
+                if ($('#send-by').val() == 'store') {
+                    $('.invite-message').hide();
+                } else {
+                    $('.invite-message').show();
+                }
+            }
+        });
+    });
+</script>
+

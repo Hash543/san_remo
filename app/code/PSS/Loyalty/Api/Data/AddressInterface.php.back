@@ -1,0 +1,82 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\Loyalty\Api\Data;
+
+interface AddressInterface extends \Magento\Customer\Api\Data\AddressInterface {
+    /**
+     * Constants
+     */
+    const LASTNAME1 = 'lastname1';
+    const LASTNAME2 = 'lastname2';
+    const STAIRS = 'stairs';
+    const FLOOR = 'floor';
+    const DOOR = 'door';
+    const PHONE2 = 'phone2';
+
+    /**
+     * @return string
+     */
+    public function getLastname1();
+
+    /**
+     * @param $lastname1
+     * @return $this
+     */
+    public function setLastname1($lastname1);
+
+    /**
+     * @return string
+     */
+    public function getLastname2();
+
+    /**
+     * @param $lastname2
+     * @return $this
+     */
+    public function setLastname2($lastname2);
+
+    /**
+     * @return string
+     */
+    public function getStairs();
+
+    /**
+     * @param $stairs
+     * @return $this
+     */
+    public function setStairs($stairs);
+
+    /**
+     * @return string
+     */
+    public function getFloor();
+
+    /**
+     * @param string $floor
+     * @return $this
+     */
+    public function setFloor($floor);
+
+    /**
+     * @return string
+     */
+    public function getDoor();
+
+    /**
+     * @param string $door
+     * @return $this
+     */
+    public function setDoor($door);
+
+    /**
+     * @return string
+     */
+    public function getPhone2();
+    /**
+     * @param $phone2
+     * @return $this
+     */
+    public function setPhone2($phone2);
+}

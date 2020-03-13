@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Widget\Dob $block */
+
+/*
+<?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob')
+   ->setDate($block->getCustomer()->getDob())
+   ->toHtml() ?>
+
+For checkout/onepage/billing.phtml:
+
+<?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob')
+   ->setDate($block->getCustomer()->getDob())
+   ->setFieldIdFormat('billing:%s')
+   ->setFieldNameFormat('billing[%s]')
+   ->toHtml() ?>
+
+NOTE: Regarding styles - if we leave it this way, we'll move it to boxes.css. Alternatively we could calculate widths
+automatically using block input parameters.
+*/
+
+$fieldCssClass = 'field date field-' . $block->getHtmlId();
+$fieldCssClass .= $block->isRequired() ? ' required' : '';
+$value = $block->getData('value') ? $block->getData('value') : '';
+?>
+<div class="<?= $block->escapeHtmlAttr($fieldCssClass) ?>">
+    <label class="label" for="dob"><span><?= $block->escapeHtml(__('Date of Birth')) ?></span></label>
+    <div class="control customer-dob">
+        <input type="text" name="dob" id="custom-dob" class="has-datepicker"
+               value="<?= $value; ?>"
+               data-validate='{"required":true,"validate-date-au":"dd/mm/Y"}' autocomplete="off" aria-required="true" />
+        <script>
+            require([
+                "jquery",
+                "mage/calendar"
+            ], function($){
+                $("#custom-dob").calendar({
+                    showsTime: false,
+                    dateFormat: "dd/MM/Y",
+                    yearRange: "-100:+0",
+                    buttonText: "Selecciona fecha", maxDate: "-1d", changeMonth: true, changeYear: true, showOn: "both", firstDay: 1,
+                    storeLocale: "es_ES",
+                    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio', 'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+                    monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun', 'Jul','Ago','Sept','Oct','Nov','Dic'],
+                    dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+                    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa']
+                });
+            });
+        </script>
+    </div>
+</div>

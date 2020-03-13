@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <head>
+        <css src="Wyomind_MassStockUpdate::css/edit.css"/>
+        <css src="Wyomind_Core::js/codemirror/codemirror.css"/>
+        <link src="Wyomind_Core::js/codemirror/codemirror.js"/>
+        <link src="Wyomind_Core::js/codemirror/formatting.js"/>
+        <link src="Wyomind_Core::js/codemirror/active-line.js"/>
+        <link src="Wyomind_Core::js/codemirror/matchbrackets.js"/>
+        
+        <link src="Wyomind_Core::js/codemirror/autorefresh.js"/> 
+             
+        <link src="Wyomind_Core::js/codemirror/htmlmixed/htmlmixed.js"/>
+        <link src="Wyomind_Core::js/codemirror/xml/xml.js"/>
+        
+        <link src="Wyomind_Core::js/codemirror/javascript/javascript.js"/> 
+         
+        <link src="Wyomind_Core::js/codemirror/clike/clike.js"/>
+        <link src="Wyomind_Core::js/codemirror/php/php.js"/>
+        <link src="Wyomind_MassStockUpdate::js/edit.js"/>
+        <link src="Wyomind_MassStockUpdate::plugin/js/uploader.js"/>
+
+        <css src="jquery/colorpicker/css/colorpicker.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Wyomind\MassProductImport\Block\Adminhtml\Profiles\Edit" name="massproductimport_profiles_edit"/>
+            <block class="Magento\Backend\Block\Template" name="blackbox" template="Wyomind_MassStockUpdate::edit/blackbox.phtml" after="-"/>
+        </referenceContainer>
+         
+    
+        <referenceContainer name="left">
+            <block class="Wyomind\MassProductImport\Block\Adminhtml\Profiles\Edit\Tabs" name="massproductimport_profiles_edit_tabs">
+                
+                <block class="Wyomind\MassProductImport\Block\Adminhtml\Profiles\Edit\Tab\Main" name="massproductimport_profiles_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">massproductimport_profiles_edit_tab_main</argument>
+                </action>
+                <block class="Wyomind\MassProductImport\Block\Adminhtml\Profiles\Edit\Tab\Advanced" name="massproductimport_profiles_edit_tab_advanced" />
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">advanced_section</argument>
+                    <argument name="block" xsi:type="string">massproductimport_profiles_edit_tab_advanced</argument>
+                </action>
+                <block class="Wyomind\MassProductImport\Block\Adminhtml\Profiles\Edit\Tab\Mapping" name="massproductimport_profiles_edit_tab_mapping" template="Wyomind_MassStockUpdate::edit/mapping.phtml"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">mapping_section</argument>
+                    <argument name="block" xsi:type="string">massproductimport_profiles_edit_tab_mapping</argument>
+                </action>
+              
+                
+                
+               
+                
+                <block class="Wyomind\MassProductImport\Block\Adminhtml\Profiles\Edit\Tab\Cron" name="massproductimport_profiles_edit_tab_cron" template="Wyomind_MassStockUpdate::edit/cron.phtml"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">cron_section</argument>
+                    <argument name="block" xsi:type="string">massproductimport_profiles_edit_tab_cron</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

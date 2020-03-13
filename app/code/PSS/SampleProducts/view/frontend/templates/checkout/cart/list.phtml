@@ -1,0 +1,94 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+/**
+ * @var \PSS\SampleProducts\Block\Checkout\Cart\ListProducts $block
+ */
+
+/** @var \Magento\Catalog\Helper\Image $helperImage */
+$helperImage = $this->helper('Magento\Catalog\Helper\Image');
+
+/** @var \PSS\SampleProducts\Helper\Data $helperSampleProducts */
+$helperSampleProducts = $this->helper('PSS\SampleProducts\Helper\Data');
+
+$enabled = $helperSampleProducts->isEnabled();
+$isSlider = $helperSampleProducts->isSliderEnabled();
+$productsIdsSample = $helperSampleProducts->getListProducts();
+$productsInCart= $block->getProductsInCart();
+$items = $block->getList($productsIdsSample);
+$maxItemsSelected = $helperSampleProducts->getNumberProductsToBeAdded();
+$isSlider = $isSlider && count($items) > 3 ? true : false;
+$allSampleProductsIds = [];
+
+?>
+
+<?php if($enabled): ?>
+<div id="sample-products" data-bind="scope: 'sampleProducts'">
+    <span class="title-sample-products title-medium-blue" data-bind="blockLoader: sampleProducts.loading">
+        <span><?php echo __("Choose your samples free."); ?></span>
+    </span>
+    <?php if(count($items) > 0): ?>
+        <div class="products-grid sample-products" >
+            <div class="actions">
+                <span class="select-checked" id="select-checked"><span><?=  __("Numero max de productos a seleccionar: %1", $maxItemsSelected); ?></span></span>
+            </div>
+            <ol class="products list items product-items <?php echo $isSlider? 'owl-carousel-suggested': ''; ?>"
+                id="<?php echo $isSlider ? 'owl-carousel-suggested': 'product-suggested'; ?>" <?php if($isSlider): ?>data-bind="owlCarousel: {}"<?php endif;?> >
+                <?php /** @var \Magento\Catalog\Model\Product $item */ ?>
+                <?php foreach ($items as $item): ?>
+                    <?php $allSampleProductsIds[] = $item->getId(); ?>
+                    <?php $productTest = $this->_productRepositoryFactory->create()->getById($item->getEntityId()); ?>
+                    <?php $itemImageUrl= $helperImage->init($productTest, 'product_thumbnail_image')->getUrl(); ?>
+
+                    <li class="item product product-item">
+                        <div class="add-cart-checkbox">
+                            <label for="sample-checkbox-<?= $item->getId(); ?>" style="display: none;"></label>
+                            <input type="checkbox" name="sample_products[]" value="<?php echo $item->getId(); ?>"
+                                   id="sample-checkbox-<?= $item->getId(); ?>" class="sample-products-checkbox"
+                                <?php if(in_array($item->getId(), $productsInCart)):?> checked="checked" <?php endif; ?>/>
+                        </div>
+                        <div class="image-container-suggested">
+                            <img src="<?php echo $itemImageUrl; ?>" />
+                        </div>
+                        <div class="product-item-details-suggested">
+                            <div class="product-title-wrapper">
+                                <strong class="product-item-name">
+                                    <?= $block->escapeHtml($item->getName()); ?>
+                                </strong>
+                                <span class="product description product-item-description">
+                            <?= $item->getData('short_description'); ?>
+                        </span>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+            <input name="all_sample_products" type="hidden" value="<?= implode(",", $allSampleProductsIds); ?>" />
+            <script type="text/x-magento-init">
+             {
+                "#sample-products": {
+                    "Magento_Ui/js/core/app": {
+                        "components": {
+                            "sampleProducts" : {
+                                "component" : "PSS_SampleProducts/js/view/sample-products",
+                                "maxNumberProduct": "<?= $maxItemsSelected; ?>",
+                                "isSlider": "<?= $isSlider; ?>",
+                                "formKey": "<?= $block->getFormKey() ?>"
+                            }
+                        }
+                    }
+                }
+             }
+            </script>
+        </div>
+    <?php else: ?>
+        <div class="container">
+            <span class="message"><?= __("There are no products sample products."); ?></span>
+        </div>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
+
+
+

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="controller_action_predispatch_checkout_index_index">
+        <observer name="checkout_step_validation" instance="PSS\AddStepToCheckout\Observer\CheckoutObserver"/>
+    </event>
+    <event name="load_customer_quote_before">
+        <observer name="prevent_load_customer_quote_before" instance="PSS\AddStepToCheckout\Observer\LoadCustomerQuoteBefore"/>
+    </event>
+</config>

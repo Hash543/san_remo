@@ -1,0 +1,4 @@
+<?php  $_product = $block->getProduct() ?>
+<h2 class="product-item-gama">
+    <?= /* @escapeNotVerified */ $_product->getResource()->getAttribute('gama')->getFrontend()->getValue($_product); ?>
+</h2>

@@ -1,0 +1,40 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\PaymentPoints\Model\Quote\Address\Total;
+
+use PSS\PaymentPoints\Model\Payment\PaymentPoints;
+
+class PayByPoints extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal {
+    /**
+     * @var \Mageplaza\RewardPoints\Helper\Calculation
+     */
+    protected $calculation;
+    /**
+     * PayByPoints constructor.
+     * @param \Mageplaza\RewardPoints\Helper\Calculation $calculation
+     */
+    public function __construct(
+        \Mageplaza\RewardPoints\Helper\Calculation $calculation) {
+        $this->calculation = $calculation;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function collect(
+        \Magento\Quote\Model\Quote $quote,
+        \Magento\Quote\Api\Data\ShippingAssignmentInterface $shippingAssignment,
+        \Magento\Quote\Model\Quote\Address\Total $total
+    ) {
+        /*$paymentMethod = $quote->getPayment()->getMethod();
+        if(!$this->calculation->isAllowSpending($quote)) {
+            return $this;
+        }
+        if($paymentMethod == PaymentPoints::PAYMENT_METHOD_PAYMENT_POINTS) {
+            $quote->setData('mp_reward_spent', 100)->setData('mp_reward_applied', 'rate');
+        }*/
+        return $this;
+    }
+}

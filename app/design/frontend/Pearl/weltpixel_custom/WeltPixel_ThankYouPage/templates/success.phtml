@@ -1,0 +1,63 @@
+<?php
+// @codingStandardsIgnoreFile
+/** @var $_helper WeltPixel\ThankYouPage\Helper\Data */
+$_helper = $this->helper('WeltPixel\ThankYouPage\Helper\Data');
+$pageSubtitle = $_helper->getPageSubTitle();
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();       
+?>
+<div class="inner-wrapper-thankyou">
+<div class="checkout-page-title-wrapper thank-you-page">
+    <div class="icon_thank_you_01"><img alt="<?= /* @escapeNotVerified */ __('Thank you') ?>" src="<?php echo $block->getViewFileUrl('images/thankyoupage/check.png') ?>"></div>
+</div>
+<div class="checkout-success">
+    <span class="title-order"><?= __('Your order has been successfully completed.'); ?></span>
+    <h1 class="page-title"><?= $_helper->getPageTitle() ?></h1>
+    <?php if ($block->getOrderId()):?>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p class="order-number"><?= __($pageSubtitle, sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeHtml($block->getViewOrderUrl()), $block->escapeHtml($block->getOrderId()))) ?></p>
+        <?php  else :?>
+            <p><?= __($pageSubtitle, sprintf('<strong>%s</strong>', $block->escapeHtml($block->getOrderId()))) ?></p>
+        <?php endif;?>
+            <?php $orderData = $objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($block->getOrderId()); ?>
+            <?php $priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); ?>
+            <?php $paymentMethodCode = $orderData->getPayment()->getMethodInstance()->getCode(); ?>
+            <?php if($paymentMethodCode == "banktransfer"){ ?>
+                <p><?php echo __('You will receive an email with all the details of your order and once it has been delivered we will send you the invoice.'); ?></p>
+                <br/>
+                <p><?php echo __('To complete your order and proceed with your preparation you must make a transfer to the account number'); ?>
+                    <b><?php echo __('ES02 0081 5375 9200 0119 5329'); ?></b><?php echo __(' | Headline: '); ?> <b><?php __('PERFUMERIES SAN REMO S.A.'); ?></b>
+                    <?php echo __('for the amount of ');?><?php echo $priceHelper->currency($orderData->getGrandTotal(), true, false); ?>, <?php echo __('indicating in the concept '); ?><b><?php echo __('Order '); ?><?php echo '#'.$orderData->getIncrementId(); ?></b>. 
+                    <?php echo __('Once we have received your transfer (2 working days) we will proceed to the preparation of your order and it will be delivered to you ');?><b><?php echo __('48-72 hours.'); ?></b>
+                </p>
+                <br/>
+                <p><?php echo __('Do not forget to visit our BEAUTYBLOG to be up to date with all our tips and news. click'); ?> <a href="<?= /* @escapeNotVerified */ $block->getContinueUrl().'blog' ?>" /><?php echo __('here!'); ?></a></p>
+            <?php }else{ ?>
+                <p><?= $_helper->getOrderDescription() ?></p>
+            <?php } ?>
+    <?php endif;?>
+
+    <?= $block->getAdditionalInfoHtml() ?>
+
+    <?php if ($_helper->showContinueShopping()) : ?>
+    <div class="actions-toolbar">
+        <div class="primary continue-shipping">
+            <a class="action primary continue" href="<?= /* @escapeNotVerified */ $block->getContinueUrl() ?>"><span><?= /* @escapeNotVerified */ __('Continue Shopping') ?></span></a>
+        </div>
+        <div class="primary print-receipt">
+            <?php echo $this->getLayout()->createBlock("Magento\Checkout\Block\Onepage\Success")->setTemplate("Magento_Checkout::button.phtml")->toHtml();?>
+        </div>
+    </div>
+    <?php else: ?>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <?php echo $this->getLayout()->createBlock("Magento\Checkout\Block\Onepage\Success")->setTemplate("Magento_Checkout::button.phtml")->toHtml();?>
+        </div>
+    </div>
+    <?php endif; ?>
+            
+</div>
+</div>

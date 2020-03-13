@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Israel Yasis
+ * @description This Module helps to integrate the MagePlaza_ShopByBrand module with WeltPixel Layered Navigation module.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mageplaza\Shopbybrand\Controller\Index\View" type="Pss\ShopByBrand\Controller\Index\View" />
+</config>

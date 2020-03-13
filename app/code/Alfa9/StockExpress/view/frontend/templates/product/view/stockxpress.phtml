@@ -1,0 +1,22 @@
+<?php
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\abstractView
+ */
+$_product = $block->getProduct();
+?>
+<?php if ($_product->getData('express_stock') > 0): ?>
+    <strong><p><?php echo __('Express Delivery') ?></p></strong>
+    <div id="block-store-list" data-bind="scope:'store-list'" class="block">
+        <span class="stock-express" data-role="title"></span>
+        <div id="stock-express" class="content" data-role="content"></div>
+        <script type="text/x-magento-init">
+            {
+                "#block-store-list": {
+                    "Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout();?>
+                }
+            }
+        </script>
+    </div>
+<?php endif; ?>

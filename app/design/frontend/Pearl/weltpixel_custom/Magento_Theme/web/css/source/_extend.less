@@ -1,0 +1,634 @@
+//
+//  Homepage
+//  ____________________________________________
+
+//
+//  Variables
+//  _____________________________________________
+
+
+//
+//  Common
+//  ----------------------------------------------
+& when (@media-common = true) {
+    .cms-index-index {
+        .page-main {
+            .publicity-banners-wrapper {
+                .promo-text {
+                    p {
+                        color: @color-blue;
+                        font-family: 'hurme_geometric_sans_2bold';
+
+                        span {
+                            color: @button-primary__background;
+                        }
+
+                        a {
+                            background-color: @btn-secondary;
+                            color: @color-blue;
+                            display: inline-block;
+                            text-transform: uppercase;
+                            vertical-align: top;
+                        }
+                    }
+                }
+            }
+
+            .section {
+                &-container {
+                    padding: 30px 0;
+
+                    .content-heading,
+                    .section-title {
+                        text-align: center;
+
+                        h2 {
+                            color: @color-blue;
+                            font-family: 'hurme_geometric_sans_2regular';
+                            margin: 0;
+                        }
+                    }
+
+                    &.section-recomendaciones {
+                        #pre-div {
+                            display: none;
+                        }
+
+                        .custom-slider {
+                            padding: 0;
+
+                            .owl-item {
+                                .product.details.product-item-details {
+                                    .product-title-wrapper {
+                                        .product-item-manufacturer {
+                                            color: @button-primary__background;
+                                            font-family: 'hurme_geometric_sans_1bold';
+                                            font-size: 16px;
+                                            font-weight: normal;
+                                            margin: 0 0 15px;
+                                            text-align: center;
+                                            .product-item-link {
+                                                color: @button-primary__background;
+                                            }
+                                        }
+
+                                        .product.name.product-item-name,
+                                        .product-gama-attr-val {
+                                            color: @color-blue;
+                                            font-family: 'hurme_geometric_sans_1bold';
+                                            font-size: 11px;
+                                            font-weight: normal;
+
+                                            .product-item-link {
+                                                color: @color-blue !important;
+
+                                                &:hover {
+                                                    text-decoration: none;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .price-box.price-final.price {
+                                        max-height: 76px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .item.product.product-item {
+                            padding-top: 10px;
+                        }
+
+                        .product-item-name,
+                        .product-gama-attr-val {
+                            color: @button-primary__background;
+                            font-family: 'hurme_geometric_sans_1bold';
+                            font-size: 16px;
+                            font-weight: normal;
+                            margin: 0 10px 20px;
+                            padding: 0 0 18px;
+
+                            a {
+                                color: @button-primary__background;
+                            }
+                        }
+
+                        .price-container {
+                            .regular-price {
+                                .price-label {
+                                    display: none !important;
+                                    color: @color-blue;
+                                    font-family: 'hurme_geometric_sans_1bold';
+                                    font-size: 10px;
+                                    font-weight: normal;
+                                    letter-spacing: 0;
+                                    line-height: normal;
+                                }
+                                .price {
+                                    color: @color-blue;
+                                    font-family: 'hurme_geometric_sans_1bold';
+                                    font-size: 27px !important;
+                                    font-weight: normal;
+                                    letter-spacing: 1px;
+                                    line-height: normal;
+                                    padding: 0;
+                                }
+                            }
+                            .final-price {
+                                color: @button-primary__background;
+                                text-decoration: line-through;
+                                .price-label {
+                                    display: none !important;
+                                }
+                                .price {
+                                    color: @color-blue;
+                                    font-family: 'hurmegeometricsans1_regularRg';
+                                    font-size: 16px !important;
+                                    font-weight: normal;
+                                    line-height: normal;
+                                }
+                            }
+                            .discount-price {
+                                display: none;
+                            }
+                        }
+
+                        .product-item {
+                            background-color: #FFFFFF;
+                            position: relative;
+                            .actions-primary {
+                                width: 100%;
+                            }
+                            .tocart {
+                                background-color: @button-primary__background;
+                                border-color: @button-primary__background;
+                                color: #FFFFFF;
+                                font-family: 'hurme_geometric_sans_2bold';
+                                font-size: 10px;
+                                font-weight: normal;
+                                height: 39px;
+                                line-height: 17px;
+                                margin: 0;
+                                max-width: 120px;
+                                padding: 5px 15px;
+                                text-transform: uppercase;
+                                width: 100%;
+
+                                &:hover {
+                                    background: @button-primary__hover__background;
+                                }
+                            }
+                            .secondary-addto-links.actions-secondary {
+                                display: block;
+                                position: absolute;
+                                right: 17px;
+                                top: 17px;
+                                z-index: 9;
+                                .action.towishlist {
+                                    &:before {
+                                        background: transparent url("../images/icon-product-wishlist.png") no-repeat scroll 0 0;
+                                        content: '';
+                                        height: 21px;
+                                        width: 24px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.section-brands {
+                        .owl-carousel {
+                            .owl-stage-outer {
+                                padding: 0;
+                            }
+                            .owl-item img {
+                                width: auto;
+                            }
+                        }
+
+                        .owl-carousels.brand-carousel {
+                            .owl-controls {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    &.section-instagram {
+                        .instagram-widget-container {
+                            margin: 0;
+
+                            .instagram-heading-title {
+                                margin: 0;
+
+                                h3 {
+                                    color: @color-blue;
+                                    font-family: 'hurme_geometric_sans_2regular';
+                                    margin: 0;
+                                }
+                            }
+
+                            .instagram-photos {
+                                display: grid;
+
+                                a {
+                                    width: auto;
+
+                                    img {
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &-blog {
+                    .section-wrapper {
+                        margin-right: auto;
+                        margin-left: auto;
+
+                        .post-item {
+                            .post-content {
+                                height: 100%;
+                                position: relative;
+
+                                .post-image {
+                                    height: 100%;
+                                }
+
+                                .post-data {
+                                    position: absolute;
+                                    top: 0;
+                                    right: 0;
+                                    bottom: 0;
+                                    left: 0;
+
+                                    .post-title,
+                                    .post-date {
+                                        color: @white;
+                                        font-weight: normal;
+                                        text-align: left;
+                                    }
+
+                                    .post-title {
+                                        font-family: 'hurmegeometricsans1_regularRg';
+                                        text-transform: initial;
+                                    }
+
+                                    .post-date {
+                                    }
+                                }
+                            }
+
+                            &:first-child {
+                                .post-data {
+                                    background: rgba(1, 68, 95, 0.5);
+                                }
+                            }
+
+                            &:nth-child(2) {
+                                .post-data {
+                                    background: rgba(255, 170, 0, 0.5);
+                                }
+                            }
+
+                            &:nth-child(3) {
+                                .post-data {
+                                    background: rgba(255, 65, 40, 0.5);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cms-index-index {
+        .page-main {
+            .messages {
+                max-width: 1176px;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 0 30px;
+            }
+
+            .publicity-banners-wrapper {
+                .promo-text {
+                    line-height: 26px;
+                    margin: 16px 0;
+                    padding: 0;
+                    border-bottom: 1px solid @color-blue;
+                    border-top: 1px solid @color-blue;
+
+                    p {
+                        font-size: 17px;
+                        margin: 0;
+                        padding: 16px 0 14px;
+
+                        a {
+                            font-size: 13px;
+                            margin-left: 15px;
+                            padding: 0 12px;
+                        }
+                    }
+                }
+
+                .bottom.tiles {
+                    .banner-promo {
+                        p {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+
+            .section {
+                &-container {
+                    .instagram-widget-container .instagram-heading-title,
+                    .content-heading,
+                    .section-title {
+                        padding-bottom: 40px;
+
+                        h2 {
+                            font-size: 32px;
+                        }
+                    }
+
+                    &.section-instagram {
+                        .instagram-widget-container {
+                            .instagram-heading-title h3 {
+                                h3 {
+                                    font-size: 30px;
+                                }
+                            }
+
+                            .instagram-photos {
+                                grid-template-columns: 33% 33% 33%;
+
+                                a {
+                                    img {
+
+                                    }
+
+                                    &:last-child {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.section-brands {
+                        padding: 25px 0 20px;
+                    }
+                }
+
+                &-blog {
+                    .section-wrapper {
+                        display: grid;
+                        grid-template-columns: 60% 40%;
+                        grid-template-rows: repeat(2, 185px);
+                        padding: 0 15px;
+
+                        .post-item {
+                            .post-content {
+                                height: 100%;
+                                position: relative;
+
+                                .post-image {
+                                    height: 100%;
+                                }
+
+                                .post-data {
+                                    .post-title,
+                                    .post-date {
+
+                                    }
+
+                                    .post-title {
+                                        font-size: 25px;
+                                        margin: 0 0 15px;
+                                    }
+
+                                    .post-date {
+                                        font-family: 'hurme_geometric_sans_2bold';
+                                        font-size: 16px;
+                                    }
+                                }
+                            }
+
+                            &:first-child {
+                                grid-row: span 2;
+                                margin-right: 15px;
+
+                                .post-data {
+                                    margin: 25px;
+                                    padding: 25px;
+
+                                    .post-title {
+                                        max-width: 50%;
+                                        margin: 0 0 40px;
+                                    }
+                                }
+                            }
+
+                            &:nth-child(2) {
+                                margin-bottom: 7px;
+                            }
+
+                            &:nth-child(3) {
+                                margin-top: 7px;
+                            }
+
+                            &:nth-child(2),
+                            &:nth-child(3) {
+                                .post-data {
+                                    margin: 20px;
+                                    padding: 5px 15px;
+                                }
+                            }
+                        }
+
+                        &:before, &:after {
+                            display: none;
+                        }
+
+                        &.mobile {
+                            display: none;
+                        }
+                    }
+
+                    .post-navigation {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .cms-index-index {
+        .page-main {
+            .publicity-banners-wrapper {
+                margin-bottom: 0;
+
+                .home-slider {
+                    .custom-slider {
+                        padding: 0;
+                    }
+                }
+
+                .promo-text {
+                    margin: 0;
+                    padding: 10px 0;
+
+                    p {
+                        font-size: 14px;
+                        line-height: 34px;
+
+                        a {
+                            margin-left: 10px;
+                            padding: 0 10px;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+
+            .section {
+                &-container {
+                    .content-heading,
+                    .section-title {
+                        padding-bottom: 25px;
+
+                        h2 {
+                            font-size: 24px;
+                        }
+                    }
+
+                    &.section-recomendaciones {
+                        padding-bottom: 15px;
+                    }
+
+                    &.section-brands {
+                        padding: 25px 0 20px;
+                    }
+
+                    &.section-instagram {
+                        .instagram-widget-container {
+                            .instagram-heading-title {
+                                padding-bottom: 25px;
+                                margin: 0;
+
+                                h3 {
+                                    font-size: 24px;
+                                }
+                            }
+
+                            .instagram-photos {
+                                grid-template-columns: 50% 50%;
+
+                                a {
+                                    padding: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &-blog {
+                    position: relative;
+
+                    .section-wrapper {
+                        display: none;
+                        padding: 0 15px;
+                        width: 100%;
+
+                        .post-item {
+                            width: 100%;
+                            height: 100%;
+                            text-align: left;
+
+                            .post-content {
+                                .post-data {
+                                    margin: 6% 10%;
+                                    padding: 15px;
+
+                                    .post-title,
+                                    .post-date {
+
+                                    }
+
+                                    .post-title {
+                                        font-size: 20px;
+                                        margin: 0 0 35px;
+                                    }
+
+                                    .post-date {
+                                        font-family: 'hurmegeometricsans1_regularRg';
+                                        font-size: 18px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .owl-controls {
+                            .owl-nav {
+                                [class*="owl-"] {
+                                    background: transparent;
+                                    width: 30px;
+                                    height: 50px;
+
+                                    &:before {
+                                        background: transparent no-repeat scroll 0 0;
+                                        background-size: contain;
+                                        top: 0;
+                                        left: 0;
+                                        width: 30px;
+                                        height: 50px;
+                                        transform: none;
+                                        .lib-css(mask-image, none, 1)
+                                    }
+                                }
+
+                                .owl-prev {
+                                    left: 40px;
+
+                                    &:before {
+                                        background-image: url("../images/bg-recomendaciones-slider-prev-mobile.png");
+                                    }
+                                }
+
+                                .owl-next {
+                                    right: 40px;
+
+                                    &:before {
+                                        background-image: url("../images/bg-recomendaciones-slider-next-mobile.png");
+                                    }
+                                }
+                            }
+                        }
+
+                        &.mobile {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

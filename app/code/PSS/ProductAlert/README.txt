@@ -1,0 +1,1 @@
+This module enable the possibility of create Product Alert by Stock with just and Email

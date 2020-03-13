@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="plugin_configurable_block" sortOrder="10"
+                type="Alfa9\ConfigurableProduct\Plugin\Block\ConfigurableProduct\Product\View\Type\Configurable"/>
+    </type>
+    <preference for="Magento\Catalog\Block\Product\View\Gallery" type="Alfa9\ConfigurableProduct\Block\Product\View\Gallery" />
+    <preference for="Magento\ConfigurableProduct\Model\Product\Type\Collection\SalableProcessor"
+                type="Alfa9\ConfigurableProduct\Model\Product\Type\Collection\SalableProcessor" />
+
+    <type name="Magento\ConfigurableProduct\Model\ResourceModel\Product\LinkedProductSelectBuilder">
+        <arguments>
+            <argument name="baseSelectProcessor" xsi:type="object">Alfa9\ConfigurableProduct\Model\ResourceModel\Product\StockStatusBaseSelectProcessor</argument>
+        </arguments>
+    </type>
+</config>

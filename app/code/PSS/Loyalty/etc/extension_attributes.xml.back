@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
+        <attribute code="id_crm" type="int"/>
+        <attribute code="origin_crm" type="string"/>
+        <attribute code="update_crm" type="string" />
+        <attribute code="creation" type="string" />
+        <attribute code="list_id" type="int"/>
+    </extension_attributes>
+</config>

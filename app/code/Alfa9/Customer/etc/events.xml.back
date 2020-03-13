@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_account_edited">
+        <observer name="alfa9_account_edit" instance="Alfa9\Customer\Observer\UpdateCustomer" />
+    </event>
+</config>

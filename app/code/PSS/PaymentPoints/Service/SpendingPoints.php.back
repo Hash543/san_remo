@@ -1,0 +1,58 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\PaymentPoints\Service;
+
+use Magento\Framework\Exception\NoSuchEntityException;
+
+class SpendingPoints implements \PSS\PaymentPoints\Api\SpendingPointsInterface {
+
+    /**
+     * @var \Magento\Quote\Api\CartTotalRepositoryInterface
+     */
+    protected $cartTotalRepository;
+    /**
+     * @var \Magento\Quote\Api\CartRepositoryInterface
+     */
+    protected $cartRepository;
+    /**
+     * @var \Mageplaza\RewardPoints\Helper\Calculation
+     */
+    protected $calculation;
+    /**
+     * SpendingPoints constructor.
+     * @param \Mageplaza\RewardPoints\Helper\Calculation $calculation
+     * @param \Magento\Quote\Api\CartRepositoryInterface $cartRepository
+     * @param \Magento\Quote\Api\CartTotalRepositoryInterface $cartTotalRepository
+     */
+    public function __construct(
+        \Mageplaza\RewardPoints\Helper\Calculation $calculation,
+        \Magento\Quote\Api\CartRepositoryInterface $cartRepository,
+        \Magento\Quote\Api\CartTotalRepositoryInterface $cartTotalRepository
+    ) {
+        $this->cartTotalRepository = $cartTotalRepository;
+        $this->cartRepository = $cartRepository;
+        $this->calculation = $calculation;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function payByPoints(
+        $cartId,
+        $points,
+        $ruleId
+    ) {
+        /** @var \Magento\Quote\Model\Quote $quote */
+        $quote = $this->cartRepository->get($cartId);
+        try {
+            $maxPoints = $this->calculation->getMaxSpendingPointsByRate($quote);
+        } catch (NoSuchEntityException $noSuchEntityException) {
+            $maxPoints = 0;
+        }
+        $quote->setData('mp_reward_spent', $maxPoints)->setData('mp_reward_applied', $ruleId);
+        $quote->collectTotals();
+        $this->cartRepository->save($quote);
+        return $this->cartTotalRepository->get($quote->getId());
+    }
+}

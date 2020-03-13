@@ -1,0 +1,73 @@
+<?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * This package designed for Magento COMMUNITY edition
+ * PSS Digital does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * PSS Digital does not provide extension support in case of * incorrect edition usage.
+ *
+ * @author PSS Digital Team
+ * @category PSS
+ * @package PSS_AddStepToCheckout
+ * @copyright Copyright (c) 2018 PSS (https://www.pss-ti.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+
+/**
+ * Checkout Styles
+ *
+ * @var $block PSS\AddStepToCheckout\Block\CheckoutSettings
+ */
+$checkout_color = $block->getCheckoutColor();
+$is_enable = $block->isEnable();
+
+if ( $is_enable ):
+?>
+<style>
+    .checkout-success .actions-toolbar > .primary .action.primary,
+    .checkout-index-index .modal-popup .modal-footer .action-save-address,
+    .checkout-index-index .actions-toolbar > .primary .action.primary,
+    .checkout-shipping-method .actions-toolbar .action.primary,
+    .cart-summary .checkout-methods-items .action.primary.checkout {
+        background: <?php echo $checkout_color; ?>;
+        border-color: <?php echo $checkout_color; ?>;
+    }
+    .cart.table-wrapper .action,
+    .checkout-onepage-success .print,
+    .cart-empty a,
+    .checkout-success .order-number,
+    .checkout-index-index .modal-popup .modal-footer .action.secondary,
+    .shipping-information-content a,
+    .billing-address-details a,
+    .shipping-address-item.selected-item a,
+    .checkout-index-index .actions-toolbar > .secondary .action,
+    .cart-summary .action.multicheckout,
+    .cart-discount .block > .title strong {
+        color: <?php echo $checkout_color; ?>;
+    }
+    .opc-progress-bar-item._active > span::before,
+    .opc-progress-bar-item._active::before {
+        background: <?php echo $checkout_color; ?>;
+        border-color: <?php echo $checkout_color; ?>;
+    }
+    .opc-wrapper .shipping-address-item.selected-item,
+    .opc-progress-bar-item._active > span::after {
+        border-color: <?php echo $checkout_color; ?>;
+    }
+    .opc-wrapper .shipping-address-item.selected-item::after {
+        background: <?php echo $checkout_color; ?>;
+    }
+    .opc-progress-bar-item._complete > span {
+        color: <?php echo $checkout_color; ?>;
+    }
+    #place-order-trigger-wrapper .action.primary {
+        background: <?php echo $checkout_color; ?>;
+        border-color: <?php echo $checkout_color; ?>;
+        margin-left: 30px;
+    }
+</style>
+<?php endif;

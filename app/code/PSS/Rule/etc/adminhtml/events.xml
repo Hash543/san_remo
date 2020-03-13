@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  * @author Israel Yasis
+  */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_controller_salesrule_prepare_save">
+        <observer name="pss_rule_controller_salerule_prepare_save" instance="PSS\Rule\Observer\PrepareSaveControllerSalesRule" />
+    </event>
+</config>

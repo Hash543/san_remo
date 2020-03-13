@@ -1,0 +1,54 @@
+& when (@media-common = true) {
+    /* apply only on desktops */
+    @media only screen and (min-width: @screen__m) {
+        // desktop styles was moved separately in css/navigation_desktop.css
+    }
+    
+    @media only screen and (min-width: 472px) {
+        .nav-open .page-wrapper { left: 420px !important; }
+    }
+    @media only screen and (max-width: 472px) {
+        .nav-open .page-wrapper { left: calc(~"100% - 54px") !important; }
+    }
+    /* apply only on mobile */
+    @media only screen and (max-width: @screen__m) {
+        // mobile styles was moved separately in css/navigation_mobile.css
+    }
+    
+    /** all screen resolutions */
+    .navigation {
+        .megamenu {
+            &.level0 {
+                .submenu,
+                &.active > .level-top,
+                &.has-active > .level-top {
+                    border: 0 none;
+                }
+                .submenu a:hover,
+                .submenu a.ui-state-focus {
+                    background: #ffffff;
+                }
+            }
+        }
+        .columns-group {
+            display: inline-block !important;
+            float: left;
+            width: auto;
+            &:before,
+            &:after {
+                content: none !important;
+                display: none !important;
+            }
+        }
+        .columns-group > li {
+            float: left !important;
+            width: 100% !important;
+        }
+    }
+    /** fix for magnified product image */
+    .catalog-product-view {
+        .magnifier-preview {
+            z-index: 1;
+        }
+    }
+}

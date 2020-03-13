@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_register_success">
+        <observer name="amasty_gdpr" instance="Amasty\Gdpr\Observer\Customer\Registration" />
+    </event>
+    <event name="controller_action_predispatch_contact_index_post">
+        <observer name="amasty_gdpr" instance="Amasty\Gdpr\Observer\Customer\ContactUs" />
+    </event>
+    <event name="newsletter_subscriber_save_after">
+        <observer name="amasty_gdpr" instance="Amasty\Gdpr\Observer\Customer\Newsletter"/>
+    </event>
+</config>

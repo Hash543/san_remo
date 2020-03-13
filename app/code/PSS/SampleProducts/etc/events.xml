@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_quote_remove_item">
+        <observer name="capture_sales_quote_remove_item" instance="PSS\SampleProducts\Observer\Quote\RemoveItem" />
+    </event>
+</config>

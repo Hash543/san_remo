@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <!-- Emails to Stores-->
+    <template id="carriers_storepickup_order_new_template" label="New Order" file="order_new_template.html" type="html" module="Alfa9_StorePickup" area="frontend"/>
+    <template id="carriers_storepickup_order_new_template_guest" label="New Order for Guest" file="order_new_template_guest.html" type="html" module="Alfa9_StorePickup" area="frontend"/>
+
+    <!-- Emails to customer-->
+    <template id="carriers_storepickup_storepickup_cancel_template" label="Store Pickup Cancel" file="storepickup_cancel.html" type="html" module="Alfa9_StorePickup" area="frontend"/>
+    <template id="carriers_storepickup_storepickup_confirm_template" label="Store Pickup Confirm" file="storepickup_confirm.html" type="html" module="Alfa9_StorePickup" area="frontend"/>
+
+</config>

@@ -1,0 +1,149 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\Rule\Model\Image;
+
+use Magento\Framework\Exception\LocalizedException;
+
+class Uploader {
+
+
+    public function __construct(
+        \Magento\MediaStorage\Helper\File\Storage\Database $coreFileStorageDatabase,
+        \Magento\Framework\Filesystem $filesystem,
+        \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Psr\Log\LoggerInterface $logger,
+        $baseTmpPath,
+        $basePath,
+        \Magento\Framework\ObjectManagerInterface $objectmanager,
+        $allowedExtensions = []
+    ) {
+        $this->coreFileStorageDatabase  = $coreFileStorageDatabase;
+        $this->mediaDirectory           = $filesystem->getDirectoryWrite(DirectoryList::MEDIA);
+        $this->uploaderFactory          = $uploaderFactory;
+        $this->storeManager             = $storeManager;
+        $this->logger                   = $logger;
+        $this->baseTmpPath              = $baseTmpPath;
+        $this->basePath                 = $basePath;
+        $this->_objectManager           = $objectmanager;
+        $this->allowedExtensions        = $allowedExtensions;
+    }
+
+    /**
+     * @param $fileId
+     * @return array
+     * @throws LocalizedException
+     */
+    public function saveFileToTmpDir($fileId) {
+        $baseTmpPath = $this->getBaseTmpPath();
+        /** @var  \Magento\MediaStorage\Model\File\Uploader $uploader */
+        $uploader = $this->uploaderFactory->create(['fileId' => $fileId]);
+        $uploader->setAllowedExtensions($this->getAllowedExtensions());
+        $uploader->setAllowRenameFiles(true);
+        $uploader->setFilesDispersion(true);
+        try{
+            $result = $uploader->save($this->mediaDirectory->getAbsolutePath($baseTmpPath));
+        }catch (\Exception $exception) {
+            throw new LocalizedException(
+                __('File can not be saved to the destination folder.')
+            );
+        }
+
+
+        if (!$result) {
+            throw new LocalizedException(
+                __('File can not be saved to the destination folder.')
+            );
+        }
+        /**
+         * Workaround for prototype 1.7 methods "isJSON", "evalJSON" on Windows OS
+         */
+        $result['tmp_name'] = str_replace('\\', '/', $result['tmp_name']);
+        $result['path'] = str_replace('\\', '/', $result['path']);
+        $result['url'] =  $this->getBaseUrl() . $this->getFilePath($baseTmpPath, $result['file']);
+        return $result;
+    }
+
+    public function setBaseUrl() {
+        $this->baseir
+    }
+    /**
+     * Set base tmp path
+     *
+     * @param string $baseTmpPath
+     *
+     * @return void
+     */
+    public function setBaseTmpPath($baseTmpPath)
+    {
+        $this->baseTmpPath = $baseTmpPath;
+    }
+
+    /**
+     * Set base path
+     *
+     * @param string $basePath
+     *
+     * @return void
+     */
+    public function setBasePath($basePath)
+    {
+        $this->basePath = $basePath;
+    }
+
+    /**
+     * Set allowed extensions
+     *
+     * @param string[] $allowedExtensions
+     *
+     * @return void
+     */
+    public function setAllowedExtensions($allowedExtensions)
+    {
+        $this->allowedExtensions = $allowedExtensions;
+    }
+
+    /**
+     * Retrieve base tmp path
+     *
+     * @return string
+     */
+    public function getBaseTmpPath()
+    {
+        return $this->baseTmpPath;
+    }
+
+    /**
+     * Retrieve base path
+     *
+     * @return string
+     */
+    public function getBasePath()
+    {
+        return $this->basePath;
+    }
+    /**
+     * Retrieve base path
+     *
+     * @return string[]
+     */
+    public function getAllowedExtensions()
+    {
+        return $this->allowedExtensions;
+    }
+
+    /**
+     * Retrieve path
+     *
+     * @param string $path
+     * @param string $imageName
+     *
+     * @return string
+     */
+    public function getFilePath($path, $imageName)
+    {
+        return rtrim($path, '/') . '/' . ltrim($imageName, '/');
+    }
+}

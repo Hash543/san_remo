@@ -1,0 +1,32 @@
+<?php
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\abstractView
+ */
+$_product = $block->getProduct();
+?>
+
+<?php if ($ingredientes = $_product->getData($this->getCode())):
+    echo $ingredientes;
+else: ?>
+	<p></p>
+<?php endif; ?>
+<script type="text/javascript">
+	require(['jquery'],function($){
+		$(document).ready(function(){
+			if ($('#ingredientes p').is(':empty')){
+				$('#tab-label-ingredientes').hide();
+			}
+ 		});
+	});
+</script>
+<script type="text/javascript">
+	require(['jquery'],function($){
+		$(document).ready(function(){
+			if ($('#toggle-ingredientes p').is(':empty')){
+				$('#toggle-tab-label-ingredientes').hide();
+			}
+ 		});
+	});
+</script>

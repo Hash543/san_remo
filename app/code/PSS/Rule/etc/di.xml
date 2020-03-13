@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  * @author Israel Yasis
+  */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="BannerImageUploader" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">promotion/tmp/banner</argument>
+            <argument name="basePath" xsi:type="string">promotion/banner</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="PSS\Rule\Controller\Adminhtml\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">BannerImageUploader</argument>
+        </arguments>
+    </type>
+    <type name="Magento\SalesRule\Model\Rule\DataProvider">
+        <plugin name="pss_rule_data_provider" type="PSS\Rule\Plugin\Model\Rule\DataProvider" sortOrder="10" disabled="false"  />
+    </type>
+    <preference for="Magento\SalesRule\Model\Quote\Discount" type="PSS\Rule\Model\Quote\Discount" />
+    <preference for="Magento\SalesRule\Model\Validator" type="PSS\Rule\Model\Validator" />
+    <preference for="Magento\SalesRule\Model\Utility" type="PSS\Rule\Model\Utility" />
+</config>

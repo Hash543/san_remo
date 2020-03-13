@@ -1,0 +1,28 @@
+<script>// <![CDATA[
+    require([
+        'jquery'
+    ], function ($) {
+        $('.qty-plus').click(function add() {
+            var $rooms = $(this).siblings(".qty");
+            var a = $rooms.val();
+            a++;
+            $(this).siblings(".qty-less").prop("disabled", !a);
+            $rooms.val(a);
+        });
+// Set initial disabled state
+        $(".qty-less").prop("disabled", !$(this).siblings(".qty").val());
+
+        $('.qty-less').click(function subst() {
+            var $rooms = $(this).siblings(".qty");
+            var b = $rooms.val();
+            if (b >= 2) {
+                b--;
+                $rooms.val(b);
+            }
+            else {
+                $(this).siblings(".qty-less").prop("disabled", true);
+            }
+        });
+    });
+    // ]]>
+</script>

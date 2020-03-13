@@ -1,0 +1,89 @@
+//
+//  Variables
+//  _____________________________________________
+
+
+//
+//  Common
+//  ----------------------------------------------
+& when (@media-common = true) {
+    .ambanners {
+        .block {
+            //display: none;
+        }
+    }
+
+    .theme-pearl {
+        .page-wrapper {
+            .page-main {
+                /* Category Top */
+                .ambanners.ambanner-4 {
+                    td {
+                        padding: 10px 0;
+
+                        h1, h2 {
+                            font-family: 'hurmegeometricsans1_regularRg';
+                        }
+                    }
+
+                    .block {
+                        display: none;
+                    }
+                }
+            }
+
+            .page-bottom {
+                /* Category Bottom */
+                .ambanners.ambanner-5 {
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-family: 'hurmegeometricsans1_regularRg';
+
+                    h1, h2, h3, h4, h5, h6 {
+                        font-family: 'hurmegeometricsans1_regularRg';
+                    }
+
+                    .block {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .theme-pearl {
+        .page-wrapper {
+            .page-bottom {
+                /* Category Bottom */
+                .ambanners.ambanner-5 {
+                    max-width: 1176px;
+                    padding: 0 30px;
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .theme-pearl {
+        .page-wrapper {
+            .page-bottom {
+                /* Category Bottom */
+                .ambanners.ambanner-5 {
+                    padding: 0 15px;
+                }
+            }
+        }
+    }
+}

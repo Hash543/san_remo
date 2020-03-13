@@ -1,0 +1,62 @@
+<?php
+/**
+ * @var \PSS\AddStepToCheckout\Block\Checkout\Cart\Coupon $block
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<button type="button"
+        name="pseudo-update_cart_action"
+        title="<?= $block->escapeHtml(__('Update Basket')) ?>"
+        class="action pseudo-update">
+    <span><?= /* @escapeNotVerified */ __('Update Basket') ?></span>
+</button>
+<?php if($block->showCouponForm()): ?>
+<div class="block discount discount_custom" id="block-discount">
+    <div class="title" data-role="title">
+        <strong id="block-discount-heading" role="heading" aria-level="2"><?= /* @escapeNotVerified */ __('Apply Discount Code') ?></strong>
+    </div>
+    <div class="content" data-role="content" aria-labelledby="block-discount-heading">
+        <form id="discount-coupon-form"
+              action="<?= /* @escapeNotVerified */ $block->getUrl('checkout/cart/couponPost') ?>"
+              method="post"
+              data-mage-init='{"discountCode":{"couponCodeSelector": "#coupon_code",
+                                               "removeCouponSelector": "#remove-coupon",
+                                               "applyButton": "button.action.apply",
+                                               "cancelButton": "button.action.cancel"}}'>
+            <div class="fieldset coupon<?= strlen($block->getCouponCode()) ? ' applied' : '' ?>">
+                <input type="hidden" name="remove" id="remove-coupon" value="0" />
+                <div class="field">
+                    <label for="coupon_code" class="label"><span><?= /* @escapeNotVerified */ __('Enter discount code') ?></span></label>
+                    <div class="control">
+                        <input type="text" class="input-text" id="coupon_code" name="coupon_code" value="<?= $block->escapeHtml($block->getCouponCode()) ?>" placeholder="<?= $block->escapeHtml(__('Enter discount code')) ?>" <?php if (strlen($block->getCouponCode())): ?> disabled="disabled" <?php endif; ?> />
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <?php if (!strlen($block->getCouponCode())): ?>
+                        <div class="primary">
+                            <button type="button" class="action apply primary" value="<?= /* @escapeNotVerified */ __('Apply Discount') ?>">
+                                <span><?= /* @escapeNotVerified */ __('Apply Discount') ?></span>
+                            </button>
+                        </div>
+                    <?php else: ?>
+                        <div class="primary">
+                            <button type="button" class="action cancel primary" value="<?= /* @escapeNotVerified */ __('Cancel Coupon') ?>">
+                                <span><?= /* @escapeNotVerified */ __('Cancel Coupon') ?></span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<?php endif; ?>
+<script type="text/javascript">
+    require(["jquery"], function ($) {
+        $('.pseudo-update').on("click", function () {
+            $(".cart.main.actions").find('.action.update').trigger('click');
+        });
+    });
+</script>

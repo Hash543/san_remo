@@ -1,0 +1,47 @@
+<?php
+/** @var \Alfa9\Pvp\Helper\ProductHelper $productHelper */
+$productHelper = $this->helper(\Alfa9\Pvp\Helper\ProductHelper::class);
+$priceHelper = $this->helper(\Magento\Framework\Pricing\Helper\Data::class);
+
+/** @var \Magento\Catalog\Model\Product $product */
+$product = $productHelper->loadByPrice($block->getPriceId());
+$pvp_product = round($product->getPvp(), 2);
+//var_dump($product->getData());die;
+?>
+<?php if ($pvp_product && ($pvp_product > $product->getPrice())) : ?>
+    <span class="price-container <?= /* @escapeNotVerified */
+    $block->getAdjustmentCssClasses() ?>"
+        <?= $block->getSchema() ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '' ?>>
+<?php if ($block->getDisplayLabel()): ?>
+    <span class="final-price"><?= /* @escapeNotVerified */
+        $block->getDisplayLabel() ?></span>
+    <span class="price-label"><?= /* @escapeNotVerified */
+        $block->getDisplayLabel() ?></span>
+<?php endif; ?>
+        <?php
+        $finalprice = $product->getFinalPrice();
+        $finalpriceshow = $pvp_product;
+        $savePercent = (1 - ($finalprice / $pvp_product)) * 100;
+        $descuento = round($savePercent, 2);
+        ?>
+        <span id="final-price" class="price-label_price">
+            <span class="price"><?php echo $priceHelper->currency($finalpriceshow, true, false); ?></span>
+        </span>
+        <span class="price-label_price">
+            <span class="price"><?php echo $priceHelper->currency($finalprice, true, false) . "(-{$descuento}%)"; ?></span>
+        </span>
+</span>
+<?php else: ?>
+    <span class="price-container <?= /* @escapeNotVerified */
+    $block->getAdjustmentCssClasses() ?>"
+        <?= $block->getSchema() ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '' ?>>
+<?php if ($block->getDisplayLabel()): ?>
+    <span class="price-label"><?= /* @escapeNotVerified */
+        $block->getDisplayLabel() ?></span>
+<?php endif; ?>
+        <?php $finalprice = $product->getFinalPrice(); ?>
+        <span class="price-label_price">
+            <span class="price"> <?php echo $priceHelper->currency($finalprice, true, false); ?></span>
+        </span>
+</span>
+<?php endif; ?>

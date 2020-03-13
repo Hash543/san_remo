@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="treat_reminder" instance="Alfa9\Treatment\Cron\Run" method="execute">
+            <schedule>0 8 * * *</schedule>
+        </job>
+    </group>
+</config>

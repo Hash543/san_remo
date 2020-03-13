@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<body>
+    <referenceContainer name="product.info.main">
+        <referenceContainer name="product.info.bottom">
+            <container name="product.bottom.right" htmlTag="div" htmlClass="product-bottom-right" after="product.bottom.left">
+                <block name="productinfo_modal_btn" after="-" template="Alfa9_ProductInfo::catalog/product/view/modalbtn.phtml"/>
+                <block name="productinfo_modal_btn_mobile" before="product.info.stock.sku" template="Alfa9_ProductInfo::catalog/product/view/modalbtn_mobile.phtml"/>
+            </container>
+        </referenceContainer>
+    </referenceContainer>
+</body>
+</page>

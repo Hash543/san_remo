@@ -1,0 +1,16 @@
+<?php
+/** @var \Magento\Cms\Helper\Wysiwyg\Images $wysiwyg */
+$wysiwyg = $this->helper(\Magento\Cms\Helper\Wysiwyg\Images::class);
+$wysiwygURL = $wysiwyg->getCurrentUrl();
+$mediaurl = implode(explode('wysiwyg', $wysiwygURL));
+?>
+
+<div class="section-container section-destacados">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-section">
+                <?= $block->getChildHtml('slider-destacados'); ?>
+            </div>
+        </div>
+    </div>
+</div>

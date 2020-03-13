@@ -1,0 +1,179 @@
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    .theme-pearl {
+        .nav-sections {
+            .navigation {
+                .level0 {
+                    .columns-group {
+                        .megamenu {
+                            .ui-corner-all {
+                                span {
+                                    text-transform: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .megamenu {
+                        &.level1 > a:hover {
+                            color: #575757 !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop Extra Large
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .theme-pearl {
+
+    }
+}
+
+
+//
+//  Desktop Large
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .theme-pearl {
+
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .theme-pearl {
+        .nav-sections {
+            .navigation {
+                .ui-menu-icon {
+                    &.ui-icon-carat-1-e,
+                    &.ui-icon-carat-1-e {
+                        display: none !important;
+                    }
+                }
+
+                .level0 {
+                    .columns-group {
+                        .megamenu {
+                            &.level1 {
+                                > a {
+                                    &:hover {
+                                        background: @button-primary__background;
+                                        color: @white !important;
+                                    }
+                                }
+                            }
+
+                            .ui-corner-all {
+                                span {
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+
+                    &.active {
+                        > .level-top.ui-corner-all {
+                            color: @white !important;
+                        }
+                    }
+
+                    &.level-top-sectioned {
+                        .submenu.sectioned {
+                            .columns-group {
+                                .megamenu {
+                                    &.level1 {
+                                        padding: 0 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &.fullwidth {
+                        .fullwidth-wrapper {
+                            width: 1900px;
+
+                            .fullwidth-wrapper-inner {
+                                padding-top: 0;
+                            }
+
+                            .columns-group {
+                                .megamenu.level1 {
+                                    > a {
+                                        padding: 0 10px !important;
+
+                                        span {
+                                            font-size: 1.85rem;
+                                        }
+                                    }
+                                }
+
+                                .level1.submenu {
+                                    padding-top: 0;
+                                    width: 100%;
+                                    min-width: auto;
+
+                                    > .level2 {
+                                        padding: 6px 10px !important;
+
+                                        .ui-corner-all {
+                                            margin: 0 !important;
+                                            padding: 0 !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .theme-pearl {
+        .nav-sections {
+            .nav-sections-item-content {
+                .navigation {
+                    display: block;
+
+                    .megamenu {
+                        &.level0 {
+                            &:hover {
+                                > .level-top {
+                                    color: @white !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile Extra Small
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .theme-pearl {
+
+    }
+}

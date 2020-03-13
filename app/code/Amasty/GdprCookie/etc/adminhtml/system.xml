@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_GdprCookie
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amasty_gdprcookie" translate="label" type="text" sortOrder="31503" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Cookie Consent</label>
+            <tab>amasty</tab>
+            <resource>Amasty_GdprCookie::config</resource>
+            <group id="cookie_policy" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cookie Policy</label>
+                <field id="bar" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Cookie Policy Bar</label>
+                    <source_model>Amasty\GdprCookie\Model\Config\Source\CookiePolicyBar</source_model>
+                </field>
+                <field id="website_interaction" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disallow a customer to interact with the website until the Cookie Policy is accepted?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="bar" separator=",">1,2</field>
+                    </depends>
+                </field>
+                <field id="allowed_urls" translate="label comment tooltip" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed Urls</label>
+                    <comment><![CDATA[You can use a part of URL as per example: privacy-policy-cookie-restriction-mode</br>Each URL must be on a new line.]]></comment>
+                    <tooltip>A customer will be allowed to interact with the website on the following pages.</tooltip>
+                    <depends>
+                        <field id="bar" separator=",">1,2</field>
+                        <field id="website_interaction">1</field>
+                    </depends>
+                </field>
+                <field id="notify_bar_text" translate="label comment" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cookie Policy Text</label>
+                    <comment>You can use any HTML-tags in this field. Please, mind the security.</comment>
+                    <depends>
+                        <field id="bar">1</field>
+                    </depends>
+                </field>
+                <field id="confirmation_bar_text" translate="label comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cookie Policy Text</label>
+                    <comment>You can use any HTML-tags in this field. Please, mind the security.</comment>
+                    <depends>
+                        <field id="bar">2</field>
+                    </depends>
+                </field>
+                <field id="cms_to_show" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>CMS page for cookie settings</label>
+                    <source_model>Magento\Cms\Model\Config\Source\Page</source_model>
+                    <comment><![CDATA[<strong>Note:</strong> If changing to another CMS page add "Amasty Cookie Settings" widget on it.]]></comment>
+                    <depends>
+                        <field id="bar">2</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="cookie_bar_customisation" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Cookie Policy Bar Customization</label>
+                <field id="cookies_bar_location" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Cookie Policy Bar Location</label>
+                    <comment>Choose the location of your cookie policy bar</comment>
+                    <source_model>Amasty\GdprCookie\Model\Config\Source\CookieBarLocation</source_model>
+                </field>
+                <field id="background_color_cookies" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Background color of Cookie Policy Bar</label>
+                    <comment><![CDATA[Click the field to choose color]]></comment>
+                    <frontend_model>Amasty\GdprCookie\Block\Color</frontend_model>
+                </field>
+                <field id="buttons_color_cookies" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Buttons color of Cookie Policy Bar</label>
+                    <comment><![CDATA[Click the field to choose color]]></comment>
+                    <frontend_model>Amasty\GdprCookie\Block\Color</frontend_model>
+                </field>
+                <field id="buttons_text_color_cookies" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Buttons text color of Cookie Policy Bar</label>
+                    <comment><![CDATA[Click the field to choose color]]></comment>
+                    <frontend_model>Amasty\GdprCookie\Block\Color</frontend_model>
+                </field>
+                <field id="text_color_cookies" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Text color of Cookie Policy Bar</label>
+                    <comment><![CDATA[Click the field to choose color]]></comment>
+                    <frontend_model>Amasty\GdprCookie\Block\Color</frontend_model>
+                </field>
+                <field id="link_color_cookies" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Links color of Cookie Policy Bar</label>
+                    <comment><![CDATA[Click the field to choose color]]></comment>
+                    <frontend_model>Amasty\GdprCookie\Block\Color</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

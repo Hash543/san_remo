@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:SOAPXMLServer" xmlns:intf="urn:SOAPXMLServer" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:SOAPXMLServer">
+
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.apache.org/xml-soap">
+            <import namespace="urn:SOAPXMLServer"/>
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <complexType name="Vector">
+                <sequence>
+                    <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+                </sequence>
+            </complexType>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:SOAPXMLServer">
+            <import namespace="http://xml.apache.org/xml-soap"/>
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+            <complexType name="ArrayOf_xsd_anyType">
+                <complexContent>
+                    <restriction base="soapenc:Array">
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:anyType[]"/>
+                    </restriction>
+                </complexContent>
+            </complexType>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="executeXMLResponse5">
+        <wsdl:part name="executeXMLReturn" type="apachesoap:Element"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLResponse4">
+        <wsdl:part name="executeXMLReturn" type="apachesoap:Element"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLResponse3">
+        <wsdl:part name="executeXMLReturn" type="apachesoap:Element"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLRequest5">
+        <wsdl:part name="database" type="xsd:string"/>
+        <wsdl:part name="xml_code" type="apachesoap:DataHandler"/>
+        <wsdl:part name="arg_data" type="impl:ArrayOf_xsd_anyType"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLResponse">
+        <wsdl:part name="executeXMLReturn" type="apachesoap:Element"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLRequest4">
+        <wsdl:part name="database" type="xsd:string"/>
+        <wsdl:part name="xml_code" type="xsd:string"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLRequest3">
+        <wsdl:part name="database" type="xsd:string"/>
+        <wsdl:part name="xml_code" type="apachesoap:DataHandler"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLRequest2">
+        <wsdl:part name="database" type="xsd:string"/>
+        <wsdl:part name="xml_code" type="xsd:string"/>
+        <wsdl:part name="arg_data" type="impl:ArrayOf_xsd_anyType"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLRequest1">
+        <wsdl:part name="database" type="xsd:string"/>
+        <wsdl:part name="xml_code" type="xsd:string"/>
+        <wsdl:part name="arg_data" type="apachesoap:Vector"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLRequest">
+        <wsdl:part name="database" type="xsd:string"/>
+        <wsdl:part name="xml_code" type="apachesoap:DataHandler"/>
+        <wsdl:part name="arg_data" type="apachesoap:Vector"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLResponse1">
+        <wsdl:part name="executeXMLReturn" type="apachesoap:Element"/>
+    </wsdl:message>
+    <wsdl:message name="executeXMLResponse2">
+        <wsdl:part name="executeXMLReturn" type="apachesoap:Element"/>
+    </wsdl:message>
+    <wsdl:portType name="SOAPXMLServer">
+        <wsdl:operation name="executeXML" parameterOrder="database xml_code arg_data">
+            <wsdl:input message="impl:executeXMLRequest" name="executeXMLRequest"/>
+            <wsdl:output message="impl:executeXMLResponse" name="executeXMLResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML" parameterOrder="database xml_code arg_data">
+            <wsdl:input message="impl:executeXMLRequest1" name="executeXMLRequest1"/>
+            <wsdl:output message="impl:executeXMLResponse1" name="executeXMLResponse1"/>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML" parameterOrder="database xml_code arg_data">
+            <wsdl:input message="impl:executeXMLRequest2" name="executeXMLRequest2"/>
+            <wsdl:output message="impl:executeXMLResponse2" name="executeXMLResponse2"/>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML" parameterOrder="database xml_code">
+            <wsdl:input message="impl:executeXMLRequest3" name="executeXMLRequest3"/>
+            <wsdl:output message="impl:executeXMLResponse3" name="executeXMLResponse3"/>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML" parameterOrder="database xml_code">
+            <wsdl:input message="impl:executeXMLRequest4" name="executeXMLRequest4"/>
+            <wsdl:output message="impl:executeXMLResponse4" name="executeXMLResponse4"/>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML" parameterOrder="database xml_code arg_data">
+            <wsdl:input message="impl:executeXMLRequest5" name="executeXMLRequest5"/>
+            <wsdl:output message="impl:executeXMLResponse5" name="executeXMLResponse5"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SOAPXMLServerSoapBinding" type="impl:SOAPXMLServer">
+        <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="executeXML">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="executeXMLRequest">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:input>
+            <wsdl:output name="executeXMLResponse">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="executeXMLRequest1">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:input>
+            <wsdl:output name="executeXMLResponse1">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="executeXMLRequest2">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:input>
+            <wsdl:output name="executeXMLResponse2">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="executeXMLRequest3">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:input>
+            <wsdl:output name="executeXMLResponse3">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="executeXMLRequest4">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:input>
+            <wsdl:output name="executeXMLResponse4">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="executeXML">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="executeXMLRequest5">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:input>
+            <wsdl:output name="executeXMLResponse5">
+                <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SOAPXMLServer" use="encoded"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SOAPXMLServerService">
+        <wsdl:port binding="impl:SOAPXMLServerSoapBinding" name="SOAPXMLServer">
+            <wsdlsoap:address location="http://www.mydeister.com/servlet/rpcrouter/SOAPXMLServer"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

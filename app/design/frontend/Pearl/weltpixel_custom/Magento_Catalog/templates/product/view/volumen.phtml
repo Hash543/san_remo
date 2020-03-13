@@ -1,0 +1,4 @@
+<?php  $_product = $block->getProduct() ?>
+<div class="product-item-volumen">
+    <?= /* @escapeNotVerified */ $_product->getResource()->getAttribute('volumen')->getFrontend()->getValue($_product); ?>
+</div>

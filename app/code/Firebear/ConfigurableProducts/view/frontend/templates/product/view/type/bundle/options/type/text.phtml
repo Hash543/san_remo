@@ -1,0 +1,84 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+$_option = $block->getOption();
+$class   = ($_option->getIsRequire()) ? ' required' : '';
+?>
+
+<div class="custom-option-field field<?php if ($_option->getType()
+    == \Magento\Catalog\Model\Product\Option::OPTION_TYPE_AREA) {
+    echo ' textarea';
+} ?><?php /* @escapeNotVerified */
+echo $class ?>">
+    <?php
+    $requiredClass = '';
+    if ($_option->getIsRequire()) {
+        $requiredClass = ' required-star';
+    }
+    ?>
+
+    <label class="custom-option-label label<?php echo $requiredClass ?>" for="bundle_custom_options_<?php echo $this->getBundleOption(
+    ) ?>_<?php echo $_option->getId() ?>_text">
+        <span><?php echo $block->escapeHtml($_option->getTitle()) ?></span>
+        <?php /* @escapeNotVerified */
+        echo $block->getFormatedPrice() ?>
+    </label>
+
+    <div class="control">
+        <?php if ($_option->getType() == \Magento\Catalog\Model\Product\Option::OPTION_TYPE_FIELD): ?>
+            <?php $_textValidate = null;
+            if ($_option->getMaxCharacters()) {
+                $_textValidate['maxlength'] = $_option->getMaxCharacters();
+            }
+            ?>
+            <input type="text"
+                   id="bundle_custom_options_<?php echo $this->getBundleOption() ?>_<?php echo $_option->getId(
+                   ) ?>_text"
+                   class="input-text product-custom-option product-custom-option-<?php echo $this->getBundleOption() ?>"
+                <?php if (!empty($_textValidate)) { ?>
+                    data-validate="<?php echo $block->escapeHtml(json_encode($_textValidate)); ?>"
+                <?php } ?>
+                <?php if ($_option->getIsRequire()) {
+                    echo 'is-required="true"';
+                } ?>
+                   name="bundle_custom_options[<?php echo $this->getBundleOption() ?>][<?php echo $_option->getid() ?>]"
+                   data-selector="bundle_custom_options[<?php echo $this->getBundleOption(
+                   ) ?>][<?php echo $_option->getid() ?>]"
+                   value="<?php echo $block->escapeHtml($block->getDefaultValue()) ?>"/>
+        <?php elseif ($_option->getType() == \Magento\Catalog\Model\Product\Option::OPTION_TYPE_AREA): ?>
+            <?php $_textAreaValidate = null;
+            if ($_option->getMaxCharacters()) {
+                $_textAreaValidate['maxlength'] = $_option->getMaxCharacters();
+            }
+            ?>
+            <textarea id="bundle_custom_options_<?php echo $this->getBundleOption() ?>_<?php echo $_option->getId(
+            ) ?>_text"
+                      class="product-custom-option product-custom-option-<?php echo $this->getBundleOption() ?>"
+                <?php if (!empty($_textAreaValidate)) { ?>
+                    data-validate="<?php echo $block->escapeHtml(json_encode($_textAreaValidate)); ?>"
+                <?php } ?>
+                <?php if ($_option->getIsRequire()) {
+                    echo 'is-required="true"';
+                } ?>
+                      name="bundle_custom_options[<?php echo $this->getBundleOption() ?>][<?php echo $_option->getid(
+                      ) ?>]"
+                      data-selector="bundle_custom_options[<?php echo $this->getBundleOption(
+                      ) ?>][<?php echo $_option->getid() ?>]"
+                      rows="5"
+                      cols="25"><?php echo $block->escapeHtml($block->getDefaultValue()) ?></textarea>
+        <?php endif; ?>
+        <?php if ($_option->getMaxCharacters()): ?>
+            <p class="note"><?php /* @escapeNotVerified */
+                echo __('Maximum number of characters:') ?>
+                <strong><?php /* @escapeNotVerified */
+                    echo $_option->getMaxCharacters() ?></strong></p>
+        <?php endif; ?>
+    </div>
+</div>

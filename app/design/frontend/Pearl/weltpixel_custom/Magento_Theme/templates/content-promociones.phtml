@@ -1,0 +1,26 @@
+<?php
+/** @var \Magento\Cms\Helper\Wysiwyg\Images $wysiwyg */
+$wysiwyg = $this->helper(\Magento\Cms\Helper\Wysiwyg\Images::class);
+$wysiwygURL = $wysiwyg->getCurrentUrl();
+$mediaurl = implode(explode('wysiwyg', $wysiwygURL));
+$promo_block = $this->getLayout() ->createBlock('Magento\Cms\Block\Block') ->setBlockId('promociones_sidebar') ->toHtml();
+?>
+<div id="promociones-widget" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": true}}'>
+    <div data-role="collapsible">
+        <div data-role="trigger" class="promo-button">
+            <span>Promoción</span>
+        </div>
+    </div>
+    <div data-role="content" class="promo-content" style="display: none;">
+        <?= $promo_block ?>
+    </div>
+</div>
+<script type="text/javascript">
+require(['jquery'],function($){
+    $(document).ready(function(){
+        $('.promo-button').click(function() {
+            $('body').toggleClass("promoBodyClass");
+        }); 
+    });
+});
+</script>

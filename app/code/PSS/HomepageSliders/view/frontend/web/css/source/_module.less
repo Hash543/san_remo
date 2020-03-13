@@ -1,0 +1,379 @@
+//
+//  Variables
+//  _____________________________________________
+@tabs-primary-blue: #004460;
+
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    #homepage-sliders {
+        .tabs {
+            .tab-nav {
+                display: flex;
+                border-bottom: 1px solid @tabs-primary-blue;
+
+                .tab-header {
+                    border: 0;
+                    margin: 0;
+
+                    .ui-tabs-anchor {
+                        background-color: transparent;
+                        color: @tabs-primary-blue;
+                        font-family: 'hurme_geometric_sans_2regular';
+                        font-weight: 400;
+                    }
+
+                    &.ui-tabs-active {
+                        .ui-tabs-anchor {
+                            font-family: 'hurme_geometric_sans_2bold';
+                            border-bottom: 5px solid @tabs-primary-blue;
+                            top: 0;
+                            height: 44px;
+                            line-height: 40px;
+                        }
+                    }
+                }
+            }
+
+            .tab-container {
+                padding: 0;
+
+                .tab-content {
+                    display: block !important;
+                    height: 0;
+                    opacity: 0;
+
+                    &.tab-active {
+                        height: auto;
+                        opacity: 1;
+                    }
+
+                    > p {
+                        display: none;
+                    }
+
+                    .custom-slider {
+                        .content-heading {
+                            display: none;
+                        }
+
+                        .owl-carousel-products-category_products {
+                            .owl-stage-outer {
+                                padding-top: 10px;
+                                padding-bottom: 0;
+
+                                .owl-stage {
+                                    .owl-item {
+                                        .product-item {
+                                            .product-item-info {
+                                                .product-item-details {
+                                                    .product-title-wrapper {
+                                                        .product-item-manufacturer {
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            align-items: center;
+                                                            text-transform: uppercase;
+
+                                                            .product-item-link {
+                                                                margin: 0;
+                                                            }
+                                                        }
+
+                                                        .product.gama-attribute.product-gama-attr-val {
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            align-items: center;
+
+                                                            .product-item-link {
+                                                                margin: 0;
+                                                            }
+                                                        }
+
+                                                        .product.description.product-item-description {
+                                                            display: flex;
+                                                            justify-content: center;
+                                                            align-items: center;
+                                                        }
+                                                    }
+
+                                                    .price-box {
+                                                        .price-container {
+                                                            display: flex;
+                                                            flex-direction: column;
+                                                        }
+                                                    }
+
+                                                    .product-item-inner {
+                                                        padding: 0 0 25px;
+
+                                                        .product.actions.product-item-actions {
+                                                            .actions-primary {
+                                                                .tocart {
+                                                                    span {
+                                                                        font-family: 'hurme_geometric_sans_1bold';
+                                                                    }
+                                                                }
+
+                                                                .stock.unavailable {
+                                                                    background-color: #ccdae3;
+                                                                    border-color: #ccdae3;
+                                                                    letter-spacing: 0;
+                                                                    text-transform: uppercase;
+                                                                    width: 100%;
+                                                                    padding: 0 15px;
+
+                                                                    span {
+                                                                        font-family: 'hurme_geometric_sans_1bold';
+                                                                        color: @text__color;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .owl-controls {
+                                .owl-dots {
+                                    display: none !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    #homepage-sliders {
+        .tabs {
+            .tab-nav {
+                justify-content: center;
+                margin-bottom: 20px;
+
+                .ui-state-default {
+                    .ui-tabs-anchor {
+
+                    }
+                }
+            }
+
+            .tab-container {
+                .tab-content {
+                    .custom-slider {
+                        .owl-carousel-products-category_products {
+                            .owl-stage-outer {
+                                .owl-stage {
+                                    .owl-item {
+                                        .item.product.product-item {
+                                            .product-item-info {
+                                                .product-item-details {
+                                                    .product-title-wrapper {
+                                                        .product-item-manufacturer {
+                                                            margin: 0 0 10px;
+                                                        }
+
+                                                        .product.gama-attribute.product-gama-attr-val {
+                                                            height: 45px;
+                                                            margin: 0 0 5px;
+                                                            padding: 0;
+
+                                                            .product-item-link {
+                                                                margin: 0;
+                                                            }
+                                                        }
+
+                                                        .product.description.product-item-description {
+                                                            height: 40px;
+                                                            margin: 0;
+                                                        }
+                                                    }
+
+                                                    .price-box {
+                                                        display: flex;
+                                                        justify-content: center;
+                                                        align-items: center;
+                                                        height: 50px;
+                                                        margin: 5px 0 15px;
+                                                    }
+
+                                                    .product-item-inner {
+                                                        .product.actions.product-item-actions {
+                                                            .actions-primary {
+                                                                display: flex;
+                                                                justify-content: center;
+
+                                                                .stock.unavailable {
+                                                                    max-width: 170px;
+                                                                    height: 39px;
+
+                                                                    span {
+                                                                        font-size: 17px;
+                                                                        line-height: 38px;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    #homepage-sliders {
+        .tabs {
+            margin: 0;
+
+            .tab-nav {
+                overflow-x: auto;
+                overflow-y: hidden;
+
+                .ui-state-default {
+                    .ui-tabs-anchor {
+                        width: max-content;
+                    }
+                }
+            }
+
+            .tab-container {
+                .tab-content {
+                    .custom-slider {
+                        .owl-carousel-products-category_products {
+                            .owl-stage-outer {
+                                .owl-stage {
+                                    .owl-item {
+                                        .item.product.product-item {
+                                            padding: 0;
+
+                                            .product-item-info {
+                                                .product-image {
+                                                    .product-item-photo {
+                                                        .product-image-wrapper {
+                                                            padding-bottom: 100% !important;
+                                                        }
+                                                    }
+                                                }
+
+                                                .product-item-details {
+                                                    .product-title-wrapper {
+                                                        padding: 5px 0 0;
+
+                                                        .product-item-manufacturer,
+                                                        .product.gama-attribute.product-gama-attr-val,
+                                                        .product.description.product-item-description {
+                                                            margin: 0 0 10px;
+                                                        }
+
+                                                        .product-item-manufacturer {
+                                                            .product-item-link {
+                                                                font-size: 20px;
+                                                            }
+                                                        }
+
+                                                        .product.gama-attribute.product-gama-attr-val {
+                                                            display: block;
+                                                            padding: 0;
+
+                                                            .product-item-link {
+                                                                font-size: 20px;
+                                                            }
+                                                        }
+
+                                                        .product.description.product-item-description {
+                                                            font-size: 18px;
+                                                        }
+                                                    }
+
+                                                    .product-price-wrapper {
+                                                        padding: 10px 0;
+
+                                                        .price-container {
+                                                            flex-direction: row;
+                                                            justify-content: center;
+                                                            align-items: baseline;
+
+                                                            .regular-price {
+
+                                                            }
+
+                                                            .final-price {
+                                                                margin-left: 5px;
+
+                                                                .price {
+
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .product-item-inner {
+                                                        .product.actions.product-item-actions {
+                                                            .action.primary {
+                                                                max-width: none;
+
+                                                                span {
+                                                                    font-family: 'hurme_geometric_sans_1bold';
+                                                                    font-size: 16px;
+                                                                    line-height: normal;
+                                                                }
+                                                            }
+
+                                                            .stock.unavailable {
+                                                                height: 46px;
+
+                                                                span {
+                                                                    font-size: 17px;
+                                                                    line-height: 42px;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile Extra Small
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    #homepage-sliders {
+
+    }
+}

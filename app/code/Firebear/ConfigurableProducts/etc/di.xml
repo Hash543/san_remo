@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 Firebear Studio. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="generateUrlRewrite" xsi:type="object">Firebear\ConfigurableProducts\Console\Command\GenerateUrlRewrite</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="firebear_configurable_custom_options_without_require_filter" type="Firebear\ConfigurableProducts\Plugin\Model\ConfigurableProduct\Product\Type\Configurable" sortOrder="1000"/>
+    </type>
+    <preference for="Magento\Quote\Model\Quote\Item\ToOrderItem" type="Firebear\ConfigurableProducts\Plugin\Model\Quote\Item\ToOrderItem"/>
+
+
+    <preference for="Magento\Bundle\Model\ResourceModel\Selection" type="Firebear\ConfigurableProducts\Model\Bundle\ResourceModel\Selection"/>
+    <preference for="Magento\Bundle\Model\ResourceModel\Option\Collection" type="Firebear\ConfigurableProducts\Model\Bundle\ResourceModel\Option\Collection"/>
+    <preference for="Magento\Bundle\Api\ProductLinkManagementInterface" type="Firebear\ConfigurableProducts\Model\LinkManagement"/>
+    <preference for="Magento\Bundle\Helper\Catalog\Product\Configuration" type="Firebear\ConfigurableProducts\Helper\Bundle"/>
+    <preference for="Magento\Bundle\Model\ResourceModel\Indexer\Stock" type="Firebear\ConfigurableProducts\Model\Bundle\ResourceModel\Indexer\Stock"/>
+    <preference for="Magento\ConfigurableProduct\Model\Product\Type\Configurable" type="Firebear\ConfigurableProducts\Model\Bundle\Model\Product\Type\Configurable"/>
+    <preference for="Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable" type="Firebear\ConfigurableProducts\Model\ResourceModel\Product\Type\Configurable"/>
+    <preference for="Magento\ConfigurableProduct\Model\ResourceModel\Indexer\Stock\Configurable" type="Firebear\ConfigurableProducts\Model\ResourceModel\Indexer\Stock\Configurable"/>
+    <type name="Firebear\ConfigurableProducts\Helper\Bundle">
+        <arguments>
+            <argument name="context" xsi:type="object">\Magento\Framework\App\Helper\Context</argument>
+            <argument name="productConfiguration" xsi:type="object">\Magento\Catalog\Helper\Product\Configuration</argument>
+            <argument name="pricingHelper" xsi:type="object">\Magento\Framework\Pricing\Helper\Data</argument>
+            <argument name="escaper" xsi:type="object">\Magento\Framework\Escaper</argument>
+            <argument name="productModel" xsi:type="object">\Magento\Catalog\Model\Product</argument>
+            <argument name="eavConfig" xsi:type="object">\Magento\Eav\Model\Config</argument>
+        </arguments>
+    </type>
+
+    <type name="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart">
+        <arguments>
+            <argument name="productRepository" xsi:type="object">\Magento\Catalog\Api\ProductRepositoryInterface</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\ConfigurableProduct\Model\Product\Type\Configurable">
+        <plugin name="before_prepare_for_cart_configurable" type="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart" sortOrder="1"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\Type\Simple">
+        <plugin name="before_prepare_for_cart_simple" type="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product\Type\Virtual">
+        <plugin name="before_prepare_for_cart_virtual" type="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Downloadable\Model\Product\Type">
+        <plugin name="before_prepare_for_cart_downloadable" type="Firebear\ConfigurableProducts\Plugin\Model\Product\Type\BeforePrepareForCart" sortOrder="1"/>
+    </type>
+
+</config>

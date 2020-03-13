@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category  BSS
+ * @package   Bss_HidePrice
+ * @author    Extension Team
+ * @copyright Copyright (c) 2016-2017 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Wishlist\Controller\Index\Cart">
+        <plugin name="bss_hidepirce_plugin_add_item_wishlist_to_cart" type="Bss\HidePrice\Plugin\WishlistCartController"/>
+    </type>
+    
+    <type name="Magento\Wishlist\Model\Wishlist">
+        <plugin name="bss_hidepirce_plugin_wishlist_collection" type="Bss\HidePrice\Plugin\WishlistItem"/>
+    </type>
+
+    <type name="Magento\Catalog\Pricing\Render\FinalPriceBox">
+        <plugin name="bss_hidepirce_plugin_finalprice" type="Bss\HidePrice\Plugin\CategoryHidePrice" />
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="bss_hidepirce_hide_button" type="Bss\HidePrice\Plugin\HideButtonCart" />
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\View\Options\AbstractOptions">
+        <plugin name="bss_hidepirce_hide_custom_option_price"
+                type="Bss\HidePrice\Plugin\Catalog\Block\Product\View\Options\AbstractOptions" />
+    </type>
+    <type name="Magento\Catalog\Model\Product\Option\Value">
+        <plugin name="bss_hidepirce_hide_custom_option_price_select"
+                type="Bss\HidePrice\Plugin\Catalog\Model\Option\Value" />
+    </type>
+    <type name="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option">
+        <plugin name="bss_hidepirce_hide_custom_option_bundle"
+                type="Bss\HidePrice\Plugin\Bundle\Block\Option" />
+    </type>
+
+    <type name="Magento\Catalog\Pricing\Render\PriceBox">
+        <plugin name="bss_hidepirce_plugin_finalprice" type="Bss\HidePrice\Plugin\CategoryHidePrice" />
+    </type>
+</config>

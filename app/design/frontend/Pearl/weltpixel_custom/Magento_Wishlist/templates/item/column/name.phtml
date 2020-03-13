@@ -1,0 +1,68 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Info $block */
+
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+$productName = $product->getName();
+$optionId = $product->getManufacturer();
+$brand_name = "";
+if($optionId){
+    $attr = $product->getResource()->getAttribute('manufacturer');
+    if ($attr->usesSource()) {
+       $brand_name = $attr->getSource()->getOptionText($optionId);
+       $brand_name = str_replace("&#039;","'",$brand_name);
+    }
+}
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$brand_helper = $objectManager->get('\Mageplaza\Shopbybrand\Helper\Data');
+if($brand_name){ 
+    $productName = str_ireplace($brand_name,"",$productName);
+}
+?>
+
+<?php if($brand_name){ ?>
+<?php $brand_url = $brand_helper->getCustomBrandUrl($brand_name); ?>
+<div class="product-title-wrapper">
+<h2 class="product-item-manufacturer">
+    <a class="product-item-link"
+       href="<?= /* @escapeNotVerified */ $brand_url ?>">
+        <?= /* @escapeNotVerified */ $brand_name ?>
+    </a>
+</h2>
+<?php } ?>
+<?php
+    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getId());
+?>
+<?php $gama = $product->getData('gama'); ?>
+
+<?php if($gama){ ?>
+<div class="product gama-attribute product-gama-attr-val">
+    <a class="product-item-link"
+       href="<?= /* @escapeNotVerified */ $product->getProductUrl() ?>">
+        <?= /* @escapeNotVerified */ $gama ?>
+    </a>
+</div>
+<?php } ?>
+<?php $showDescription = $product->getResource()->getAttribute('short_description')->getFrontend()->getValue($product);  ?>
+<?php if ($showDescription):?>
+<?php $volumen = $product->getResource()->getAttribute('volumen')->getFrontend()->getValue($product); ?>
+    <div class="product description product-item-description">
+       <?php echo $showDescription ?><?php if($volumen){ echo ' '.$volumen; } ?>
+    </div>
+<?php endif; ?>
+<?php /*
+<strong class="product-item-name">
+    <a href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>" title="<?= $block->escapeHtmlAttr($product->getName()) ?>" class="product-item-link">
+        <?= $block->escapeHtml($productName) ?>
+    </a>
+</strong>
+*/?>
+</div>

@@ -1,0 +1,27 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace Alfa9\Sales\Observer\Order\Email\Sender;
+
+/**
+ * Class OrderSender
+ * @package Alfa9\Sales\Observer\Order\Email\Sender
+ */
+class OrderSender implements \Magento\Framework\Event\ObserverInterface {
+    /**
+     * {@inheritdoc}
+     */
+    public function execute(\Magento\Framework\Event\Observer $observer) {
+        /** @var \Magento\Framework\DataObject $transportObject */
+        $transportObject = $observer->getEvent()->getData('transportObject');
+        $grandTotal = '';
+        if($transportObject) {
+            /** @var \Magento\Sales\Model\Order $order */
+            $order = $transportObject->getData('order');
+            if($order && $order->getId()) {
+
+            }
+        }
+    }
+}

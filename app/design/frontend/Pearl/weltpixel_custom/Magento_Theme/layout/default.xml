@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="columns.top">
+			<block name="content-promociones" template="Magento_Theme::content-promociones.phtml" />
+			<block name="content-social-widget" template="Magento_Theme::content-social-widget.phtml" />
+		</referenceContainer>
+		<referenceBlock name="store.settings.currency" remove="true"/>
+	</body>
+</page>

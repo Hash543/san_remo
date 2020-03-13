@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ @copyright (c) 2018. Alfa9 (http://www.alfa9.com)
+  ~ @author Xavier Sanz <xsanz@alfa9.com>
+  ~ @package iese_publishing
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="PSS\CRM\Block\Adminhtml\Queue\Edit"
+                   name="pss_crm_queue.edit"/>
+        </referenceContainer>
+    </body>
+</page>

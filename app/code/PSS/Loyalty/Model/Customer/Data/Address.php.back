@@ -1,0 +1,122 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\Loyalty\Model\Customer\Data;
+
+/**
+ * @package PSS\Loyalty\Model\Customer
+ */
+class Address extends \Magento\Customer\Model\Data\Address implements \PSS\Loyalty\Api\Data\AddressInterface {
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastname($lastName) {
+        $this->setData(self::LASTNAME, $lastName);
+        if($lastName) {
+            $lastnames = explode(' ', $lastName);
+            if(count($lastnames) > 0) {
+                $this->setData(self::LASTNAME1, current($lastnames));
+            }
+            if(count($lastnames) > 1) {
+                $this->setData(self::LASTNAME2, next($lastnames));
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastname1() {
+        return $this->_get(self::LASTNAME1);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastname1($lastname1) {
+        $this->setData(self::LASTNAME1, $lastname1);
+        $this->setData(self::LASTNAME, ($this->getLastname1().' '.$this->getLastname2()));
+        return $this;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastname2() {
+        return $this->_get(self::LASTNAME2);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastname2($lastname2) {
+        $this->setData(self::LASTNAME2, $lastname2);
+        $this->setLastname($this->getLastname1().' '.$this->getLastname2());
+        return $this;
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function getStairs() {
+        return $this->_get(self::STAIRS);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setStairs($stairs) {
+        $this->setData(self::STAIRS, $stairs);
+        $this->setCustomAttribute(self::STAIRS, $stairs);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFloor() {
+        return $this->_get(self::FLOOR);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFloor($floor) {
+        $this->setData(self::FLOOR, $floor);
+        $this->setCustomAttribute(self::FLOOR, $floor);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDoor() {
+        return $this->_get(self::DOOR);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDoor($door) {
+        $this->setData(self::DOOR, $door);
+        $this->setCustomAttribute(self::DOOR, $door);
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPhone2() {
+        return $this->_get(self::PHONE2);
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function setPhone2($phone2) {
+        $this->setData(self::PHONE2, $phone2);
+        $this->setCustomAttribute(self::PHONE2, $phone2);
+        return $this;
+    }
+
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Amasty_Gdpr::gdpr"
+             title="GDPR"
+             module="Amasty_Gdpr"
+             sortOrder="100"
+             parent="Magento_Customer::customer"
+             resource="Amasty_Gdpr::gdpr"/>
+        <add id="Amasty_Gdpr::action_log"
+             title="Action Log"
+             module="Amasty_Gdpr"
+             sortOrder="10"
+             parent="Amasty_Gdpr::gdpr"
+             action="amasty_gdpr/actionLog/index"
+             resource="Amasty_Gdpr::action_log"/>
+        <add id="Amasty_Gdpr::with_consent"
+             title="Customers With Consent"
+             module="Amasty_Gdpr"
+             sortOrder="20"
+             parent="Amasty_Gdpr::gdpr"
+             action="amasty_gdpr/withConsent/index"
+             resource="Amasty_Gdpr::with_consent"/>
+        <add id="Amasty_Gdpr::without_consent"
+             title="Customers Without Consent"
+             module="Amasty_Gdpr"
+             sortOrder="30"
+             parent="Amasty_Gdpr::gdpr"
+             action="amasty_gdpr/withoutConsent/index"
+             resource="Amasty_Gdpr::without_consent"/>
+        <add id="Amasty_Gdpr::consent_queue"
+             title="Customers Consents Email Queue"
+             module="Amasty_Gdpr"
+             sortOrder="40"
+             parent="Amasty_Gdpr::gdpr"
+             action="amasty_gdpr/consentQueue/index"
+             resource="Amasty_Gdpr::consent_queue"/>
+        <add id="Amasty_Gdpr::requests"
+             title="Delete Requests"
+             module="Amasty_Gdpr"
+             sortOrder="50"
+             parent="Amasty_Gdpr::gdpr"
+             action="amasty_gdpr/request/index"
+             resource="Amasty_Gdpr::requests"/>
+        <add id="Amasty_Gdpr::policy"
+             title="Privacy Policy"
+             module="Amasty_Gdpr"
+             sortOrder="60"
+             parent="Amasty_Gdpr::gdpr"
+             action="amasty_gdpr/policy/index"
+             resource="Amasty_Gdpr::policy"/>
+    </menu>
+</config>

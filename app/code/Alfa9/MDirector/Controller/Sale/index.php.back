@@ -1,0 +1,25 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace Alfa9\MDirector\Controller\Sale;
+
+class Index extends \Magento\Framework\App\Action\Action {
+
+    private $observer;
+    /**
+     * Notify constructor.
+     * @param \Alfa9\MDirector\Cron\Observer $observer
+     * @param \Magento\Framework\App\Action\Context $context
+     */
+    public function __construct(
+        \Alfa9\MDirector\Cron\Observer $observer,
+        \Magento\Framework\App\Action\Context $context) {
+        $this->observer = $observer;
+        parent::__construct($context);
+    }
+    public function execute()
+    {
+        $this->observer->run();
+    }
+}

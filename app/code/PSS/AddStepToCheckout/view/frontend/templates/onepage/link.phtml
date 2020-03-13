@@ -1,0 +1,26 @@
+<?php
+
+// @codingStandardsIgnoreFile
+?>
+<?php if ($block->isPossibleOnepageCheckout()):?>
+    <?php
+    /** @var \PSS\AddStepToCheckout\ViewModel\CartPlaceOrder $cartPlaceOrder */
+    $cartPlaceOrder = $block->getData('cartPlaceOrder');
+    $url = $cartPlaceOrder->getUrl($block); ?>
+
+    <button type="button"
+            data-role="proceed-to-checkout"
+            title="<?= /* @escapeNotVerified */ __('Proceed to Checkout') ?>"
+            data-mage-init='{
+            "PSS_AddStepToCheckout/js/proceed-to-checkout":
+                {
+                    "checkoutUrl":"<?= /* @escapeNotVerified */ $url ?>",
+                    "cartUrl":"<?= $cartPlaceOrder->getCartUrl(); ?>",
+                    "updateCartUrl":"<?= $cartPlaceOrder->getUpdateCartUrl(); ?>"
+                }
+            }'
+            class="action primary checkout<?= ($block->isDisabled()) ? ' disabled' : '' ?>"
+            <?php if ($block->isDisabled()):?>disabled="disabled"<?php endif; ?>>
+        <span><?= /* @escapeNotVerified */ __('Proceed to Checkout') ?></span>
+    </button>
+<?php endif; ?>

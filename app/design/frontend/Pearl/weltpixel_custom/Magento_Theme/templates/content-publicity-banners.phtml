@@ -1,0 +1,18 @@
+<?php
+/** @var \Magento\Cms\Helper\Wysiwyg\Images $wysiwyg */
+$wysiwyg = $this->helper(\Magento\Cms\Helper\Wysiwyg\Images::class);
+$wysiwygURL = $wysiwyg->getCurrentUrl();
+$mediaurl = implode(explode('wysiwyg', $wysiwygURL));
+?>
+<div class="publicity-banners-wrapper">
+    <div class="banner-publicity banner-publicity-left">
+        <a href="#">
+            <img src="<?= $mediaurl . "wysiwyg/Home/Banner/banner-publicity-left.png" ?>" alt="" />
+        </a>
+    </div>
+    <div class="banner-publicity banner-publicity-right">
+        <a href="#">
+            <img src="<?= $mediaurl . "wysiwyg/Home/Banner/banner-publicity-right.png" ?>" alt="" />
+        </a>
+    </div>
+</div>

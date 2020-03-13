@@ -1,0 +1,216 @@
+//
+//  Variables
+//  _____________________________________________
+
+
+//
+//  Common
+//  ----------------------------------------------
+& when (@media-common = true) {
+    .theme-pearl.catalog-product-view.page-product-configurable {
+        .product-info-main {
+            /*.price-box {
+                display: none;
+            }*/
+
+            .product-add-form {
+                padding-top: 0;
+                .product-options-wrapper {
+                    .swatch-opt {
+                        margin: 0;
+                        /*
+                        .swatch-attribute-selected-option {
+                            display: none;
+                        }*/
+
+                        .swatch-attribute {
+                            &.volumen {
+                                margin-bottom: 0;
+
+                                .swatch-attribute-options {
+                                    .matrix-icp-block {
+                                        thead {
+                                            display: none;
+                                            visibility: hidden;
+                                        }
+
+                                        tbody {
+                                            tr {
+                                                background: @container-gray;
+                                                border-bottom: 2px solid;
+                                                border-color: @border-gray;
+
+                                                td {
+                                                    padding: 8px;
+                                                }
+
+                                                &:hover, &.selected {
+                                                    background: #94B4C3;
+                                                    border-color: @color-blue;
+                                                }
+                                            }
+                                        }
+
+                                        .swatch-option,
+                                        .size-price {
+                                            color: @color-blue;
+                                            line-height: normal;
+                                            font-weight: 400;
+                                        }
+
+                                        .swatch-option {
+                                            &.text {
+                                                width: auto;
+                                                background: none;
+                                                font-family: 'hurmegeometricsans1_regularRg';
+                                                cursor: auto;
+                                                .lib-css(border-radius, 0, 1);
+
+                                                &.selected {
+                                                    background-color: transparent !important;
+                                                }
+
+                                                &:before {
+                                                    content: none;
+                                                }
+                                            }
+                                        }
+
+                                        .size-price {
+                                            font-family: 'hurme_geometric_sans_1bold';
+                                            text-align: right;
+                                        }
+
+                                        .matrix_qty_td {
+                                            width:1%;
+                                            white-space:nowrap;
+                                            vertical-align: inherit;
+
+                                            .firebear_qty_block {
+                                                width: auto;
+                                                text-align: right;
+
+                                                .arrow-matrix,
+                                                .qty.input-text {
+                                                    display: inline-block;
+                                                    font-family: 'hurmegeometricsans1_regularRg';
+                                                    width: 42px;
+                                                    height: 42px;
+                                                    text-align: center;
+                                                    vertical-align: top;
+                                                    border: 1px solid;
+                                                    margin: 0;
+                                                }
+
+                                                .arrow-matrix {
+                                                    cursor: pointer;
+                                                    background: @white;
+                                                    border-color: #000000;
+                                                    color: @color-blue;
+                                                    line-height: 35px;
+                                                    padding: 0;
+                                                    font-size: 40px;
+                                                }
+
+                                                .qty.input-text {
+                                                    background: @color-blue;
+                                                    border-color: @color-blue;
+                                                    color: @white;
+                                                    font-weight: normal;
+                                                    letter-spacing: 1px;
+                                                    line-height: 60px;
+                                                    font-size: 19px;
+                                                }
+
+                                                &.out-of-stock {
+                                                    text-align: center;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .product-options-bottom {
+                    .box-tocart {
+                        .actions {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .theme-pearl.catalog-product-view.page-product-configurable {
+        .product-info-main {
+            .product-add-form {
+                .product-options-wrapper {
+                    .swatch-opt {
+                        .swatch-attribute {
+                            &.volumen {
+
+                                .swatch-attribute-options {
+                                    .matrix-icp-block {
+                                        .swatch-option.text {
+                                            font-size: 22px;
+                                            line-height: 38px;
+                                            margin: 0;
+                                        }
+
+                                        .size-price {
+                                            font-size: 28px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  ----------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .theme-pearl.catalog-product-view.page-product-configurable {
+        .product-info-main {
+            .product-add-form {
+                .product-options-wrapper {
+                    .swatch-opt {
+                        .swatch-attribute {
+                            &.volumen {
+                                .swatch-attribute-options {
+                                    .matrix-icp-block {
+                                        .swatch-option.text {
+                                            font-size: 18px;
+                                            line-height: 40px;
+                                            margin: 0;
+                                        }
+
+                                        .size-price {
+                                            font-size: 22px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

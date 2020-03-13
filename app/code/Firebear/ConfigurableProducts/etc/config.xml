@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <firebear_configurableproducts>
+            <general>
+                <change_name>1</change_name>
+                <allow_deselect_swatch>1</allow_deselect_swatch>
+                <name_id_class>.page-title .base</name_id_class>
+                <change_sku>1</change_sku>
+                <sku_id_class>.product-info-stock-sku .value</sku_id_class>
+                <change_short_description>1</change_short_description>
+                <short_description_id_class>.product.attribute.overview .value</short_description_id_class>
+                <change_description>1</change_description>
+                <description_id_class>.product.attribute.description .value</description_id_class>
+                <change_tier_prices>0</change_tier_prices>
+                <tier_prices_id_class>.product-info-main .prices-tier</tier_prices_id_class>
+                <change_attributes_block>0</change_attributes_block>
+                <attributes_block_class>.additional-attributes-wrapper</attributes_block_class>
+            </general>
+        </firebear_configurableproducts>
+    </default>
+</config>

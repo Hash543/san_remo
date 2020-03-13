@@ -1,0 +1,55 @@
+<?php
+
+$totalUrl = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$baseUrl = $block->getBaseUrl();
+$currentUrl = str_replace($baseUrl, "", $totalUrl);
+
+/** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<div class="block block-customer-login">
+    <div class="block-title">
+        <strong id="block-customer-login-heading" role="heading"
+                aria-level="2"><?= $block->escapeHtml(__('Registered User')) ?></strong>
+    </div>
+    <div class="block-content" aria-labelledby="block-customer-login-heading">
+        <form class="form form-login"
+              action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
+              method="post"
+              id="login-form"
+              data-mage-init='{"validation":{}}'>
+            <?= $block->getBlockHtml('formkey') ?>
+            <input name="currentUrl" type="hidden" value="<?= $currentUrl ?>">
+            <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+                <div class="field email required">
+                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                    <div class="control">
+                        <input name="login[username]"
+                               value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?>
+                               id="email" type="email" class="input-text"
+                               title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                               data-mage-init='{"mage/trim-input":{}}'
+                               data-validate="{required:true, 'validate-email':true}">
+                    </div>
+                </div>
+                <div class="field password required">
+                    <label for="pass" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
+                    <div class="control">
+                        <input name="login[password]"
+                               type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?>
+                               class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                               data-validate="{required:true}">
+                    </div>
+                </div>
+                <?= $block->getChildHtml('form_additional_info') ?>
+                <?= $block->getChildHtml('login.captcha') ?>
+                <div class="actions-toolbar-custom">
+                    <div class="primary">
+                        <button type="submit" class="action primary custom" name="send" id="send2">
+                            <span><?= $block->escapeHtml(__('Log In')) ?></span></button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+

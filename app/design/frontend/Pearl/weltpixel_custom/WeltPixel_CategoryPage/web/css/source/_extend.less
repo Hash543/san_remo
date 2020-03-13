@@ -1,0 +1,656 @@
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    .theme-pearl.catalog-category-view,
+    .theme-pearl.catalogsearch-result-index,
+    .theme-pearl.mpbrand-index-view {
+        .page-main {
+            .products.wrapper {
+                & + .toolbar.toolbar-products {
+                    .sorter {
+                        display: none;
+                    }
+
+                    .limiter {
+                        display: none;
+                    }
+                }
+            }
+
+            .toolbar.toolbar-products {
+                color: @color-blue;
+                text-align: right;
+
+                .modes {
+                    display: none;
+                }
+
+                .toolbar-amount {
+                    display: none;
+                }
+
+                .pages {
+                    .pages-label {
+
+                    }
+
+                    .pages-items {
+                        .item {
+                            .page {
+                                span {
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .limiter {
+                    .label span,
+                    .limiter-text {
+                        color: @color-blue;
+                        font-family: 'hurmegeometricsans1_regularRg';
+                        font-size: 15px;
+                        line-height: 21px;
+                        text-transform: lowercase;
+
+                        span {
+                            font-size: 15px;
+                            text-transform: lowercase;
+                        }
+                    }
+
+                    .limiter-options {
+                        border-color: @color-blue;
+                        color: @color-blue;
+                        font-family: 'hurme_geometric_sans_1bold';
+                        font-size: 18px;
+                    }
+                }
+
+                .sorter {
+                    display: inline-block;
+                    float: none;
+                    margin: 0 0 0 20px;
+
+                    .sorter-label {
+                        color: @color-blue;
+                        font-family: 'hurmegeometricsans1_regularRg';
+                        font-size: 15px;
+                        line-height: 21px;
+                        text-transform: lowercase;
+                    }
+
+                    .sorter-options {
+                        border-color: @color-blue;
+                        color: @color-blue;
+                        font-family: 'hurme_geometric_sans_1bold';
+                        font-size: 18px;
+                    }
+
+                    .action.sorter-action {
+                        display: none;
+                    }
+                }
+            }
+
+            .sidebar-main {
+                .wp-filters {
+                    display: none;
+                }
+
+                #layered-filter-block {
+                    .filter-title {
+                        .logo-layered {
+                            display: none;
+                        }
+
+                        strong {
+                            background-color: @primary-blue;
+                            border-color: @primary-blue;
+                            width: auto;
+                            height: 42px;
+                            font-family: 'hurme_geometric_sans_1bold';
+                            border-radius: 0;
+                            box-shadow: none;
+                            color: #FFFFFF;
+                            font-weight: normal;
+                            line-height: 24px;
+                            max-width: 210px;
+                            text-align: center;
+                            font-size: 16px;
+                            padding-left: 15px;
+                            padding-right: 15px;
+                        }
+                    }
+
+                    .filter-content {
+                        .filter-current {
+                            border: 0 none;
+                            margin: 0;
+
+                            .filter-current-subtitle {
+                                padding: 20px 0 !important;
+                                font-size: 18px;
+                                font-weight: normal;
+
+                                &:after {
+                                    display: none;
+                                }
+                            }
+
+                            .items {
+                                display: block;
+                                list-style: none;
+                            }
+                        }
+
+                        .filter-actions {
+                            a {
+                                font-family: 'hurmegeometricsans1_regularRg';
+                                font-size: 17px;
+                                color: @color-blue;
+                            }
+                        }
+
+                        .filter-subtitle {
+                            position: static;
+                            height: auto;
+                            padding: 10px 0 !important;
+                            font-size: 18px;
+                            font-weight: normal;
+                            text-transform: capitalize;
+                        }
+
+                        .filter-options {
+                            position: static;
+
+                            .filter-options-item {
+
+                            }
+                        }
+                    }
+
+                    &.active {
+                        background: #FFFFFF;
+                        height: 100%;
+                        left: 0;
+                        max-width: 526px;
+                        overflow-y: scroll;
+                        position: fixed;
+                        top: 0;
+                        width: 85%;
+                        z-index: 99999;
+
+                        .filter-title {
+                            border: 0 none;
+                            bottom: auto;
+                            height: auto;
+                            left: auto;
+                            max-width: none;
+                            overflow: hidden;
+                            position: static;
+                            right: auto;
+                            top: auto;
+                            width: 100%;
+
+                            .logo-layered {
+                                display: inline-block;
+                                float: left;
+                                margin: 9px 0 0 18px;
+                            }
+
+                            strong {
+                                background: transparent;
+                                display: inline-block;
+                                float: right;
+                                font-size: 0;
+                                margin: 80px 40px 0 0;
+                                padding: 0;
+                                width: auto;
+
+                                &:after {
+                                    background: transparent url("../images/icon-layered-navigation-mobile-close.png") no-repeat scroll 0 0;
+                                    content: '';
+                                    height: 48px;
+                                    width: 48px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .products.wrapper {
+                .product-items {
+                    .item.product.product-item {
+                        .product-item-info {
+                            .product-item-details {
+                                .product-title-wrapper {
+                                    .product-item-manufacturer {
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        text-transform: uppercase;
+
+                                        .product-item-link {
+                                            margin: 0;
+                                        }
+                                    }
+
+                                    .product.gama-attribute.product-gama-attr-val {
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+
+                                        .product-item-link {
+                                            margin: 0;
+                                        }
+                                    }
+
+                                    .product.description.product-item-description {
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                    }
+                                }
+
+                                .product-reviews-summary {
+                                    display: none;
+                                }
+
+                                .product-price-wrapper {
+                                    .price-container {
+                                        .price-label {
+                                            display: none !important;
+                                        }
+                                    }
+                                }
+
+                                .product-item-inner {
+                                    .product.actions.product-item-actions {
+                                        .actions-primary {
+                                            button.action.primary {
+                                                span {
+                                                    font-family: 'hurme_geometric_sans_1bold';
+                                                }
+                                            }
+
+                                            .stock.unavailable {
+                                                background-color: #ccdae3;
+                                                border-color: #ccdae3;
+                                                letter-spacing: 0;
+                                                text-transform: uppercase;
+                                                width: 100%;
+
+                                                span {
+                                                    font-family: 'hurme_geometric_sans_1bold';
+                                                    color: @text__color;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .actions-secondary {
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop Extra Large
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+}
+
+//
+//  Desktop Large
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .theme-pearl.catalog-category-view,
+    .theme-pearl.catalogsearch-result-index,
+    .theme-pearl.mpbrand-index-view {
+        .page-main {
+            .products.wrapper {
+                & + .toolbar.toolbar-products {
+                    .toolbar-amount {
+                        color: @color-blue !important;
+                        display: inline-block;
+                        font-family: 'hurmegeometricsans1_regularRg';
+                        font-size: 12px !important;
+                        letter-spacing: 0;
+                        line-height: 16px;
+                        text-transform: capitalize;
+                    }
+
+                    .pages {
+                        float: right;
+                    }
+                }
+            }
+
+            .toolbar.toolbar-products {
+                .pages {
+                    .pages-label {
+
+                    }
+
+                    .pages-items {
+                        .item {
+                            .page {
+                                span {
+                                    line-height: 32px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .limiter {
+                    display: inline-block;
+                }
+            }
+
+            .sidebar-main {
+                #layered-filter-block {
+                    .filter-title {
+                        display: none;
+                    }
+                }
+            }
+
+            .products.wrapper {
+                .product-items {
+                    .item.product.product-item {
+                        .product-item-info {
+                            .product-item-details {
+                                .product-title-wrapper {
+                                    .product.gama-attribute.product-gama-attr-val {
+                                        height: 45px;
+
+                                        .product-item-link {
+                                            margin: 0;
+                                        }
+                                    }
+
+                                    .product.description.product-item-description {
+                                        height: 40px;
+                                        margin: 0;
+                                    }
+                                }
+
+                                .product-price-wrapper {
+                                    min-height: 65px;
+                                }
+
+                                .product-item-inner {
+                                    .product.actions.product-item-actions {
+                                        .actions-primary {
+                                            .stock.unavailable {
+                                                padding: 0 15px;
+
+                                                span {
+                                                    font-size: 17px;
+                                                    line-height: 32px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .theme-pearl.catalog-category-view,
+    .theme-pearl.catalogsearch-result-index,
+    .theme-pearl.mpbrand-index-view {
+        .page-main {
+            .toolbar.toolbar-products {
+                .toolbar-amount {
+                    display: none;
+                }
+
+                .pages {
+                    float: none;
+                    margin: 25px 0;
+                    text-align: center;
+
+                    .pages-items {
+                        display: flex;
+                        justify-content: space-between;
+                        float: none;
+                        padding: 0;
+                        width: 100%;
+
+                        .item {
+                            position: static;
+                            flex: 1 1 0;
+                            float: none;
+                            max-width: 60px;
+                            margin: 0 0.5%;
+
+                            .action,
+                            .page {
+                                display: flex;
+                                align-items: center;
+                                font-family: 'hurme_geometric_sans_1bold';
+                                font-size: 27px;
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+
+                                span,
+                                &:before {
+                                    font-size: 27px;
+                                    line-height: unset;
+                                }
+                            }
+
+                            &:before {
+                                content:'';
+                                float:left;
+                                padding-top:100%;
+                            }
+                        }
+                    }
+                }
+
+                .limiter {
+                    display: none;
+                }
+            }
+
+            .sidebar-main {
+                #layered-filter-block {
+                    .filter-content {
+                        margin: 0;
+                        overflow: hidden;
+                        padding: 0 30px;
+                        position: static;
+
+
+                        .filter-current {
+                            .items {
+                                margin: 20px 0 0;
+                            }
+                        }
+
+                        .filter-options {
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+
+            .sidebar-additional {
+                margin-bottom: 0 !important;
+
+                .block-reorder {
+                    margin-bottom: 0;
+                }
+            }
+
+            .products.wrapper {
+                margin: 10px -15px !important;
+                padding: 0;
+                background-color: #FFFFFF;
+
+                .product-items {
+                    .item.product.product-item {
+                        .product-item-info {
+                            padding: 5px;
+
+                            .product-item-details {
+                                .product-title-wrapper {
+                                    padding: 5px 0 0;
+
+                                    .product-item-manufacturer {
+                                        text-transform: capitalize;
+                                        margin: 0;
+
+                                        .product-item-link {
+                                            font-size: 14px;
+                                        }
+                                    }
+
+                                    .product.gama-attribute.product-gama-attr-val {
+                                        height: 40px;
+
+                                        .product-item-link {
+                                            font-size: 14px;
+                                        }
+                                    }
+
+                                    .product.description.product-item-description {
+                                        height: 30px;
+                                        margin: 0;
+                                        font-size: 12px;
+                                    }
+                                }
+
+                                .product-price-wrapper {
+                                    padding: 10px 0;
+                                    height: 65px;
+
+                                    .price-container {
+                                        flex-direction: row;
+                                        justify-content: center;
+                                        align-items: baseline;
+
+                                        .regular-price {
+
+                                        }
+
+                                        .final-price {
+                                            margin-left: 5px;
+
+                                            .price {
+
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .product-item-inner {
+                                    .product.actions.product-item-actions {
+                                        .actions-primary {
+                                            button.action.primary {
+                                                height: 32px;
+                                                max-width: none;
+                                                background-color: #d74128;
+                                                border-color: #d74128;
+                                                color: #fff;
+                                                font-family: 'hurme_geometric_sans_1bold';
+                                                font-size: 15px;
+                                                font-weight: normal;
+                                                letter-spacing: 0;
+                                                line-height: 30px;
+                                                padding: 0 15px;
+                                                text-transform: uppercase;
+                                                width: 100%;
+                                            }
+
+                                            .stock.unavailable {
+                                                padding: 0 15px;
+
+                                                span {
+                                                    font-size: 17px;
+                                                    line-height: 32px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .actions-secondary {
+                                right: 15px;
+                                top: 125px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .page-bottom {
+            .section-container {
+                &.section-seo {
+
+                }
+
+                &.section-destacados {
+                    padding: 0;
+                }
+
+                &.section-info {
+
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile Extra Small
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .theme-pearl.catalog-category-view,
+    .theme-pearl.catalogsearch-result-index,
+    .theme-pearl.mpbrand-index-view {
+        .page-wrapper {
+            .toolbar.toolbar-products {
+                .sorter.toolbar-sorter {
+                    .sorter-label {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

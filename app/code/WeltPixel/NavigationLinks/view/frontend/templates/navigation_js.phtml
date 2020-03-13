@@ -1,0 +1,13 @@
+<?php $_helper = $this->helper('WeltPixel\NavigationLinks\Helper\Data'); ?>
+<script>
+    window.screenM = '<?php echo $_helper->getMobileThreshold(); ?>';
+    window.widthThreshold = '<?php echo $_helper->getWidthThreshold(); ?>';
+    requirejs(['jquery', 'navigationJs' ],
+        function   ($, navigationJs) {
+            $(document).ready(function() {
+                $(window).on('load resize', function(e) {
+                    navigationJs.init();
+                });
+            });
+        });
+</script>

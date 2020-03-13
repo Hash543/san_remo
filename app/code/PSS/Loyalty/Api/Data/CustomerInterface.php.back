@@ -1,0 +1,113 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+namespace PSS\Loyalty\Api\Data;
+
+interface CustomerInterface extends \Magento\Customer\Api\Data\CustomerInterface {
+    /**
+     * Constants
+     */
+    const ID_CRM = 'id_crm';
+    const LASTNAME1 = 'lastname1';
+    const LASTNAME2 = 'lastname2';
+    const ORIGIN_CRM = 'origin_crm';
+    const UPDATE_CRM = 'update_crm';
+    const LIST_ID = 'list_id';
+    const CONVERSION_EURO_POINT = 'conversion_euro_point';
+    const AVAILABLE_POINTS = 'available_points';
+    /**
+     * @return integer
+     */
+    public function getIdCrm();
+
+    /**
+     * @return string
+     */
+    public function getLastname1();
+
+    /**
+     * @param $lastname1
+     * @return $this
+     */
+    public function setLastname1($lastname1);
+
+    /**
+     * @return string
+     */
+    public function getLastname2();
+
+    /**
+     * @param $lastname2
+     * @return $this
+     */
+    public function setLastname2($lastname2);
+    /**
+     * @param integer $idCrm
+     * @return $this
+     */
+    public function setIdCrm($idCrm);
+
+    /**
+     * @return string
+     */
+    public function getOriginCrm();
+
+    /**
+     * @param string $originCrm
+     * @return $this
+     */
+    public function setOriginCrm($originCrm);
+
+    /**
+     * @return string
+     */
+    public function getUpdateCrm();
+
+    /**
+     * @param string $updateCrm
+     * @return $this
+     */
+    public function setUpdateCrm($updateCrm);
+    /**
+     * @return int
+     */
+    public function getListId();
+    /**
+     * @param int $listId
+     * @return $this
+     */
+    public function setListId($listId);
+
+    /**
+     * @return string
+     */
+    public function getConversionEuroPoint();
+
+    /**
+     * @param string $conversionEuroPoint
+     * @return string
+     */
+    public function setConversionEuroPoint($conversionEuroPoint);
+
+    /**
+     * @return integer
+     */
+    public function getAvailablePoints();
+
+    /**
+     * @param integer $availablePoints
+     * @return $this
+     */
+    public function setAvailablePoints($availablePoints);
+    /**
+     * @param array|null $addresses
+     * @return \PSS\Loyalty\Api\Data\CustomerInterface
+     */
+    public function setAddresses(array $addresses = null);
+
+    /**
+     * @return \PSS\Loyalty\Api\Data\AddressInterface[]|null
+     */
+    public function getAddresses();
+}

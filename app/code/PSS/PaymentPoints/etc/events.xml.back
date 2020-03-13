@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * @author Israel Yasis
+  */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_login">
+        <observer name="update_points_customer_login" instance="PSS\PaymentPoints\Observer\UpdatePointsCustomer" />
+    </event>
+</config>

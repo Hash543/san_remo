@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * This package designed for Magento COMMUNITY edition
+ * PSS Digital does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * PSS Digital does not provide extension support in case of * incorrect edition usage.
+ *
+ * @author PSS Digital Team
+ * @category PSS
+ * @package PSS_WordPress
+ * @copyright Copyright (c) 2018 PSS (https://www.pss-ti.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+ /**
+  * Works with magento 2.2.2 above
+  */
+ -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <htmlContent name="wordpress" sortOrder="22">
+        <argument name="data" xsi:type="array">
+            <item name="wrapper" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Wordpress Posts</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">false</item>
+            </item>
+        </argument>
+        <settings>
+            <wrapper>
+                <canShow>true</canShow>
+                <componentType>fieldset</componentType>
+            </wrapper>
+        </settings>
+        <block class="PSS\WordPress\Block\Adminhtml\Product\Edit\Form\Post" name="wordpress" template="PSS_WordPress::product/edit/post/form.phtml">
+            <block class="PSS\WordPress\Block\Adminhtml\Product\Edit\Post\Grid" name="post_grid"/>
+            <block class="PSS\WordPress\Block\Adminhtml\Serializer\Widget\Grid\Serializer" name="post_grid_serializer"
+                   template="PSS_WordPress::serializer/widget/grid/product/serializer.phtml">
+                <arguments>
+                    <argument name="grid_block" xsi:type="string">post_grid</argument>
+                    <argument name="callback" xsi:type="string">getPostByEntity</argument>
+                    <argument name="input_element_name" xsi:type="string">related_post</argument>
+                    <argument name="reload_param_name" xsi:type="string">selected_post</argument>
+                </arguments>
+            </block>
+            <arguments>
+                <argument name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Wordpress Posts</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="opened" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">191</item>
+                    <item name="canShow" xsi:type="boolean">true</item>
+                    <item name="componentType" xsi:type="string">fieldset</item>
+                    <item name="group_code" xsi:type="string">advanced</item>
+                </argument>
+            </arguments>
+        </block>
+    </htmlContent>
+</form>

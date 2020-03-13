@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * This package designed for Magento COMMUNITY edition
+ * PSS Digital does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * PSS Digital does not provide extension support in case of * incorrect edition usage.
+ *
+ * @author PSS Digital Team
+ * @category PSS
+ * @package PSS_WordPress
+ * @copyright Copyright (c) 2018 PSS (https://www.pss-ti.com)
+ * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+ /**
+  * Works with Magento 2.1
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product_form">
+            <block class="PSS\WordPress\Block\Adminhtml\Product\Edit\Tab\Post" name="product.wordpress" as="product-wordpress" >
+                <arguments>
+                    <argument name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Wordpress Posts</item>
+                        <item name="collapsible" xsi:type="boolean">true</item>
+                        <item name="opened" xsi:type="boolean">true</item>
+                        <item name="sortOrder" xsi:type="string">200</item>
+                        <item name="canShow" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">fieldset</item>
+                    </argument>
+                </arguments>
+                <block class="PSS\WordPress\Block\Adminhtml\Product\Edit\Tab\Post\Grid" name="post_grid"/>
+                <block class="PSS\WordPress\Block\Adminhtml\Product\Edit\Widget\Grid\Serializer" name="post_grid_serializer">
+                    <arguments>
+                        <argument name="grid_block" xsi:type="string">post_grid</argument>
+                        <argument name="callback" xsi:type="string">getPostByProduct</argument>
+                        <argument name="input_element_name" xsi:type="string">related_post</argument>
+                        <argument name="reload_param_name" xsi:type="string">selected_post</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

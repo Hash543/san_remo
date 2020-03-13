@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * di
+ *
+ * @copyright Copyright © 2019 Alfa9 Servicios Web, S.L.. All rights reserved.
+ * @author    xsanz@alfa9.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <preference for="Magento\Catalog\Block\Adminhtml\Product\Helper\Form\Gallery\Content" type="PSS\GalleryFix\Block\Adminhtml\Product\Helper\Form\Gallery\Content" />
+</config>

@@ -1,0 +1,422 @@
+//
+//  GDPR Cookie Compliance
+//  ____________________________________________
+
+//
+//  Variables
+//  _____________________________________________
+
+@amgdprcookie-text__color: #363636;
+@amgdprcookie-btn__background: #ef7c4a;
+@amgdprcookie-toogle-disable__background: #e8e8e8;
+@amgdprcookie-toogle-normal__background: #a5a5a5;
+@amgdprcookie-toogle-checked__background: #1979c3;
+@amgdprcookie-link__hover__color: #1787e0;
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    .amgdprcookie-main-wrapper {
+        & {
+            .lib-css(color, @amgdprcookie-text__color);
+        }
+
+        .amgdprcookie-top {
+            .lib-vendor-prefix-display(flex);
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .amgdprcookie-head {
+            font-size: 20px;
+            line-height: 20px;
+        }
+
+        .amgdprcookie-btn-wrapper {
+            .lib-vendor-prefix-display(flex);
+        }
+
+        .amgdprcookie-btn {
+            & {
+                padding: 7px 27px;
+                border: 0;
+                font-size: 14px;
+                color: #fff;
+                border-radius: 6px;
+                .lib-css(background, @amgdprcookie-btn__background);
+                box-shadow: 0 3px 5px rgba(62, 40, 13, .15);
+                text-transform: uppercase;
+            }
+
+            &:first-child {
+                margin: 0 15px;
+            }
+
+            &:hover {
+                background: darken(@amgdprcookie-btn__background, 10%);
+            }
+        }
+    }
+
+    .amgdprcookie-toggle-cookie {
+        & {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .amgdprcookie-input {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .amgdprcookie-label {
+            & {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 50px;
+                height: 29px;
+                border-radius: 40px;
+                cursor: pointer;
+                .lib-css(background, @amgdprcookie-toogle-normal__background);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, .05);
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                width: 25px;
+                height: 25px;
+                background: #fff;
+                border-radius: 40px;
+                transition: all .4s ease;
+            }
+        }
+
+        .amgdprcookie-input:checked:disabled + .amgdprcookie-label {
+            & {
+                .lib-css(background, @amgdprcookie-toogle-disable__background);
+            }
+
+            &:after {
+                left: calc(95%);
+                transform: translateX(-100%);
+            }
+        }
+
+        .amgdprcookie-input:checked:not([disabled]) + .amgdprcookie-label {
+            & {
+                .lib-css(background, @amgdprcookie-toogle-checked__background);
+            }
+
+            &:after {
+                left: calc(95%);
+                transform: translateX(-100%);
+            }
+        }
+
+        .amgdprcookie-input:not([checked]) + .amgdprcookie-label {
+            & {
+                .lib-css(background, @amgdprcookie-toogle-normal__background);
+            }
+        }
+
+        .amgdprcookie-input:disabled + .amgdprcookie-label {
+            & {
+                .lib-css(background, @amgdprcookie-toogle-disable__background);
+            }
+
+            &:after {
+                left: 2px;
+            }
+        }
+    }
+
+    .amgdprcookie-main-wrapper .amgdprcookie-toggle-cookie .amgdprcookie-input.disabled + .amgdprcookie-label {
+        .lib-css(background, @amgdprcookie-toogle-disable__background);
+    }
+
+    .amgdprcookie-container {
+        & {
+            margin-bottom: 20px;
+            padding-top: 15px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 3px 10px rgba(5, 32, 65, .15);
+        }
+
+        .amgdprcookie-header {
+            .lib-vendor-prefix-display(flex);
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+
+        .amgdprcookie-caption {
+            margin: 0 0 15px;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 30px;
+            word-break: break-all;
+            word-break: break-word;
+        }
+        .amgdprcookie-text {
+            margin-bottom: 0;
+            padding: 0 15px;
+            font-size: 12px;
+            .lib-css(color, @amgdprcookie-text__color);
+        }
+
+        .amgdprcookie-options {
+            & {
+                position: relative;
+                margin-top: 15px;
+                padding: 7px 15px;
+                border-bottom-left-radius: 6px;
+                border-bottom-right-radius: 6px;
+                font-size: 12px;
+                color: #fff;
+                cursor: pointer;
+                background: #767676;
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                top: 16px;
+                height: 2px;
+                width: 10px;
+                background: #fff;
+            }
+
+            &:before {
+                right: 20px;
+                transform: rotate(45deg);
+            }
+
+            &:after {
+                right: 14px;
+                transform: rotate(-45deg);
+            }
+        }
+
+        .amgdprcookie-check.active .amgdprcookie-options {
+            & {
+                border-radius: 0;
+            }
+
+            &:before {
+                transform: rotate(-45deg);
+            }
+
+            &:after {
+                transform: rotate(45deg);
+            }
+        }
+    }
+
+    .amgdprcookie-content-wrapper {
+        & {
+            display: none;
+            padding: 0 15px;
+            border-radius: 6px;
+            background: #f9f9f9;
+            font-size: 12px;
+        }
+
+        .amgdprcookie-title {
+            padding: 15px 15px 0 0;
+            vertical-align: top;
+        }
+
+        .amgdprcookie-row {
+            & {
+                border-bottom: 1px solid #ccc;
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        .amgdprcookie-table .amgdprcookie-cell {
+            & {
+                padding: 15px 15px 15px 0;
+                word-break: break-all;
+                word-break: break-word;
+            }
+
+            &:first-child {
+                width: 23%;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+//
+//  Tablet
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amgdprcookie-main-wrapper {
+        & {
+            padding: 0;
+        }
+
+        .amgdprcookie-top {
+            margin-bottom: 35px;
+        }
+
+        .amgdprcookie-head {
+            font-size: 34px;
+            line-height: normal;
+        }
+
+        .amgdprcookie-btn {
+            padding: 17px 46px;
+            font-size: 20px;
+            box-shadow: 0 3px 10px rgba(62, 40, 13, .15);
+            text-transform: none;
+        }
+    }
+
+    .amgdprcookie-container {
+        & {
+            margin-bottom: 30px;
+            padding: 25px 0;
+        }
+
+        .amgdprcookie-header {
+            .lib-vendor-prefix-display(flex);
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: flex-start;
+            padding: 0 25px;
+        }
+
+        .amgdprcookie-caption {
+            margin: 0 64px 10px 0;
+            font-size: 20px;
+        }
+
+        .amgdprcookie-toggle-cookie {
+            padding-left: 0;
+        }
+
+        .amgdprcookie-text {
+            padding: 0 25px;
+            font-size: 14px;
+        }
+
+        .amgdprcookie-options {
+            & {
+                display: inline-block;
+                margin-top: 22px;
+                padding: 0 25px;
+                font-size: 14px;
+                color: #8a837f;
+                background: inherit;
+            }
+
+            &:hover {
+                color: @amgdprcookie-link__hover__color;
+            }
+
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+                top: 10px;
+                height: 2px;
+                width: 10px;
+                background: #8a837f;
+
+            }
+
+            &:before {
+                right: 6px;
+                transform: rotate(45deg);
+            }
+
+            &:after {
+                right: 0;
+                transform: rotate(-45deg);
+            }
+        }
+
+        .amgdprcookie-check.active .amgdprcookie-options {
+            & {
+                .lib-css(color, @amgdprcookie-text__color);
+            }
+
+            &:hover {
+                color: @amgdprcookie-link__hover__color;
+            }
+
+            &:before,
+            &:after {
+                .lib-css(background, @amgdprcookie-text__color);
+            }
+        }
+    }
+
+    .amgdprcookie-content-wrapper {
+        & {
+            margin: 25px 25px 0;
+            padding: 0 15px;
+            font-size: 14px;
+        }
+
+        .amgdprcookie-title {
+            padding: 15px 15px 0 0;
+            vertical-align: top;
+        }
+
+        .amgdprcookie-row {
+            & {
+                border-bottom: 1px solid #ccc;
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        .amgdprcookie-row .amgdprcookie-cell {
+            & {
+                padding: 15px 15px 15px 0;
+            }
+
+            &:first-child {
+                width: 20%;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .amgdprcookie-content-wrapper .amgdprcookie-table .amgdprcookie-cell:first-child {
+        width: 17%;
+    }
+}

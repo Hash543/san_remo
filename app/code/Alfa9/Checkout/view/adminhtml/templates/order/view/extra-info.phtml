@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var \Alfa9\Checkout\Block\Adminhtml\Order\View\ExtraInfo $block
+ */
+
+?>
+<?php if($order = $block->getOrder()):?>
+    <section class="admin__page-section order-extra-info">
+        <div class="admin__page-section-title">
+            <span class="title">Extra Info</span>
+        </div>
+        <div class="admin__page-section-content">
+            <div class="admin__page-section-item">
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary">
+                        <tbody>
+                            <tr>
+                                <th><?php echo __('Order Comment'); ?></th>
+                                <td><?php echo $order->getData('comment_order') ? $order->getData('comment_order') :""; ?></td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Delivery Date and Hour'); ?></th>
+                                <td><?php echo $order->getData('delivery_date') ? $order->getData('delivery_date') :""; ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>

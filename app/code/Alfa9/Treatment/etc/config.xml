@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <pss_treatments>
+            <general>
+                <enable_reminder>1</enable_reminder>
+                <enable_tips>1</enable_tips>
+                <enable_poll>1</enable_poll>
+                <days_to_tips>1</days_to_tips>
+                <days_to_poll>8</days_to_poll>
+            </general>
+        </pss_treatments>
+    </default>
+</config>

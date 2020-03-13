@@ -1,0 +1,16 @@
+{
+    "name": "pss/module-banner",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Pss\\Banner\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

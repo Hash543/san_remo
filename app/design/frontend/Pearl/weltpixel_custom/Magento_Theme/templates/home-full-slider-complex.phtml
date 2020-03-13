@@ -1,0 +1,33 @@
+<?php
+/** @var \Magento\Cms\Helper\Wysiwyg\Images $wysiwyg */
+$wysiwyg = $this->helper(\Magento\Cms\Helper\Wysiwyg\Images::class);
+$wysiwygURL = $wysiwyg->getCurrentUrl();
+$mediaurl = implode(explode('wysiwyg', $wysiwygURL));
+?>
+
+<div class="container publicity-banners-wrapper">
+    <div class="banner-publicity banner-publicity-left">
+        <?= $block->getChildHtml('publicity-left'); ?>
+    </div>
+    <div class="home-slider">
+        <?= $block->getChildHtml('slider-inside-complex');?>
+    </div>
+    <div class="center promo-text">
+        <?= $block->getChildHtml('mega_promo'); ?>
+    </div>
+    <div class="row bottom tiles hidden visible-sm visible-md visible-lg">
+        <div class="col-sm-6 tile-left">
+            <div class="banner-promo">
+                <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('banner-promo-left')->toHtml(); ?>
+            </div>
+        </div>
+        <div class="col-sm-6 tile-right">
+            <div class="banner-promo">
+                <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('banner-promo-right')->toHtml(); ?>
+            </div>
+        </div>
+    </div>
+    <div class="banner-publicity banner-publicity-right">
+        <?= $block->getChildHtml('publicity-right'); ?>
+    </div>
+</div>

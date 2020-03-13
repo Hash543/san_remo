@@ -1,0 +1,15 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+if($product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+    $stock = $product->getExtensionAttributes()->getStockItem()->getData('is_in_stock');
+    if($stock){ ?>
+        <div class="loader-wrapper">
+            <div data-role="loader" class="loading-mask" style="padding-bottom: 100%;">
+                <div class="loader">
+                    <img src="<?php echo $block->getViewFileUrl('PSS_Preloader::images/custom-loader.gif'); ?>" alt="Loading..." />
+                </div>
+            </div>
+        </div>
+    <?php } 
+} ?>

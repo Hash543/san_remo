@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * @author Israel Yasis
+  */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_save_after">
+        <observer name="pss_payment_method_save_shipping_information"
+                  instance="PSS\PaymentPoints\Observer\ApplyPoints" />
+    </event>
+</config>

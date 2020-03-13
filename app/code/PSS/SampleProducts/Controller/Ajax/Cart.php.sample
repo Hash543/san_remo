@@ -1,0 +1,62 @@
+<?php
+/**
+ * @author Israel Yasis
+ */
+
+namespace PSS\SampleProducts\Controller\Ajax;
+
+
+/**
+ * Class Cart
+ * @package PSS\SampleProducts\Controller\Ajax
+ */
+abstract class Cart extends \Magento\Framework\App\Action\Action
+{
+    /**
+     * @var \Magento\Catalog\Api\ProductRepositoryInterface
+     */
+    protected $productRepository;
+    /**
+     * @var \Magento\Framework\Data\Form\FormKey
+     */
+    protected $formKey;
+    /**
+     * @var \Magento\Framework\Data\Form\FormKey\Validator
+     */
+    protected $formKeyValidator;
+    /**
+     * @var \Magento\Checkout\Model\Cart
+     */
+    protected $cart;
+    /**
+     * @var \Magento\Framework\Controller\Result\JsonFactory
+     */
+    protected $jsonFactory;
+    /**
+     * UpdatePost constructor.
+     * @param \Magento\Framework\App\Action\Context $context
+     * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+     * @param \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
+     * @param \Magento\Framework\Data\Form\FormKey $formKey
+     * @param \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
+     * @param \Magento\Checkout\Model\Cart $cart
+     */
+    public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
+        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
+        \Magento\Framework\Data\Form\FormKey $formKey,
+        \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator,
+        \Magento\Checkout\Model\Cart $cart
+    )
+    {
+        $this->jsonFactory = $jsonFactory;
+        $this->formKey = $formKey;
+        $this->formKeyValidator = $formKeyValidator;
+        $this->productRepository = $productRepository;
+        $this->cart = $cart;
+        parent::__construct($context);
+    }
+
+
+}

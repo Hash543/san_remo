@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Our Stores</title>
+        <css src="Alfa9_StoreInfo::css/stockists.css"/>
+        <css src="Alfa9_StoreInfo::css/slick.css"/>
+        <css src="Alfa9_StoreInfo::css/slick-theme.css"/>
+        <!--<link src="Alfa9_StoreInfo::js/stockists_slick.js"/>-->
+    </head>
+    <body>
+        <referenceBlock name="page.main.title" remove="true" />
+        <attribute name="class" value="storeinfo"/>
+        <referenceContainer name="content">
+            <block class="Alfa9\StoreInfo\Block\Stockists" name="stockists.stores.individual" template="Alfa9_StoreInfo::individualStore.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

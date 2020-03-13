@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_Swatches::css/swatches.css"/>
+    </head>
+
+    <body>
+        <referenceBlock name="bundle.summary" template="Firebear_ConfigurableProducts::product/view/summary.phtml"/>
+        <referenceContainer name="product.info.main">
+            <referenceBlock name="product.info.bundle.options">
+                <action method="setTemplate" ifconfig="firebear_configurableproducts/bundle_options/enable">
+                    <argument name="template" xsi:type="string">Firebear_ConfigurableProducts::product/view/type/bundle/options.phtml</argument>
+                </action>
+            </referenceBlock>
+        </referenceContainer>
+        <referenceBlock name="product.info.options.wrapper">
+            <block class="Magento\Catalog\Block\Product\View" name="bundle.product.view.options.notice" template="Magento_Bundle::catalog/product/view/options/notice.phtml"/>
+            <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle" name="product.info.bundle.options" as="type_bundle_options" template="Magento_Bundle::catalog/product/view/type/bundle/options.phtml" before="-">
+                <container name="product.info.bundle.options.top" as="product_info_bundle_options_top">
+                    <block class="Magento\Catalog\Block\Product\View" name="bundle.back.button" as="backButton" before="-" template="Magento_Bundle::catalog/product/view/backbutton.phtml"/>
+                </container>
+                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Select" name="product.info.bundle.options.select" as="select"/>
+                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Multi" name="product.info.bundle.options.multi" as="multi"/>
+                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio" name="product.info.bundle.options.radio" as="radio"/>
+                <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox" name="product.info.bundle.options.checkbox" as="checkbox"/>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

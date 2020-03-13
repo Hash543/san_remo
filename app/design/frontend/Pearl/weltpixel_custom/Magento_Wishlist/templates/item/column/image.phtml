@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Image $block */
+
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+$product_id = $product->getId();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$_product = $objectManager->create('Magento\Catalog\Model\Product')->load($product_id);
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$tax_helper   = $objectManager->get('\Magento\Catalog\Helper\Data');
+?>
+<a class="product-item-photo" tabindex="-1" href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>" title="<?= $block->escapeHtmlAttr($product->getName()) ?>">
+    <?php
+        $visible = '';
+        $discountPvp = 0;
+        $configdiscountPvp = [];
+        if($_product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+            $productTypeInstance = $_product->getTypeInstance();
+            $usedProducts = $productTypeInstance->getUsedProducts($_product);
+            foreach ($usedProducts  as $child) {
+                $child = $objectManager->get('Magento\Catalog\Model\Product')->load($child->getId());
+                $finalPrice = $tax_helper->getTaxPrice($child, $child->getFinalPrice(), true);
+                $finalPrice = round($finalPrice, 2);
+                $pvpPrice = $child->getResource()->getAttributeRawValue($child->getId(),'pvp',$storeManager->getStore()->getStoreId());
+                if($pvpPrice && $pvpPrice > 0 && $pvpPrice > $finalPrice) {
+                    $visible = 'visible';
+                    $pvpPrice = round($pvpPrice, 2);
+                    $savePercent = (1 - ($finalPrice / $pvpPrice)) * 100;
+                    $configdiscountPvp[] = round($savePercent, 0);
+                }
+            }
+            if(!empty($configdiscountPvp)){
+                $discountPvp = max($configdiscountPvp);
+            }
+        }else{
+            $priceInfo = $_product->getPriceInfo();
+            $finalPrice = $priceInfo->getPrice('final_price')->getAmount()->getValue();
+            $pvpPrice = $_product->getData('pvp');
+            $discountPvp = 0;
+
+            if($pvpPrice && $pvpPrice > 0 && $pvpPrice > $finalPrice) {
+                $visible = 'visible';
+                $pvpPrice = round($pvpPrice, 2);
+                $savePercent = (1 - ($finalPrice / $pvpPrice)) * 100;
+                $discountPvp = round($savePercent, 0);
+            }
+        }
+        
+        if(!$discountPvp){
+            $visible = '';
+        }
+    ?>
+    <?php if($discountPvp): ?>
+        <div class="product pvp_discount <?= /* @escapeNotVerified */ $visible; ?>">
+            <?php if( $_product->getTypeId() != 'simple' ): ?>
+                <div class="pvp_discount_label"><?php echo __('Hasta'); ?></div>
+            <?php endif; ?>
+            <div class="discountPvp">-<?= /* @escapeNotVerified */  $discountPvp; ?>%</div>
+        </div>
+    <?php endif; ?>
+    <?php unset($configdiscountPvp);  ?>
+    <?= $block->getImage($product, 'wishlist_thumbnail')->toHtml() ?>
+</a>

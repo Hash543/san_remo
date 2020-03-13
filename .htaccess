@@ -1,0 +1,668 @@
+############################################
+## overrides deployment configuration mode value
+## use command bin/magento deploy:mode:set to switch modes
+
+#   SetEnv MAGE_MODE developer
+
+############################################
+## uncomment these lines for CGI mode
+## make sure to specify the correct cgi php binary file name
+## it might be /cgi-bin/php-cgi
+
+#    Action php5-cgi /cgi-bin/php5-cgi
+#    AddHandler php5-cgi .php
+
+############################################
+## GoDaddy specific options
+
+#   Options -MultiViews
+
+## you might also need to add this line to php.ini
+##     cgi.fix_pathinfo = 1
+## if it still doesn't work, rename php.ini to php5.ini
+
+############################################
+## this line is specific for 1and1 hosting
+
+    #AddType x-mapp-php5 .php
+    #AddHandler x-mapp-php5 .php
+
+############################################
+## default index file
+
+    DirectoryIndex index.php
+
+<IfModule mod_php5.c>
+############################################
+## adjust memory limit
+
+    php_value memory_limit 756M
+    php_value max_execution_time 18000
+
+############################################
+## disable automatic session start
+## before autoload was initialized
+
+    php_flag session.auto_start off
+
+############################################
+## enable resulting html compression
+
+    #php_flag zlib.output_compression on
+
+###########################################
+## disable user agent verification to not break multiple image upload
+
+    php_flag suhosin.session.cryptua off
+</IfModule>
+<IfModule mod_php7.c>
+############################################
+## adjust memory limit
+
+    php_value memory_limit 756M
+    php_value max_execution_time 18000
+
+############################################
+## disable automatic session start
+## before autoload was initialized
+
+    php_flag session.auto_start off
+
+############################################
+## enable resulting html compression
+
+    #php_flag zlib.output_compression on
+
+###########################################
+## disable user agent verification to not break multiple image upload
+
+    php_flag suhosin.session.cryptua off
+</IfModule>
+<IfModule mod_security.c>
+###########################################
+## disable POST processing to not break multiple image upload
+
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+</IfModule>
+
+<IfModule mod_deflate.c>
+
+############################################
+## enable apache served files compression
+## http://developer.yahoo.com/performance/rules.html#gzip
+
+    # Insert filter on all content
+    SetOutputFilter DEFLATE
+    # Insert filter on selected content types only
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json image/svg+xml
+
+    # Netscape 4.x has some problems...
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+
+    # Netscape 4.06-4.08 have some more problems
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+
+    # MSIE masquerades as Netscape, but it is fine
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+    # Don't compress images
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+
+    # Make sure proxies don't deliver the wrong content
+    Header append Vary User-Agent env=!dont-vary
+
+</IfModule>
+
+<IfModule mod_ssl.c>
+
+############################################
+## make HTTPS env vars available for CGI mode
+
+    SSLOptions StdEnvVars
+
+</IfModule>
+
+############################################
+## workaround for Apache 2.4.6 CentOS build when working via ProxyPassMatch with HHVM (or any other)
+## Please, set it on virtual host configuration level
+
+##    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+############################################
+
+<IfModule mod_rewrite.c>
+
+############################################
+## enable rewrites
+
+    ## Options +FollowSymLinks
+    RewriteEngine on
+
+############################################
+## you can put here your magento root folder
+## path relative to web root
+
+    #RewriteBase /magento/
+
+###########################################
+# PSS REWRITE RULES
+
+    RewriteRule ^abilia.html /marcas/abilia.html [L,R=301]
+    RewriteRule ^acorelle.html /marcas/acorelle.html [L,R=301]
+    RewriteRule ^adidas.html /marcas/adidas.html [L,R=301]
+    RewriteRule ^adolfo-dominguez.html /marcas/adolfo-dominguez.html [L,R=301]
+    RewriteRule ^agatha-ruiz-de-la-prada.html /marcas/agatha-ruiz-de-la-prada.html [L,R=301]
+    RewriteRule ^agua-brava.html /marcas/agua-brava.html [L,R=301]
+    RewriteRule ^agua-de-luna.html /marcas/agua-de-luna.html [L,R=301]
+    RewriteRule ^aire-de-sevilla.html /marcas/aire-de-sevilla.html [L,R=301]
+    RewriteRule ^alterna.html /marcas/alterna.html [L,R=301]
+    RewriteRule ^anouk.html /marcas/anouk.html [L,R=301]
+    RewriteRule ^antonio-banderas.html /marcas/antonio-banderas.html [L,R=301]
+    RewriteRule ^aramis.html /marcas/aramis.html [L,R=301]
+    RewriteRule ^armani.html /marcas/armani.html [L,R=301]
+    RewriteRule ^astor.html /marcas/astor.html [L,R=301]
+    RewriteRule ^atkinsons.html /marcas/atkinsons.html [L,R=301]
+    RewriteRule ^atrix.html /marcas/atrix.html [L,R=301]
+    RewriteRule ^australian-gold.html /marcas/australian-gold.html [L,R=301]
+    RewriteRule ^axe.html /marcas/axe.html [L,R=301]
+    RewriteRule ^azzaro.html /marcas/azzaro.html [L,R=301]
+    RewriteRule ^batiste.html /marcas/batiste.html [L,R=301]
+    RewriteRule ^bella-aurora.html /marcas/bella-aurora.html [L,R=301]
+    RewriteRule ^beter.html /marcas/bic.html [L,R=301]
+    RewriteRule ^binaca.html /marcas/binaca.html [L,R=301]
+    RewriteRule ^bio-oil.html /marcas/bio-oil.html [L,R=301]
+    RewriteRule ^biotherm.html /marcas/biotherm.html [L,R=301]
+    RewriteRule ^biotherm-homme.html /marcas/biotherm-homme.html [L,R=301]
+    RewriteRule ^britney-spears.html /marcas/britney-spears.html [L,R=301]
+    RewriteRule ^brummel.html /marcas/brummel.html [L,R=301]
+    RewriteRule ^burberry.html /marcas/burberry.html [L,R=301]
+    RewriteRule ^bustamante.html /marcas/bustamante.html [L,R=301]
+    RewriteRule ^bvlgari.html /marcas/bvlgari.html [L,R=301]
+    RewriteRule ^byly.html /marcas/byly.html [L,R=301]
+    RewriteRule ^cacharel.html /marcas/cacharel.html [L,R=301]
+    RewriteRule ^calvin-klein.html /marcas/calvin-klein.html [L,R=301]
+    RewriteRule ^calypso.html /marcas/calypso.html [L,R=301]
+    RewriteRule ^capitan-america.html /marcas/capitan-america.html [L,R=301]
+    RewriteRule ^carefree.html /marcas/carefree.html [L,R=301]
+    RewriteRule ^carolina-herrera.html /marcas/carolina-herrera.html [L,R=301]
+    RewriteRule ^casmara.html /marcas/casmara.html [L,R=301]
+    RewriteRule ^chanson.html /marcas/chanson.html [L,R=301]
+    RewriteRule ^chloe.html /marcas/chloe.html [L,R=301]
+    RewriteRule ^clarins.html /marcas/clarins.html [L,R=301]
+    RewriteRule ^clarins-men.html /marcas/clarins-men.html [L,R=301]
+    RewriteRule ^close-up.html /marcas/close-up.html [L,R=301]
+    RewriteRule ^colgate.html /marcas/colgate.html [L,R=301]
+    RewriteRule ^colhogar.html /marcas/colhogar.html [L,R=301]
+    RewriteRule ^colorcrem.html /marcas/colorcrem.html [L,R=301]
+    RewriteRule ^comodynes.html /marcas/comodynes.html [L,R=301]
+    RewriteRule ^crossmen.html /marcas/crossmen.html [L,R=301]
+    RewriteRule ^cutex.html /marcas/cutex.html [L,R=301]
+    RewriteRule ^cygnetic.html /marcas/cygnetic.html [L,R=301]
+    RewriteRule ^dare.html /marcas/dare.html [L,R=301]
+    RewriteRule ^davidoff.html /marcas/davidoff.html [L,R=301]
+    RewriteRule ^delial.html /marcas/delial.html [L,R=301]
+    RewriteRule ^demakup.html /marcas/demak-up.html [L,R=301]
+    RewriteRule ^denenes.html /marcas/denenes.html [L,R=301]
+    RewriteRule ^denivit.html /marcas/denivit.html [L,R=301]
+    RewriteRule ^diadermine.html /marcas/diadermine.html [L,R=301]
+    RewriteRule ^diesel.html /marcas/diesel.html [L,R=301]
+    RewriteRule ^disney.html /marcas/disney.html [L,R=301]
+    RewriteRule ^dkny.html /marcas/dkny.html [L,R=301]
+    RewriteRule ^dolce-y-gabbana.html /marcas/dolce.html [L,R=301]
+    RewriteRule ^don-algodon.html /marcas/don-algodon.html [L,R=301]
+    RewriteRule ^dora-exploradora.html /marcas/dora-exploradora.html [L,R=301]
+    RewriteRule ^dove.html /marcas/dove.html [L,R=301]
+    RewriteRule ^dr-hauschka.html /marcas/dr-hauschka.html [L,R=301]
+    RewriteRule ^dr-scholl.html /marcas/dr-scholl.html [L,R=301]
+    RewriteRule ^eau-jeune.html /marcas/eau-jeune.html [L,R=301]
+    RewriteRule ^ecran.html /marcas/ecran.html [L,R=301]
+    RewriteRule ^elegant-touch.html /marcas/elegant-touch.html [L,R=301]
+    RewriteRule ^elie-saab.html /marcas/elie-saab.html [L,R=301]
+    RewriteRule ^elizabeth-arden.html /marcas/elizabeth-arden.html [L,R=301]
+    RewriteRule ^emma-hardie.html /marcas/emma-hardie.html [L,R=301]
+    RewriteRule ^emoji.html /marcas/emoji.html [L,R=301]
+    RewriteRule ^emporio-armani.html /marcas/emporio-armani.html [L,R=301]
+    RewriteRule ^ermenegildo-zegna.html /marcas/ermenegildo-zegna.html [L,R=301]
+    RewriteRule ^essence.html /marcas/escada.html [L,R=301]
+    RewriteRule ^essence.html /marcas/essence.html [L,R=301]
+    RewriteRule ^essie.html /marcas/essie.html [L,R=301]
+    RewriteRule ^esteban-paris-parfums.html /marcas/esteban-paris-parfums.html [L,R=301]
+    RewriteRule ^eucerin.html /marcas/eucerin.html [L,R=301]
+    RewriteRule ^eudermin.html /marcas/eudermin.html [L,R=301]
+    RewriteRule ^eylure.html /marcas/eylure.html [L,R=301]
+    RewriteRule ^fa.html /marcas/fa.html [L,R=301]
+    RewriteRule ^fixpray.html /marcas/fixpray.html [L,R=301]
+    RewriteRule ^floid.html /marcas/floid.html [L,R=301]
+    RewriteRule ^flor-de-mayo.html /marcas/flor-de-mayo.html [L,R=301]
+    RewriteRule ^florame.html /marcas/florame.html [L,R=301]
+    RewriteRule ^foreo.html /marcas/foreo.html [L,R=301]
+    RewriteRule ^franck-provost.html /marcas/franck-provost.html [L,R=301]
+    RewriteRule ^frozen.html /marcas/frozen.html [L,R=301]
+    RewriteRule ^futbol-club-barcelona.html /marcas/futbol-club-barcelona.html [L,R=301]
+    RewriteRule ^garnier.html /marcas/garnier.html [L,R=301]
+    RewriteRule ^germinal.html /marcas/germinal.html [L,R=301]
+    RewriteRule ^gemmas-dream.html /marcas/gemmas-dream.html [L,R=301]
+    RewriteRule ^gillette.html /marcas/gillette.html [L,R=301]
+    RewriteRule ^giorgi.html /marcas/giorgi.html [L,R=301]
+    RewriteRule ^giorgio-beberly-hills.html /marcas/giorgio-beberly-hills.html [L,R=301]
+    RewriteRule ^givenchy.html /marcas/givenchy.html [L,R=301]
+    RewriteRule ^gucci.html /marcas/gucci.html [L,R=301]
+    RewriteRule ^gudea.html /marcas/gudea.html [L,R=301]
+    RewriteRule ^h-s.html /marcas/h-s.html [L,R=301]
+    RewriteRule ^halloween.html /marcas/halloween.html [L,R=301]
+    RewriteRule ^hawaiian-tropic.html /marcas/hawaiian-tropic.html [L,R=301]
+    RewriteRule ^heno-de-pravia.html /marcas/heno-de-pravia.html [L,R=301]
+    RewriteRule ^herbal-essences.html /marcas/herbal-essences.html [L,R=301]
+    RewriteRule ^hermes.html /marcas/hermes.html [L,R=301]
+    RewriteRule ^hugo-boss.html /marcas/hugo-boss.html [L,R=301]
+    RewriteRule ^idc.html /marcas/idc.html [L,R=301]
+    RewriteRule ^impacto.html /marcas/impacto.html [L,R=301]
+    RewriteRule ^issey-miyake.html /marcas/issey-miyake.html [L,R=301]
+    RewriteRule ^jacq-s.html /marcas/jacq-s.html [L,R=301]
+    RewriteRule ^jean-paul-gaultier.html /marcas/jean-paul-gaultier.html [L,R=301]
+    RewriteRule ^johnson-s.html /marcas/johnson-s.html [L,R=301]
+    RewriteRule ^jovan-musk.html /marcas/jovan-musk.html [L,R=301]
+    RewriteRule ^juicy-couture.html /marcas/juicy-couture.html [L,R=301]
+    RewriteRule ^kativa.html /marcas/kativa.html [L,R=301]
+    RewriteRule ^kemphor.html /marcas/kemphor.html [L,R=301]
+    RewriteRule ^kenzo.html /marcas/kenzo.html [L,R=301]
+    RewriteRule ^loreal.html /marcas/l-oreal.html [L,R=301]
+    RewriteRule ^loreal-men.html /marcas/l-oreal-men.html [L,R=301]
+    RewriteRule ^loreal-professionnel.html /marcas/l-oreal-professionnel.html [L,R=301]
+    RewriteRule ^la-prairie.html /marcas/la-prairie.html [L,R=301]
+    RewriteRule ^la-toja.html /marcas/la-toja.html [L,R=301]
+    RewriteRule ^lacer.html /marcas/lacer.html [L,R=301]
+    RewriteRule ^lacoste.html /marcas/lacoste.html [L,R=301]
+    RewriteRule ^lactovit.html /marcas/lactovit.html [L,R=301]
+    RewriteRule ^ladybug.html /marcas/ladybug.html [L,R=301]
+    RewriteRule ^laiseven.html /marcas/laiseven.html [L,R=301]
+    RewriteRule ^lancaster.html /marcas/lancaster.html [L,R=301]
+    RewriteRule ^lancome.html /marcas/lancome.html [L,R=301]
+    RewriteRule ^lavanda-puig.html /marcas/lavanda-puig.html [L,R=301]
+    RewriteRule ^lavera.html /marcas/lavera.html [L,R=301]
+    RewriteRule ^le-petit-marseillais.html /marcas/le-petit-marseillais.html [L,R=301]
+    RewriteRule ^lea.html /marcas/lea.html [L,R=301]
+    RewriteRule ^licor-del-polo.html /marcas/licor-del-polo.html [L,R=301]
+    RewriteRule ^liposan.html /marcas/liposan.html [L,R=301]
+    RewriteRule ^listerine.html /marcas/listerine.html [L,R=301]
+    RewriteRule ^llongueras.html /marcas/llongueras.html [L,R=301]
+    RewriteRule ^loewe.html /marcas/loewe.html [L,R=301]
+    RewriteRule ^loewe-001.html /marcas/loewe-001.html [L,R=301]
+    RewriteRule ^los-descendientes.html /marcas/los-descendientes.html [L,R=301]
+    RewriteRule ^magic-studio.html /marcas/magic-studio.html [L,R=301]
+    RewriteRule ^maja.html /marcas/maja.html [L,R=301]
+    RewriteRule ^makeup-revolution.html /marcas/makeup-revolution.html [L,R=301]
+    RewriteRule ^malu.html /marcas/malu.html [L,R=301]
+    RewriteRule ^manuel-carrasco.html /marcas/manuel-carrasco.html [L,R=301]
+    RewriteRule ^marc-jacobs.html /marcas/marc-jacobs.html [L,R=301]
+    RewriteRule ^marc-marquez.html /marcas/marc-marquez.html [L,R=301]
+    RewriteRule ^markwins.html /marcas/markwins.html [L,R=301]
+    RewriteRule ^martiderm.html /marcas/martiderm.html [L,R=301]
+    RewriteRule ^massimo-dutti.html /marcas/massimo-dutti.html [L,R=301]
+    RewriteRule ^metilina-valet.html /marcas/metilina-valet.html [L,R=301]
+    RewriteRule ^michael-kors.html /marcas/michael-kors.html [L,R=301]
+    RewriteRule ^mikado.html /marcas/mikado.html [L,R=301]
+    RewriteRule ^milano.html /marcas/milano.html [L,R=301]
+    RewriteRule ^minions.html /marcas/minions.html [L,R=301]
+    RewriteRule ^montagne-jeunesse.html /marcas/montagne-jeunesse.html [L,R=301]
+    RewriteRule ^montblanc.html /marcas/montblanc.html [L,R=301]
+    RewriteRule ^moroccanoil.html /marcas/moroccanoil.html [L,R=301]
+    RewriteRule ^moussel.html /marcas/moussel.html [L,R=301]
+    RewriteRule ^mr-150.html /marcas/mr-150.html [L,R=301]
+    RewriteRule ^muestras-y-regalos.html /marcas/muestras-y-regalos.html [L,R=301]
+    RewriteRule ^mum.html /marcas/mum.html [L,R=301]
+    RewriteRule ^myrurgia.html /marcas/myrurgia.html [L,R=301]
+    RewriteRule ^narciso-rodriguez.html /marcas/narciso-rodriguez.html [L,R=301]
+    RewriteRule ^natur-vital.html /marcas/natur-vital.html [L,R=301]
+    RewriteRule ^natural-honey.html /marcas/natural-honey.html [L,R=301]
+    RewriteRule ^nautica.html /marcas/nautica.html [L,R=301]
+    RewriteRule ^nb-palmolive.html /marcas/nb-palmolive.html [L,R=301]
+    RewriteRule ^nelly.html /marcas/nelly.html [L,R=301]
+    RewriteRule ^nenuco.html /marcas/nenuco.html [L,R=301]
+    RewriteRule ^nina-ricci.html /marcas/nina-ricci.html [L,R=301]
+    RewriteRule ^nivea.html /marcas/nivea.html [L,R=301]
+    RewriteRule ^nivea-men.html /marcas/nivea-men.html [L,R=301]
+    RewriteRule ^olay.html /marcas/olay.html [L,R=301]
+    RewriteRule ^old-spice.html /marcas/old-spice.html [L,R=301]
+    RewriteRule ^oral-b.html /marcas/oral-b.html [L,R=301]
+    RewriteRule ^oroquey.html /marcas/oroquey.html [L,R=301]
+    RewriteRule ^pacha.html /marcas/pacha.html [L,R=301]
+    RewriteRule ^paco-rabanne.html /marcas/paco-rabanne.html [L,R=301]
+    RewriteRule ^palmolive.html /marcas/palmolive.html [L,R=301]
+    RewriteRule ^palson.html /marcas/palson.html [L,R=301]
+    RewriteRule ^pantene.html /marcas/pantene.html [L,R=301]
+    RewriteRule ^patrulla-canina.html /marcas/patrulla-canina.html [L,R=301]
+    RewriteRule ^paula-echevarria.html /marcas/paula-echevarria.html [L,R=301]
+    RewriteRule ^payot.html /marcas/payot.html [L,R=301]
+    RewriteRule ^perfumania.html /marcas/perfumania.html [L,R=301]
+    RewriteRule ^pj-masks.html /marcas/pj-masks.html [L,R=301]
+    RewriteRule ^playboy.html /marcas/playboy.html [L,R=301]
+    RewriteRule ^pond-s.html /marcas/pond-s.html [L,R=301]
+    RewriteRule ^prada.html /marcas/prada.html [L,R=301]
+    RewriteRule ^puig.html /marcas/puig.html [L,R=301]
+    RewriteRule ^ralph-lauren.html /marcas/ralph-lauren.html [L,R=301]
+    RewriteRule ^relec-antimosquitos.html /marcas/relec.html [L,R=301]
+    RewriteRule ^revlon.html /marcas/revlon.html [L,R=301]
+    RewriteRule ^rexona.html /marcas/rexona.html [L,R=301]
+    RewriteRule ^rochas.html /marcas/rochas.html [L,R=301]
+    RewriteRule ^royal-fern.html /marcas/royal-fern.html [L,R=301]
+    RewriteRule ^royale-ambree.html /marcas/royale-ambree.html [L,R=301]
+    RewriteRule ^sanex.html /marcas/sanex.html [L,R=301]
+    RewriteRule ^schwarzkopf.html /marcas/schwarzkopf.html [L,R=301]
+    RewriteRule ^sebastian.html /marcas/sebastian.html [L,R=301]
+    RewriteRule ^sensai.html /marcas/sensai.html [L,R=301]
+    RewriteRule ^sensodyne.html /marcas/sensodyne.html [L,R=301]
+    RewriteRule ^shakira.html /marcas/shakira.html [L,R=301]
+    RewriteRule ^signal.html /marcas/signal.html [L,R=301]
+    RewriteRule ^sisley.html /marcas/sisley.html [L,R=301]
+    RewriteRule ^somatoline.html /marcas/somatoline.html [L,R=301]
+    RewriteRule ^soy-luna.html /marcas/soy-luna.html [L,R=301]
+    RewriteRule ^spiderman.html /marcas/spiderman.html [L,R=301]
+    RewriteRule ^sportman.html /marcas/sportman.html [L,R=301]
+    RewriteRule ^star-wars.html /marcas/star-wars.html [L,R=301]
+    RewriteRule ^syoss.html /marcas/syoss.html [L,R=301]
+    RewriteRule ^tabac.html /marcas/tabac.html [L,R=301]
+    RewriteRule ^taky.html /marcas/taky.html [L,R=301]
+    RewriteRule ^thierry-mugler.html /marcas/thierry-mugler.html [L,R=301]
+    RewriteRule ^tiffany.html /marcas/tiffany.html [L,R=301]
+    RewriteRule ^tigi.html /marcas/tigi.html [L,R=301]
+    RewriteRule ^tommy-hilfiger.html /marcas/tommy-hilfiger.html [L,R=301]
+    RewriteRule ^tous.html /marcas/tous.html [L,R=301]
+    RewriteRule ^travalo.html /marcas/travalo.html [L,R=301]
+    RewriteRule ^tresemme.html /marcas/tresemme.html [L,R=301]
+    RewriteRule ^tulipan-negro.html /marcas/tulipan-negro.html [L,R=301]
+    RewriteRule ^united-colors-of-benetton.html /marcas/united-colors-of-benetton.html [L,R=301]
+    RewriteRule ^valentino.html /marcas/valentino.html [L,R=301]
+    RewriteRule ^vampirina.html /marcas/vampirina.html [L,R=301]
+    RewriteRule ^vanderbilt.html /marcas/vanderbilt.html [L,R=301]
+    RewriteRule ^veet.html /marcas/veet.html [L,R=301]
+    RewriteRule ^vittorio-lucchino.html /marcas/victorio.html [L,R=301]
+    RewriteRule ^vitesse.html /marcas/vitesse.html [L,R=301]
+    RewriteRule ^wella.html /marcas/wella.html [L,R=301]
+    RewriteRule ^wilkinson.html /marcas/wilkinson.html [L,R=301]
+    RewriteRule ^williams.html /marcas/williams.html [L,R=301]
+    RewriteRule ^womensecret.html /marcas/women-secret.html [L,R=301]
+    RewriteRule ^wunder2.html /marcas/wunder2.html [L,R=301]
+    RewriteRule ^ysl.html /marcas/ysl.html [L,R=301]
+    RewriteRule ^zadig-voltaire.html /marcas/zadig-voltaire.html [L,R=301]
+
+############################################
+## workaround for HTTP authorization
+## in CGI environment
+
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+############################################
+## TRACE and TRACK HTTP methods disabled to prevent XSS attacks
+
+    RewriteCond %{REQUEST_METHOD} ^TRAC[EK]
+    RewriteRule .* - [L,R=405]
+
+############################################
+## redirect for mobile user agents
+
+    #RewriteCond %{REQUEST_URI} !^/mobiledirectoryhere/.*$
+    #RewriteCond %{HTTP_USER_AGENT} "android|blackberry|ipad|iphone|ipod|iemobile|opera mobile|palmos|webos|googlebot-mobile" [NC]
+    #RewriteRule ^(.*)$ /mobiledirectoryhere/ [L,R=302]
+
+############################################
+## never rewrite for existing files, directories and links
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+
+############################################
+## rewrite everything else to index.php
+
+    RewriteRule .* index.php [L]
+
+</IfModule>
+
+
+############################################
+## Prevent character encoding issues from server overrides
+## If you still have problems, use the second line instead
+
+    AddDefaultCharset Off
+    #AddDefaultCharset UTF-8
+    AddType 'text/html; charset=UTF-8' html
+
+<IfModule mod_expires.c>
+
+############################################
+## Add default Expires header
+## http://developer.yahoo.com/performance/rules.html#expires
+
+    ExpiresDefault "access plus 1 year"
+    ExpiresByType text/html A0
+    ExpiresByType text/plain A0
+
+</IfModule>
+
+###########################################
+## Deny access to root files to hide sensitive application information
+    RedirectMatch 403 /\.git
+
+    <Files composer.json>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files composer.lock>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files .gitignore>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files .htaccess>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files .htaccess.sample>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files .php_cs.dist>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files .travis.yml>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files CHANGELOG.md>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files COPYING.txt>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files Gruntfile.js>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files LICENSE.txt>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files LICENSE_AFL.txt>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files nginx.conf.sample>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files package.json>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files php.ini.sample>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files README.md>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files auth.json>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+    <Files magento_umask>
+        <IfVersion < 2.4>
+            order allow,deny
+            deny from all
+        </IfVersion>
+        <IfVersion >= 2.4>
+            Require all denied
+        </IfVersion>
+    </Files>
+
+# For 404s and 403s that aren't handled by the application, show plain 404 response
+ErrorDocument 404 /pub/errors/404.php
+ErrorDocument 403 /pub/errors/404.php
+
+################################
+## If running in cluster environment, uncomment this
+## http://developer.yahoo.com/performance/rules.html#etags
+
+    #FileETag none
+
+# ######################################################################
+# # INTERNET EXPLORER                                                  #
+# ######################################################################
+
+# ----------------------------------------------------------------------
+# | Document modes                                                     |
+# ----------------------------------------------------------------------
+
+# Force Internet Explorer 8/9/10 to render pages in the highest mode
+# available in the various cases when it may not.
+#
+# https://hsivonen.fi/doctype/#ie8
+#
+# (!) Starting with Internet Explorer 11, document modes are deprecated.
+# If your business still relies on older web apps and services that were
+# designed for older versions of Internet Explorer, you might want to
+# consider enabling `Enterprise Mode` throughout your company.
+#
+# https://msdn.microsoft.com/en-us/library/ie/bg182625.aspx#docmode
+# http://blogs.msdn.com/b/ie/archive/2014/04/02/stay-up-to-date-with-enterprise-mode-for-internet-explorer-11.aspx
+
+<IfModule mod_headers.c>
+
+    Header set X-UA-Compatible "IE=edge"
+
+    # `mod_headers` cannot match based on the content-type, however,
+    # the `X-UA-Compatible` response header should be send only for
+    # HTML documents and not for the other resources.
+    <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
+        Header unset X-UA-Compatible
+    </FilesMatch>
+
+</IfModule>
+
+# ######################################################################
+# # Apache Mod_PageSpeed                                               #
+# ######################################################################
+
+<IfModule mod_pagespeed.c>
+
+    ModPagespeed on
+    ModPagespeedRewriteLevel PassThrough
+    #ModPagespeedForbidFilters rewrite_javascript,combine_javascript,minify_javascript
+    #ModPagespeedDisableFilters rewrite_javascript,combine_javascript,minify_javascript
+    ModPagespeedEnableFilters strip_image_meta_data
+    ModPagespeedEnableFilters rewrite_images
+    ModPagespeedEnableFilters combine_css
+
+</IfModule>

@@ -1,0 +1,20 @@
+<?php 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+    $price = $product->getFinalPrice();
+?>
+<?php if($price > 29){ ?>
+    <div class="product-envio product-envio-sm">
+        <div class="envio-content envio-content-sm">
+        	<strong><?php echo __('Envío Gratis') ?></strong>
+        	<p><?php echo __('Excepto Baleares +69€') ?></p>
+        </div>
+    </div>
+<?php }else{ ?>
+	<div class="product-envio product-envio-lg">
+        <div class="envio-content envio-content-lg">
+        	<strong><?php echo __('Envío gratuíto en pedidos de +29€') ?></strong>
+        	<p><?php echo __('Excepto Baleares +69€') ?></p>
+        </div>
+    </div>
+<?php } ?>

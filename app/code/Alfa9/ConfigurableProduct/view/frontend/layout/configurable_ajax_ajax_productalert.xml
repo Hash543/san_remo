@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Israel Yasis
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root">
+        <block class="Magento\Catalog\Block\Product\View\Type\Simple"
+               name="product.stock" as="product_stock" template="Magento_Catalog::product/view/type/default.phtml" />
+        <!--<block class="Alfa9\ConfigurableProduct\Block\ProductAlert\View\Stock" name="productalert.stock" as="productalert_stock" template="Magento_ProductAlert::product/view.phtml">
+            <action method="setHtmlClass">
+                <argument name="value" xsi:type="string">stock</argument>
+            </action>
+            <action method="setSignupLabel">
+                <argument translate="true" name="value" xsi:type="string">Notify me when this product is in stock</argument>
+            </action>
+        </block>-->
+        <block class="PSS\ProductAlert\Block\Product\View" name="productalert.stock.email" as="productalert_stock_email" template="PSS_ProductAlert::product/view.phtml">
+            <action method="setHtmlClass">
+                <argument name="value" xsi:type="string">stock</argument>
+            </action>
+            <action method="setSignupLabel">
+                <argument translate="true" name="value" xsi:type="string">Notify me when this product is in stock</argument>
+            </action>
+        </block>
+    </container>
+</layout>

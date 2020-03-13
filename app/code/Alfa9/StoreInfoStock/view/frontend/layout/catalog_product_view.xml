@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceBlock name="product.info.price">
+            <block name="storeinfostock_modal_btn"
+                   before="product.info.stock.sku"
+                   template="Alfa9_StoreInfoStock::catalog/product/view/stock-modalbtn.phtml"/>
+        </referenceBlock>
+
+        <referenceContainer name="content">
+            <block name="storeinfostock_modal"
+                   template="Alfa9_StoreInfoStock::catalog/product/view/stock-modal.phtml"/>
+        </referenceContainer>
+
+    </body>
+</page>

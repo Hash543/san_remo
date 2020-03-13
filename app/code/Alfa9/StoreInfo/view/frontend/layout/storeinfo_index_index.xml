@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Our Stores</title>
+        <css src="Alfa9_StoreInfo::css/stockists.css"/>
+    </head>
+    <body>
+        <attribute name="class" value="storeinfo"/>
+        <referenceContainer name="content">
+            <block class="Alfa9\StoreInfo\Block\Stockists" name="stockists.stores" template="Alfa9_StoreInfo::main.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

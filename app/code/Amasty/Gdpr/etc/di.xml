@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\Gdpr\Api\Data\DeleteRequestInterface" type="Amasty\Gdpr\Model\DeleteRequest" />
+    <preference for="Amasty\Gdpr\Api\DeleteRequestRepositoryInterface" type="Amasty\Gdpr\Model\DeleteRequestRepository" />
+
+    <preference for="Amasty\Gdpr\Api\Data\WithConsentInterface" type="Amasty\Gdpr\Model\WithConsent" />
+    <preference for="Amasty\Gdpr\Api\WithConsentRepositoryInterface" type="Amasty\Gdpr\Model\Repository\WithConsentRepository" />
+
+    <preference for="Amasty\Gdpr\Api\Data\PolicyInterface" type="Amasty\Gdpr\Model\Policy" />
+    <preference for="Amasty\Gdpr\Api\PolicyRepositoryInterface" type="Amasty\Gdpr\Model\PolicyRepository" />
+
+    <preference for="Amasty\Gdpr\Api\Data\ConsentQueueInterface" type="Amasty\Gdpr\Model\ConsentQueue" />
+    <preference for="Amasty\Gdpr\Api\ConsentQueueRepositoryInterface" type="Amasty\Gdpr\Model\Repository\ConsentQueueRepository" />
+
+    <preference for="Amasty\Gdpr\Api\Data\ActionLogInterface" type="Amasty\Gdpr\Model\ActionLog" />
+    <preference for="Amasty\Gdpr\Api\ActionLogRepositoryInterface" type="Amasty\Gdpr\Model\ActionLogRepository" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="amasty_gdpr_actionlog_listing_data_source" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\ActionLog\Grid\Collection</item>
+                <item name="amasty_gdpr_withconsent_listing_data_source" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\WithConsent\Grid\Collection</item>
+                <item name="amasty_gdpr_withoutconsent_listing_data_source" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\WithoutConsent\Grid\Collection</item>
+                <item name="amasty_gdpr_consentqueue_listing_data_source" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\ConsentQueue\Grid\Collection</item>
+                <item name="amasty_gdpr_request_listing_data_source" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\DeleteRequest\Grid\Collection</item>
+                <item name="amasty_gdpr_policy_listing_data_source" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\Policy\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\Gdpr\Model\ResourceModel\ActionLog\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">amasty_gdpr_action_log</argument>
+            <argument name="resourceModel" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\ActionLog</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\Gdpr\Model\ResourceModel\WithConsent\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">amasty_gdpr_consent_log</argument>
+            <argument name="resourceModel" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\WithConsent</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\Gdpr\Model\ResourceModel\WithoutConsent\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customer_entity</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Customer\Model\ResourceModel\Customer</argument>
+        </arguments>
+        <plugin name="amastyWithoutConsentCollection" type="Amasty\Gdpr\Plugin\WithoutConsent\Grid\Collection" />
+    </type>
+    <type name="Amasty\Gdpr\Model\ResourceModel\DeleteRequest\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">amasty_gdpr_delete_request</argument>
+            <argument name="resourceModel" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\DeleteRequest</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\Gdpr\Model\ResourceModel\Policy\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">amasty_gdpr_privacy_policy</argument>
+            <argument name="resourceModel" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\Policy</argument>
+        </arguments>
+    </type>
+    <virtualType name="Amasty\Gdpr\Model\ResourceModel\ConsentQueue\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">amasty_gdpr_consent_queue</argument>
+            <argument name="resourceModel" xsi:type="string">Amasty\Gdpr\Model\ResourceModel\ConsentQueue</argument>
+        </arguments>
+    </virtualType>
+</config>

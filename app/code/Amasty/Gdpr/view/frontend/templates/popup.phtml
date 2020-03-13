@@ -1,0 +1,22 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Gdpr
+ */
+?>
+<?php /** @var \Amasty\Gdpr\Block\Popup $block */ ?>
+
+<div class="amprivacy-policy" id="amprivacy-popup">
+    <?= $block->getText() ?>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#amprivacy-popup": {
+            "Amasty_Gdpr/js/popup":{
+                "title":"<?= /* @escapeNotVerified */  __('Privacy Policy') ?>"
+            }
+        }
+    }
+</script>

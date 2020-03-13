@@ -1,0 +1,72 @@
+"If %1 %2 %3 for a subselection of items in cart matching %4 of these conditions:","Si %1 %2 %3 para una subselección de artículos en la cesta coincidiendo %4 de estas condiciones:"
+"If %1 %2 %3 for a subselection of items in cart matching %4 of these conditions:","Si %1 %2 %3 para una subselección de artículos en la cesta coincidiendo %4 de estas condiciones Magento_SalesRule:",module,Magento_SalesRule
+"If %1 %2 %3 for a subselection of items in cart matching %4 of these conditions:","Si %1 %2 %3 para una subselección de artículos en la cesta coincidiendo %4 de estas condiciones Amasty_Conditions:",module,Amasty_Conditions
+"If %1 %2 %3 for a subselection of items in cart matching %4 of these conditions:","Si %1 %2 %3 para una subselección de artículos en la cesta coincidiendo %4 de estas condiciones Amasty_RulesPro:",module,Amasty_RulesPro
+"Search for products, categories, ...","¿Qué estás buscando?",theme,Pearl/weltpixel_custom
+"I accept the ","Acepto las "
+"General Conditions","Condiciones Generales"
+" and the "," y la "
+"Privacy Policy","Política de Privacidad"
+"Subscribe","Suscribirme",theme,Pearl/weltpixel_custom
+"Show","Ver",module,Magento_Catalog
+"per page","artículos",module,Magento_Catalog
+"Search for options ...","Buscar opción...",theme,Pearl/weltpixel_custom
+"Add to Cart","Comprar",module,Magento_Catalog
+"Shop By","Ver Filtros",module,Magento_Catalog
+"Buy","Comprar"
+"Details","Descripción",module,Magento_Catalog
+"Tips","Consejos",module,Alfa9_CustomAttr
+"More Information","Ingredientes",module,Magento_Catalog
+"Review","Comentario",module,Magento_Reports
+"Reviews","Comentarios",module,Magento_Reports
+"More from this Brand (%1)","Más de esta marca (%1)"
+"Wordpress Post","Noticias"
+"WordPress Post","Noticias"
+"There are no related Posts","No hay noticias relacionadas"
+"January","Enero",
+"February","Febrero",
+"March","Marzo",
+"April","Abril",
+"May","Mayo",
+"June","Junio",
+"July","Julio",
+"August","Enero",
+"September","Septiembre",
+"October","Octubre",
+"November","Noviembre",
+"December","Diciembre",
+"Página De Inicio","Inicio"
+"Recently Ordered","Tus últimas compras",module,Magento_Sales
+"Now Shopping by","Opciones de compra",theme,frontend/Magento/luma
+"Now Shopping by","Opciones de compra",module,Magento_LayeredNavigation
+"Tax/VAT number","DNI/NIF",module,Magento_Customer
+"Contact Us","Contacta con nosotros"
+"Our Stores","Nuestras tiendas",Alfa9_StoreInfo
+"Store Details","Detalles de la tienda",Alfa9_StoreInfo
+"View Our Other Stores", "Vea nuestras otras tiendas",Alfa9_StoreInfo
+"Your order has been successfully completed.","Su pedido se ha realizado con éxito."
+"All Category","Marcas"
+"Qty not specified for any product.","Cantidad no especificada para ningún producto."
+"Buy","Comprar"
+"Logout", "Cerrar sesión"
+"My Product Reviews","Mis reseñas",module,Magento_Review
+"Discount", "Descuento"
+"New Billing Address","Nueva dirección de facturación", module, Magento_Checkout
+"Forgot Your Password","¿Olvidó su contraseña?"
+"%1 You can update them %2.", "%1 Puedes actualizar tus datos %2."
+"Here", "Aquí"
+"Wrong Password. Please recheck it.","Contraseña inválida."
+"The NIF/NIE is invalid.", "NIF/NIE inválido."
+"Store pickup confirmation email sent","Email de confirmación de reserva ha sido enviada."
+"Store pickup cancelation email sent","Email de cancelación de reserva ha sido enviada."
+"Cancel reservation.","Cancelación de reserva."
+"Status","Estado"
+"order(s)","pedido(s)"
+"Orders %1 to %2 of %3 total","Pedidos %1 a %2 de %3 total",module,Magento_Theme
+"%1 Order","%1 Pedido",module,Magento_Theme
+"%1 Order(s)","%1 Pedido(s)",module,Magento_Theme
+"All departments","Todos los departamentos",module,Algolia_AlgoliaSearch
+"See products in","Ver productos en",module,Algolia_AlgoliaSearch
+"in","en",module,Algolia_AlgoliaSearch
+"Calculate", "Calcular", module, PSS_PaymentPoints
+"Shipping & Handling","Envío",module,Magento_Sales

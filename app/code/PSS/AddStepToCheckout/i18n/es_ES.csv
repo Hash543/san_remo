@@ -1,0 +1,28 @@
+"Payments","Pago"
+"Review","Revisión"
+"Continue to Review","Continuar a Revisión"
+"Continue to Payment","Continuar al Pago"
+"Checkout Review","Revisión del Pedido"
+"Your order will be shipped to:","Su pedido será enviado a:"
+"Place Order","Finalizar Compra"
+"Purchase Summary","Resumen de Compra"
+"Keep Buying","Seguir Comprando"
+"Delivery Method","Método de Entrega"
+"Payment Method","Método de Pago"
+"Check In","Registrarse"
+"Next", "Siguiente"
+"Apply Discount Code","¿Tienes un vale de descuento?",module,PSS_AddStepToCheckout
+"Address", "Dirección"
+"Sing up", "Regístrate"
+"Province", "Provincia"
+"Registered User", "Usuario registrado"
+"Log In", "Acceder"
+"Register", "Registrar"
+"Finalize Purchase","Finalizar Compra"
+"Delivery Method","Método de Entrega",module,Magento_Checkout
+"Keep Buying","Seguir Comprando","module",PSS_AddStepToCheckout
+"Date of Birth","Fecha de nacimiento","module",PSS_AddStepToCheckout
+"Update Basket","Actualizar Cesta","module",PSS_AddStepToCheckout
+"Search the Store", "Busque la tienda",module,PSS_AddStepToCheckout
+"New Address", "Nueva dirección de facturación",module,PSS_AddStepToCheckout
+"Sorry, no quotes are available for this order at this time", "Lo sentimos, no hay disponibilidad para este pedido en este momento.", module, PSS_AddStepToCheckout

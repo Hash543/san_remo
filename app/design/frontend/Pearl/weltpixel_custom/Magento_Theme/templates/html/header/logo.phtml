@@ -1,0 +1,52 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+?>
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$requestInterface = $objectManager->get('Magento\Framework\App\RequestInterface');
+$fullactionName = $requestInterface->getFullActionName();
+?>
+<?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
+<span data-action="toggle-nav" class="action nav-toggle"><span><?= /* @escapeNotVerified */ __('Toggle Nav') ?></span></span>
+<?php if($fullactionName != "sales_order_print"){ ?>
+<a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
+    <img src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
+         title="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+         alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+         class="logo-desktop"
+        <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+        <?= $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+    />
+    <img src="<?php echo $block->getViewFileUrl('images/logo-mobile.png') ?>"
+         title="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+         alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+         class="logo-mobile"
+    />
+    <img src="<?php echo $block->getViewFileUrl('images/logo-sticky.png') ?>"
+         title="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+         alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+         class="logo-sticky"
+    />
+</a>
+<?php }else{ ?>
+<a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
+    <img src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
+         title="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+         alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+         class="logo-desktop"
+        <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+        <?= $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+    />
+</a>
+<?php } ?>
+

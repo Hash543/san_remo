@@ -1,0 +1,19 @@
+<?php
+/** @var \Alfa9\StoreInfoStock\Block\StockInfo $block */
+$stores = $block->getStoreList();
+?>
+
+<div class="product-tiendas-mobile">
+    <p><?= $block->escapeHtml(__('Puedes encontrar este artículo en las siguientes tiendas:')) ?></p>
+    <div class="table-tiendas-wrapper">
+        <table cellpadding="1" cellspacing="1">
+            <?php foreach ($stores as $store): ?>
+                <tr>
+                    <td class="col address"><?= $store['address'] ?></td>
+                    <td class="col schedule"><?= $store['schedule'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+    <button type="button" class="action primary more"><?php echo __('Ver más tiendas') ?></button>
+</div>

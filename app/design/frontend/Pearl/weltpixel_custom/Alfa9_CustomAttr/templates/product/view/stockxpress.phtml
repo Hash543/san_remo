@@ -1,0 +1,11 @@
+<?php
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\abstractView
+ */
+$_product = $block->getProduct();
+?>
+<?php if ($_product->getData('express_stock') > 0): ?>
+    <strong class="product-label"><p><?php echo __('Stock Express') ?></p></strong>
+<?php endif; ?>

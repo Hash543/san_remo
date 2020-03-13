@@ -1,0 +1,4 @@
+account_email           ,point_amount,store_id
+roni_cost1@example.com  ,10          ,1
+roni_cost11@example.com ,100         ,1
+roni_cost111@example.com,1000        ,1
